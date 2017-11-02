@@ -4,10 +4,10 @@ I have performed a simple publisher-subscriber test using python scripts. The pu
 
 To run the publisher script, you must first update the bash environment:
 
-cd catkin/ws
+cd catkin_ws
 . devel/setup.bash
 
-Then, use rosrun to run it:
+Then, use rosrun to run it (be sure to run roscore before):
 
 rosrun beginner_tutorials talker.py 
 
