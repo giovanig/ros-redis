@@ -1,0 +1,2 @@
+set(scheduler_msgs_MESSAGE_FILES "/home/giovani/catkin_ws/src/rocon_msgs/scheduler_msgs/msg/CurrentStatus.msg;/home/giovani/catkin_ws/src/rocon_msgs/scheduler_msgs/msg/KnownResources.msg;/home/giovani/catkin_ws/src/rocon_msgs/scheduler_msgs/msg/Request.msg;/home/giovani/catkin_ws/src/rocon_msgs/scheduler_msgs/msg/Resource.msg;/home/giovani/catkin_ws/src/rocon_msgs/scheduler_msgs/msg/SchedulerRequests.msg")
+set(scheduler_msgs_SERVICE_FILES "")

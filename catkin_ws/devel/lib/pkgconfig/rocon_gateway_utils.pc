@@ -1,0 +1,8 @@
+prefix=/home/giovani/catkin_ws/devel
+
+Name: rocon_gateway_utils
+Description: Description of rocon_gateway_utils
+Version: 0.10.0
+Cflags: 
+Libs: -L/home/giovani/catkin_ws/devel/lib 
+Requires: 

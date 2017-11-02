@@ -1,0 +1,6 @@
+set(rocon_test_SETUP_PY_VERSION "0.10.0")
+set(rocon_test_SETUP_PY_SCRIPTS "scripts/rocon_test")
+set(rocon_test_SETUP_PY_PACKAGES "rocon_test")
+set(rocon_test_SETUP_PY_PACKAGE_DIRS "src/rocon_test")
+set(rocon_test_SETUP_PY_MODULES "")
+set(rocon_test_SETUP_PY_MODULE_DIRS "")

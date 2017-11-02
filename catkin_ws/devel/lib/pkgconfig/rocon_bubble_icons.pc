@@ -1,0 +1,8 @@
+prefix=/home/giovani/catkin_ws/devel
+
+Name: rocon_bubble_icons
+Description: Description of rocon_bubble_icons
+Version: 0.8.0
+Cflags: 
+Libs: -L/home/giovani/catkin_ws/devel/lib 
+Requires: 

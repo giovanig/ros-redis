@@ -1,0 +1,8 @@
+prefix=/home/giovani/catkin_ws/install
+
+Name: rocon_gateway_tests
+Description: Description of rocon_gateway_tests
+Version: 0.10.0
+Cflags: 
+Libs: -L/home/giovani/catkin_ws/install/lib 
+Requires: 

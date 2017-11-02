@@ -1,0 +1,8 @@
+prefix=/home/giovani/catkin_ws/devel
+
+Name: rocon_hub_client
+Description: Description of rocon_hub_client
+Version: 0.10.0
+Cflags: 
+Libs: -L/home/giovani/catkin_ws/devel/lib 
+Requires: 

@@ -1,0 +1,8 @@
+prefix=/home/giovani/catkin_ws/install
+
+Name: rocon_interactions
+Description: Description of rocon_interactions
+Version: 0.8.0
+Cflags: 
+Libs: -L/home/giovani/catkin_ws/install/lib 
+Requires: 
