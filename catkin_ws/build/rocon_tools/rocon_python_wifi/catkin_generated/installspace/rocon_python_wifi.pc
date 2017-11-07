@@ -1,8 +1,0 @@
-prefix=/home/giovani/catkin_ws/install
-
-Name: rocon_python_wifi
-Description: Description of rocon_python_wifi
-Version: 0.8.0
-Cflags: 
-Libs: -L/home/giovani/catkin_ws/install/lib 
-Requires: 

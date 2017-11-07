@@ -1,8 +1,0 @@
-prefix=/home/giovani/catkin_ws/devel
-
-Name: rocon_master_info
-Description: Description of rocon_master_info
-Version: 0.8.0
-Cflags: 
-Libs: -L/home/giovani/catkin_ws/devel/lib 
-Requires: 

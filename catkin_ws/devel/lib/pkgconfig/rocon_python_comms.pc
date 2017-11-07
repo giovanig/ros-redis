@@ -1,8 +1,0 @@
-prefix=/home/giovani/catkin_ws/devel
-
-Name: rocon_python_comms
-Description: Description of rocon_python_comms
-Version: 0.8.0
-Cflags: 
-Libs: -L/home/giovani/catkin_ws/devel/lib 
-Requires: 

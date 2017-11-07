@@ -1,8 +1,0 @@
-prefix=/home/giovani/catkin_ws/install
-
-Name: rocon_tutorial_msgs
-Description: Description of rocon_tutorial_msgs
-Version: 0.10.0
-Cflags: -I/home/giovani/catkin_ws/install/include
-Libs: -L/home/giovani/catkin_ws/install/lib 
-Requires: message_runtime rocon_service_pair_msgs

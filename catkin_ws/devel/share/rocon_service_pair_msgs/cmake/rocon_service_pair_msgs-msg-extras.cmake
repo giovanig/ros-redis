@@ -1,2 +1,0 @@
-set(rocon_service_pair_msgs_MESSAGE_FILES "/home/giovani/catkin_ws/src/rocon_msgs/rocon_service_pair_msgs/msg/TestiesPair.msg;/home/giovani/catkin_ws/src/rocon_msgs/rocon_service_pair_msgs/msg/TestiesPairRequest.msg;/home/giovani/catkin_ws/src/rocon_msgs/rocon_service_pair_msgs/msg/TestiesPairResponse.msg;/home/giovani/catkin_ws/src/rocon_msgs/rocon_service_pair_msgs/msg/TestiesRequest.msg;/home/giovani/catkin_ws/src/rocon_msgs/rocon_service_pair_msgs/msg/TestiesResponse.msg")
-set(rocon_service_pair_msgs_SERVICE_FILES "")

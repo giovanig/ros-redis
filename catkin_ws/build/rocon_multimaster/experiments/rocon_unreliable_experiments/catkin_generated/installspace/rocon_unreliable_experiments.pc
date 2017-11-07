@@ -1,8 +1,0 @@
-prefix=/home/giovani/catkin_ws/install
-
-Name: rocon_unreliable_experiments
-Description: Description of rocon_unreliable_experiments
-Version: 0.10.0
-Cflags: 
-Libs: -L/home/giovani/catkin_ws/install/lib 
-Requires: roscpp std_msgs

@@ -1,8 +1,0 @@
-prefix=/home/giovani/catkin_ws/install
-
-Name: rocon_semantic_version
-Description: Description of rocon_semantic_version
-Version: 0.8.0
-Cflags: 
-Libs: -L/home/giovani/catkin_ws/install/lib 
-Requires: 

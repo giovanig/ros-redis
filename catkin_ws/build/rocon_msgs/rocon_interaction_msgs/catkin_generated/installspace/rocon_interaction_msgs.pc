@@ -1,8 +1,0 @@
-prefix=/home/giovani/catkin_ws/install
-
-Name: rocon_interaction_msgs
-Description: Description of rocon_interaction_msgs
-Version: 0.10.0
-Cflags: -I/home/giovani/catkin_ws/install/include
-Libs: -L/home/giovani/catkin_ws/install/lib 
-Requires: message_runtime rocon_std_msgs uuid_msgs

@@ -1,8 +1,0 @@
-prefix=/home/giovani/catkin_ws/devel
-
-Name: rocon_test
-Description: Description of rocon_test
-Version: 0.10.0
-Cflags: 
-Libs: -L/home/giovani/catkin_ws/devel/lib 
-Requires: 
