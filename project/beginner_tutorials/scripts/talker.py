@@ -38,15 +38,23 @@
 
 import rospy
 from std_msgs.msg import String
+from anm_msgs.msg import ControlCommands
 
 def talker():
-    pub = rospy.Publisher('chatter', String, queue_size=10)
-    rospy.init_node('talker', anonymous=True)
+    pub = rospy.Publisher('control_commands', ControlCommands, queue_size=500)
+    rospy.init_node('redis_talker', anonymous=False)
     rate = rospy.Rate(10) # 10hz
+
+    msg = ControlCommands()
+    msg.steering_pos_cmd = 1.23
+    msg.steering_vel_cmd = 90.2
+    msg.steering_EN = 230
+
+
     while not rospy.is_shutdown():
-        hello_str = "hello world %s" % rospy.get_time()
-        rospy.loginfo(hello_str)
-        pub.publish(hello_str)
+        # hello_str = "hello world %s" % rospy.get_time()
+        rospy.loginfo(msg)
+        pub.publish(msg)
         rate.sleep()
 
 if __name__ == '__main__':

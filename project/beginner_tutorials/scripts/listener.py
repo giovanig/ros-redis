@@ -2,7 +2,7 @@
 
 import rocon_python_redis as redis
 import rospy
-from beginner_tutorials.msg import ControlCommands
+from anm_msgs.msg import ControlCommands
 
 i = 1
 
@@ -10,12 +10,15 @@ def callback(data):
     global i
     #rospy.loginfo(rospy.get_caller_id() + "Seq %d, Stamp %d, frame_id %s, steering_pos_cmd %f, steering_vel_cmd %f, steering_EN %d", data.header.seq, data.header.stamp, data.header.frame_id, data.steering_pos_cmd, data.steering_vel_cmd, data.steering_EN)
     rospy.loginfo("Seq %d", (data.header.seq))
+    
+    # Current time
+    cur_time = rospy.get_time()
+    
     con = redis.Connection(host="localhost", socket_timeout=5.0, port=6379)
     con.send_command('SET', 'steering_pos_cmd', data.steering_pos_cmd)
     con.send_command('GET', 'steering_pos_cmd')
     res = con.read_response()
     print(res)
-    i += 1
 
     
 def listener():
@@ -25,9 +28,10 @@ def listener():
     # anonymous=True flag means that rospy will choose a unique
     # name for our 'listener' node so that multiple listeners can
     # run simultaneously.
-    rospy.init_node('custom_listener', anonymous=True)
+    rospy.init_node('redis_listener', anonymous=False)
 
-    rospy.Subscriber("custom_chatter", ControlCommands, callback)
+    # List subscribers
+    rospy.Subscriber("control_commands", ControlCommands, callback)
 
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
