@@ -5,6 +5,10 @@ This subdirectory contains an example ROS package that demonstrates gtest unit-t
 ## Install
 
     sudo apt-get install ros-kinetic-rocon-python-redis ros-kinetic-rocon-msgs ros-kinetic-rocon-multimaster ros-kinetic-rocon-tools ros-kinetic-zeroconf-msgs
+    
+## Run Package
+
+    roslaunch beginner_tutorials redis_listen.launch
 
 For error/diagnostic reporting the general rule is:
 - Errors discovered in ROS (within nodes or nodelets) must be reported using the error logging functions included in ROS, such as ROS_ERROR().
