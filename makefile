@@ -9,7 +9,7 @@ pull:
 push: 
 		git add *
 			git commit -m "First Draft: Listens to control commands and sends to redis"
-				git push origin sim	
+				git push origin redis	
 
 git: clean push
 
