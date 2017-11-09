@@ -4,6 +4,10 @@
 
     cd ros_package_name/scripts/
     ln -s /usr/local/lib/python<version_number>/dist-packages/redis redis
+
+**Link the project**
+
+    ln -sfn ~/fisch/ros-redis/project/beginner_tutorials/ ~/catkin_ws/src/beginner_tutorials
     
 **Build Project**
 
