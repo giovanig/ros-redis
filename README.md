@@ -1,26 +1,21 @@
 # ros-redis
 
-I have performed a simple publisher-subscriber test using python scripts. The publisher only publishes a value and the subscriber reads it and writes into the redis data base. I have used the redis version 3.2.11.
+**Install redis**
 
-To run the publisher script, you must first update the bash environment:
+We are installing `redis-3.2.11` on the system
+https://redis.io/download
 
-cd catkin_ws
-. devel/setup.bash
+**Install Dependencies**
 
-Then, use rosrun to run it (be sure to run roscore before):
+    sudo apt-get install redis-server
+    sudo apt-get install ros-kinetic-rocon-python-redis ros-kinetic-rocon-msgs ros-kinetic-rocon-multimaster ros-kinetic-rocon-tools ros-kinetic-zeroconf-msgs
 
-rosrun beginner_tutorials talker.py 
+**Install python redis**
 
-To run the subscriber, first go to the proper directory:
+    sudo pip3 install redis
+    sudo pip install redis
 
-cd catkin_ws/src/rocon_multimaster/rocon_hub_client/src/
+**Connecting directly to the Redis server**
 
-Then run the python script:
-
-python test.py
-
-Make sure to have redis-server running.
-
-All the ROS packages were installed within catkin_ws/src.
-
+    redis-cli
 

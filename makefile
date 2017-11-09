@@ -8,8 +8,8 @@ pull:
 
 push: 
 		git add *
-			git commit -m "First Draft: Listens to control commands and sends to redis"
-				git push origin redis	
+		git commit -m "Update install instructions. And using redis package to enhance functionality"
+		git push origin redis	
 
 git: clean push
 

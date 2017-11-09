@@ -1,8 +1,20 @@
 #!/usr/bin/env python
 
-import rocon_python_redis as redis
+import sys, os, time
+import redis
 import rospy
 from anm_msgs.msg import ControlCommands
+
+
+hostname = 'localhost'
+port = 6379
+password = ''
+
+# Make connection to redis database
+con = redis.StrictRedis(
+    host=hostname,
+    port=port,
+    db=0)
 
 i = 1
 
@@ -13,12 +25,32 @@ def callback(data):
     
     # Current time
     cur_time = rospy.get_time()
-    
-    con = redis.Connection(host="localhost", socket_timeout=5.0, port=6379)
-    con.send_command('SET', 'steering_pos_cmd', data.steering_pos_cmd)
-    con.send_command('GET', 'steering_pos_cmd')
-    res = con.read_response()
-    print(res)
+
+    steering_pos_cmd = data.steering_pos_cmd
+    steering_vel_cmd = data.steering_vel_cmd
+    steering_EN = data.steering_EN
+    throttle_cmd = data.throttle_cmd
+    throttle_EN = data.throttle_EN
+    brake_cmd = data.brake_cmd
+    brake_EN = data.brake_EN
+    gear_cmd = data.gear_cmd.gear
+    turn_signal_cmd = data.turn_signal_cmd.value
+
+    rospy.loginfo("\n steering_pos_cmd: \t %s \n steering_vel_cmd: \t %s \n steering_EN: \t\t %s \n throttle_cmd: \t\t %s \n throttle_EN: \t\t %s \n brake_cmd: \t\t %s \n brake_EN: \t\t %s \n gear_cmd: \t\t %s \n turn_signal_cmd: \t %s \n " %(steering_pos_cmd, steering_vel_cmd, steering_EN, throttle_cmd, throttle_EN, brake_cmd, brake_EN, gear_cmd, turn_signal_cmd))
+    # rospy.loginfo("steering_pos_cmd: %s steering_vel_cmd: %s" %(str(steering_pos_cmd), str(steering_vel_cmd)))
+
+
+    con.rpush('steering_pos_cmd', steering_pos_cmd)
+    con.rpush('steering_vel_cmd', steering_vel_cmd)
+    con.rpush('steering_EN', steering_EN)
+    con.rpush('throttle_cmd', throttle_cmd)
+    con.rpush('throttle_EN', throttle_EN)
+    con.rpush('brake_cmd', brake_cmd)
+    con.rpush('brake_EN', brake_EN)
+    con.rpush('gear_cmd', gear_cmd)
+    con.rpush('turn_signal_cmd', turn_signal_cmd)
+
+    # print(res)
 
     
 def listener():
