@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add *
-		git commit -m "Update install instructions. And using redis package to enhance functionality"
+		git commit -m "Update script locations in README according to skyline vehicle"
 		git push origin redis	
 
 git: clean push
