@@ -8,8 +8,12 @@ pull:
 
 push: 
 		git add *
-		git commit -m "Update script locations in README according to skyline vehicle"
+		git commit -m "Update git makefile"
 		git push origin redis	
 
 git: clean push
+
+reset:
+	git fetch --all
+	git reset --hard origin/redis
 
