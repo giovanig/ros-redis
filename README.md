@@ -32,34 +32,34 @@ After configuring, you can verify if both master and slave are working properly.
 
 --- In the master (the output should be similar)  
 redis-cli -a mypassword info replication  
-\# Replication
-role:master
-connected_slaves:1
-slave0:ip=::1,port=6380,state=online,offset=29,lag=0
-master_repl_offset:29
-repl_backlog_active:1
-repl_backlog_size:1048576
-repl_backlog_first_byte_offset:2
-repl_backlog_histlen:28
-
---- In the slave
-redis-cli info replication
-\# Replication
-role:slave
-master_host:master IP
-master_port:6379
-master_link_status:up
-master_last_io_seconds_ago:7
-master_sync_in_progress:0
-slave_repl_offset:113
-slave_priority:100
-slave_read_only:1
-connected_slaves:0
-master_repl_offset:0
-repl_backlog_active:0
-repl_backlog_size:1048576
-repl_backlog_first_byte_offset:0
-repl_backlog_histlen:0
+\# Replication  
+role:master  
+connected_slaves:1  
+slave0:ip=::1,port=6380,state=online,offset=29,lag=0  
+master_repl_offset:29  
+repl_backlog_active:1  
+repl_backlog_size:1048576  
+repl_backlog_first_byte_offset:2  
+repl_backlog_histlen:28  
+  
+--- In the slave  
+redis-cli info replication  
+\# Replication  
+role:slave  
+master_host:master IP  
+master_port:6379  
+master_link_status:up  
+master_last_io_seconds_ago:7  
+master_sync_in_progress:0  
+slave_repl_offset:113  
+slave_priority:100  
+slave_read_only:1  
+connected_slaves:0  
+master_repl_offset:0  
+repl_backlog_active:0  
+repl_backlog_size:1048576  
+repl_backlog_first_byte_offset:0  
+repl_backlog_histlen:0  
 
 ---------------------------------------------
 How to connect to a remote Redis Server
