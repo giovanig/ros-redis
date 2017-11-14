@@ -30,8 +30,8 @@ redis-cli SLAVEOF server-IP 6379
 
 After configuring, you can verify if both master and slave are working properly.
 
---- In the master (the output should be similar)
-redis-cli -a mypassword info replication
+--- In the master (the output should be similar)  
+redis-cli -a mypassword info replication  
 \# Replication
 role:master
 connected_slaves:1
