@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add *
-		git commit -m "Update git makefile"
+		git commit -m "Update README"
 		git push origin redis	
 
 git: clean push

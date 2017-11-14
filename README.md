@@ -19,3 +19,6 @@ https://redis.io/download
 
     redis-cli
 
+**Restart Redis Service**
+
+    sudo service redis-server start
