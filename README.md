@@ -32,7 +32,7 @@ After configuring, you can verify if both master and slave are working properly.
 
 --- In the master (the output should be similar)
 redis-cli -a mypassword info replication
-# Replication
+\# Replication
 role:master
 connected_slaves:1
 slave0:ip=::1,port=6380,state=online,offset=29,lag=0
@@ -44,7 +44,7 @@ repl_backlog_histlen:28
 
 --- In the slave
 redis-cli info replication
-# Replication
+\# Replication
 role:slave
 master_host:master IP
 master_port:6379
