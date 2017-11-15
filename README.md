@@ -1,9 +1,10 @@
-# ros-redis
+# Redis Installation and Configuration HOW TO
 
-**Install redis**
+-------------------------- 
+Redis Installation
 
-We are installing `redis-3.2.11` on the system
-https://redis.io/download
+1) Get redis 3.2.11 accessing https://redis.io/download
+2) Uncompact it, go to the directory, and type "make", "make test", and "make install" (if all test passed)
 
 **Install Dependencies**
 
@@ -19,6 +20,6 @@ https://redis.io/download
 
     redis-cli
 
-**Restart Redis Service**
+**HowTo Restart Redis Service**
 
     sudo service redis-server start
