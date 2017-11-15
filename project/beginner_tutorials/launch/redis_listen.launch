@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="beginner_tutorials" type="listener.py" name="listen" output="screen">
+        <!-- <rosparam command="load" file="$(find beginner_tutorials)/config/beginner_tutorials_params.yaml" /> -->
+    </node>
+</launch>
