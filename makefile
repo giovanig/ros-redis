@@ -8,12 +8,12 @@ pull:
 
 push: 
 		git add *
-		git commit -m "Update README"
-		git push origin redis	
+		git commit -m "Merged files"
+		git push origin master	
 
 git: clean push
 
 reset:
 	git fetch --all
-	git reset --hard origin/redis
+	git reset --hard origin/master
 
