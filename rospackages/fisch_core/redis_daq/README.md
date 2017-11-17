@@ -2,29 +2,29 @@
 
 **Symlink the python package to the ROS package**
 
-    cd ros_package_name/scripts/
+    cd redis_daq/scripts/
     ln -s /usr/local/lib/python<version_number>/dist-packages/redis redis
 
 **Link the project**
 
-    ln -sfn ~/fisch/ros-redis/project/beginner_tutorials/ ~/catkin_ws/src/beginner_tutorials
+    ln -sfn /path/to/ros-redis/rospackages/fisch_core/redis_daq/ ~/catkin_ws/src/redis_daq
     
 **Build Project**
 
     cd ~/catkin_ws
-    catkin build beginner_tutorials
+    catkin build redis_daq
 
 **Set ROS_MASTER_URI**
 
-	source ~/waterloo/renesas-demo/scripts/set_h3_ros_master.bash
+	source /path/to/renesas-demo/scripts/set_h3_ros_master.bash
 
 **roslaunch Package**
 
-    roslaunch beginner_tutorials redis_listen.launch
+    roslaunch redis_daq redis_listen.launch
 
 **Rosrun Package**
 
-    rosrun beginner_tutorials listener.py
+    rosrun redis_daq listener.py
 
 **Store Redis database to csv**
 

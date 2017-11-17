@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(beginner_tutorials)
+project(redis_daq)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -21,7 +21,7 @@ find_package(catkin REQUIRED COMPONENTS
 # find_package(Boost REQUIRED COMPONENTS system)
 
 catkin_package(
-#  LIBRARIES beginner_tutorials
+#  LIBRARIES redis_daq
 #  DEPENDS system_lib
   INCLUDE_DIRS include
   CATKIN_DEPENDS roscpp rospy std_msgs anm_msgs dbw_mkz_msgs
@@ -40,7 +40,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/beginner_tutorials.cpp
+#   src/${PROJECT_NAME}/redis_daq.cpp
 # )
 
 #############
@@ -60,14 +60,6 @@ include_directories(
 #############
 ## Testing ##
 #############
-
-add_executable(talker src/talker.cpp)
-target_link_libraries(talker ${catkin_LIBRARIES})
-add_dependencies(talker beginner_tutorials_generate_messages_cpp)
-
-add_executable(listener src/listener.cpp)
-target_link_libraries(listener ${catkin_LIBRARIES})
-add_dependencies(listener beginner_tutorials_generate_messages_cpp)
 
 install(DIRECTORY launch config
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})

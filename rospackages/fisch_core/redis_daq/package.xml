@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>beginner_tutorials</name>
+  <name>redis_daq</name>
   <version>0.0.0</version>
-  <description>Giovani test package</description>
+  <description>FISCH redis_daq</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->

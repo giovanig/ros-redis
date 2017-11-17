@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add *
-		git commit -m "Merged files"
+		git commit -m "Package Cleanup"
 		git push origin master	
 
 git: clean push
