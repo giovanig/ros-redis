@@ -1,0 +1,10 @@
+[Unit]
+Description=Service to handle ROS redis_daq nodes responsible for vehicle environment
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /usr/local/bin/redis_daq_startup.bash
+
+[Install]
+WantedBy=multi-user.target

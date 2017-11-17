@@ -28,7 +28,7 @@ def viw_database():
 
     steering_pos_cmd_len = con.llen('gear_cmd')
 
-    print(steering_pos_cmd)
+    # print(steering_pos_cmd)
     print(steering_pos_cmd_len)
 
 

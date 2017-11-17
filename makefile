@@ -7,8 +7,8 @@ pull:
 		git pull --all
 
 push: 
-		git add *
-		git commit -m "Package Cleanup"
+		git add .
+		git commit -m "Enable auto startup script testing"
 		git push origin master	
 
 git: clean push
