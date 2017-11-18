@@ -7,7 +7,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # : ${CATKIN_DIR:="/home/waleedqk/catkin_ws"}
 # : ${CATKIN_DIR:="$HOME/catkin_ws"}
 
-$BINARY_SETUP=/opt/ros/fisch/setup.sh
+BINARY_SETUP=/opt/ros/fisch/setup.sh
 
 ROS_MASTER_URI="http://192.168.200.101:11311"
 ROS_IP=$(ifconfig | perl -nle 's/dr:(\S+)/print $1/e' | grep 192.168.200.)
