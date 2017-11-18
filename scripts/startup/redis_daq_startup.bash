@@ -4,10 +4,10 @@ set -e
 # This script is ran on boot to bring up the autonomoose environment nodes
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-ROS_SETUP=/opt/ros/kinetic/setup.bash
 # : ${CATKIN_DIR:="/home/waleedqk/catkin_ws"}
-: ${CATKIN_DIR:="$HOME/catkin_ws"}
+# : ${CATKIN_DIR:="$HOME/catkin_ws"}
 
+$BINARY_SETUP=/opt/ros/fisch/setup.sh
 
 ROS_MASTER_URI="http://192.168.200.101:11311"
 ROS_IP=$(ifconfig | perl -nle 's/dr:(\S+)/print $1/e' | grep 192.168.200.)
@@ -22,9 +22,9 @@ else
     export ROS_IP
 fi
 
-if [ -e "$ROS_SETUP" ]; then
+if [ -e "$BINARY_SETUP" ]; then
 
-    source "$ROS_SETUP"
+    source "$BINARY_SETUP"
 
     echo "Launching redis_daq package ..."
     roslaunch --screen redis_daq redis_listen.launch > /dev/null 2>&1
