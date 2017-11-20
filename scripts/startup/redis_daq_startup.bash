@@ -14,6 +14,7 @@ ROS_IP=$(ifconfig | perl -nle 's/dr:(\S+)/print $1/e' | grep 192.168.200.)
 
 if [[ -z $ROS_IP ]]; then
     echo "ERROR: Are you sure you are connected to the 192.168.200.x subnet?"
+    exit 1
 else
     echo "ROS_MASTER_URI=$ROS_MASTER_URI"
     echo "ROS_IP=$ROS_IP"
