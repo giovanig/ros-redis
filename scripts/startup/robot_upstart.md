@@ -47,4 +47,6 @@ Options:
 
 http://docs.ros.org/jade/api/robot_upstart/html/index.html
 
+http://docs.ros.org/jade/api/robot_upstart/html/install.html
+
 http://docs.ros.org/jade/api/robot_upstart/html/uninstall.html
