@@ -26,7 +26,8 @@ fi
 if [ -e "$BINARY_SETUP" ]; then
 
     # source "$BINARY_SETUP"
-    source /home/dev/catkin_ws/devel/setup.sh
+    source /opt/ros/fisch/setup.sh
+    # source /home/dev/catkin_ws/devel/setup.sh
 
     echo "Launching redis_daq package on redis_listener node..."
     roslaunch --screen redis_daq redis_listen.launch # > /dev/null 2>&1
