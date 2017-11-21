@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+
+# https://pypi.python.org/pypi/redis
+# https://gist.github.com/jobliz/2596594
+# https://redis-py.readthedocs.io/en/latest/
+# https://gist.github.com/sunboy-2050/9543963
+
 import sys, os, time
 import redis
 import rospy
@@ -16,41 +22,24 @@ con = redis.StrictRedis(
     port=port,
     db=0)
 
-i = 1
+# pubsub = con.pubsub()
+# pubsub.subscribe(["_control_commands"])
 
-def callback(data):
-    global i
+
+def control_commands_callback(data):
     #rospy.loginfo(rospy.get_caller_id() + "Seq %d, Stamp %d, frame_id %s, steering_pos_cmd %f, steering_vel_cmd %f, steering_EN %d", data.header.seq, data.header.stamp, data.header.frame_id, data.steering_pos_cmd, data.steering_vel_cmd, data.steering_EN)
     rospy.loginfo("Seq %d", (data.header.seq))
     
     # Current time
     cur_time = rospy.get_time()
 
-    steering_pos_cmd = data.steering_pos_cmd
-    steering_vel_cmd = data.steering_vel_cmd
-    steering_EN = data.steering_EN
-    throttle_cmd = data.throttle_cmd
-    throttle_EN = data.throttle_EN
-    brake_cmd = data.brake_cmd
-    brake_EN = data.brake_EN
-    gear_cmd = data.gear_cmd.gear
-    turn_signal_cmd = data.turn_signal_cmd.value
-
-    rospy.loginfo("\n steering_pos_cmd: \t %s \n steering_vel_cmd: \t %s \n steering_EN: \t\t %s \n throttle_cmd: \t\t %s \n throttle_EN: \t\t %s \n brake_cmd: \t\t %s \n brake_EN: \t\t %s \n gear_cmd: \t\t %s \n turn_signal_cmd: \t %s \n " %(steering_pos_cmd, steering_vel_cmd, steering_EN, throttle_cmd, throttle_EN, brake_cmd, brake_EN, gear_cmd, turn_signal_cmd))
-    # rospy.loginfo("steering_pos_cmd: %s steering_vel_cmd: %s" %(str(steering_pos_cmd), str(steering_vel_cmd)))
+    msg = [data.steering_pos_cmd, data.steering_vel_cmd ,data.steering_EN, data.throttle_cmd, data.throttle_EN, data.brake_cmd, data.brake_EN, data.gear_cmd.gear, data.turn_signal_cmd.value]
+    str_msg = ','.join(map(str, msg)) 
 
 
-    con.rpush('steering_pos_cmd', steering_pos_cmd)
-    con.rpush('steering_vel_cmd', steering_vel_cmd)
-    con.rpush('steering_EN', steering_EN)
-    con.rpush('throttle_cmd', throttle_cmd)
-    con.rpush('throttle_EN', throttle_EN)
-    con.rpush('brake_cmd', brake_cmd)
-    con.rpush('brake_EN', brake_EN)
-    con.rpush('gear_cmd', gear_cmd)
-    con.rpush('turn_signal_cmd', turn_signal_cmd)
+    con.publish("_control_commands", str_msg)
 
-    # print(res)
+    print(str_msg)
 
     
 def listener():
@@ -63,7 +52,8 @@ def listener():
     rospy.init_node('redis_listener', anonymous=False)
 
     # List subscribers
-    rospy.Subscriber("control_commands", ControlCommands, callback)
+    # Subscriber(topic_name, message_type, callback_function)
+    rospy.Subscriber("control_commands", ControlCommands, control_commands_callback)
 
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
