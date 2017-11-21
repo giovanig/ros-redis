@@ -18,6 +18,11 @@ Package needs to be build first.
     sudo service fischRedis start
     sudo service fischRedis stop
 
+**Enable/Disable Service**
+
+    sudo systemctl enable fischRedis.service
+    sudo systemctl disable fischRedis.service
+
 **References**
 
 usage: install [-h] [--job JOB] [--interface ethN] [--user NAME]
