@@ -4,19 +4,19 @@ This folder contains scripts used to automatically startup a portion of the
 autonomy stack on boot. A Systemd service was created called `redis_daq` that wraps
 the script called `redis_daq_startup.bash`.
 
-    bash redis_daq_startup.bash
+    bash scripts/startup/redis_daq_startup.bash
 
 ### Deendencies
 The auto-start script only launches nodes from a binary installation of the package. The package must be installed before auto-start will work. Run the following script to install the package.
 
-    bash build_for_install.bash
+    scripts/startup/bash build_for_install.bash
 
 ### To disable or enable auto-start on the ECU
 The following steps must be performed on the ECU (or whichever computer you wish to enable auto-start on).
 
 Simply run the following script to enable auto-startup. This will create a Systemd service that allows you to use Systemctl to start and stop the package.
 
-    bash redis_daq_enable_startup.bash
+    bash scripts/startup/redis_daq_enable_startup.bash
 
 `sudo systemctl start redis_daq` will manually start the redis_daq service  
 `sudo systemctl stop redis_daq` will manually stop the redis_daq service  
@@ -24,7 +24,7 @@ Simply run the following script to enable auto-startup. This will create a Syste
 
 Run the following to disable it.  
 
-    bash redis_daq_disable_startup.bash
+    bash scripts/startup/redis_daq_disable_startup.bash
 
 
 ### The auto-startup script
