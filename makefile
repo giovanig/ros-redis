@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add .
-		git commit -m "Enable auto startup script testing"
+		git commit -m "Update talker to publish messages for testing"
 		git push origin master	
 
 git: clean push
