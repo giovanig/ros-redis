@@ -8,11 +8,12 @@ from anm_msgs.msg import ControlCommands
 
 # Publishers
 pub_ControlCommands_ = rospy.Publisher('control_commands', ControlCommands, queue_size=5)
-
 pub_lidar_ = rospy.Publisher('lidar', String, queue_size=5)
-rospy.init_node('redis_talker', anonymous=False)
 
 # Node Init
+rospy.init_node('redis_talker', anonymous=False)
+
+# Node Rate
 rate = rospy.Rate(1) # 1 hz
 
 def pub_Topics():
