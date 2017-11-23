@@ -9,12 +9,12 @@ Redis Installation
 **Install Dependencies**
 
     sudo apt-get install redis-tools
-    sudo apt-get install ros-kinetic-rocon-python-redis ros-kinetic-rocon-msgs ros-kinetic-rocon-multimaster ros-kinetic-rocon-tools ros-kinetic-zeroconf-msgs ros-kinetic-robot-upstart
+    sudo apt-get install ros-kinetic-rocon-python-redis ros-kinetic-rocon-msgs ros-kinetic-rocon-multimaster ros-kinetic-rocon-tools ros-kinetic-zeroconf-msgs ros-kinetic-robot-upstart -y
 
 **Install python redis**
 
-    sudo pip3 install redis
-    sudo pip install redis
+    sudo -H pip3 install redis
+    sudo -H pip2 install redis
 
 **Connecting directly to the Redis server**
 
