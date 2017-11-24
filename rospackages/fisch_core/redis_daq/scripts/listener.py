@@ -40,7 +40,7 @@ con = redis.StrictRedis(
 
 def control_commands_callback(data):
     #rospy.loginfo(rospy.get_caller_id() + "Seq %d, Stamp %d, frame_id %s, steering_pos_cmd %f, steering_vel_cmd %f, steering_EN %d", data.header.seq, data.header.stamp, data.header.frame_id, data.steering_pos_cmd, data.steering_vel_cmd, data.steering_EN)
-    rospy.loginfo("Seq %d", (data.header.seq))
+    # rospy.loginfo("Seq %d", (data.header.seq))
     
     # Current time
     now_ = rospy.get_rostime()
