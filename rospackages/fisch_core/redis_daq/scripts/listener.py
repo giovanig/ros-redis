@@ -69,6 +69,15 @@ def throttle_report_callback(data):
 
     con.publish("_vehicle_throttle_report", str_msg)
 
+def steering_report_callback(data):
+    # Current time
+    now_ = rospy.get_rostime()
+
+    msg = [now_, data.steering_wheel_angle, data.steering_wheel_angle_cmd, data.steering_wheel_torque, data.speed, data.enabled, data.override, data.driver, data.fault_wdc]
+    str_msg = ','.join(map(str, msg)) 
+
+    con.publish("_vehicle_throttle_report", str_msg)
+
 def vehicle_state_callback(data):
     # Current time
     now_ = rospy.get_rostime()
@@ -88,11 +97,11 @@ def listener():
     rospy.init_node('redis_listener', anonymous=False)
 
     # List subscribers
-    # Subscriber(topic_name, message_type, callback_function)
+    #### rospy.Subscriber(topic_name, message_type, callback_function)
     rospy.Subscriber("control_commands", ControlCommands, control_commands_callback)
     rospy.Subscriber("navsat/fix", NavSatFix, navsat_fix_callback)
     rospy.Subscriber("vehicle/throttle_report", ThrottleReport, throttle_report_callback)
-    # rospy.Subscriber("vehicle/steering_report", SteeringReport, steering_report_callback)
+    rospy.Subscriber("vehicle/steering_report", SteeringReport, steering_report_callback)
     # rospy.Subscriber("vehicle/brake_report", BrakeReport, brake_report_callback)
     # rospy.Subscriber("vehicle/gear_report", GearReport, gear_report_callback)
     rospy.Subscriber("vehicle_state", VehicleState, vehicle_state_callback)    
