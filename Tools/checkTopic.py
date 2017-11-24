@@ -8,6 +8,8 @@ from std_msgs.msg import String
 from std_msgs.msg import Bool
 from std_msgs.msg import Empty
 
+from anm_msgs.msg import ControlCommands
+
 # https://github.com/ros/ros_comm/blob/indigo-devel/tools/rostopic/src/rostopic/__init__.py
 def _check_master():
     """
@@ -35,12 +37,12 @@ def cameraStreamStatusCB(data):
 
 
 def topicListener():
-    # Subscribers
-    rospy.Subscriber("camera_stream", String, cameraStreamStatusCB)
-
     # Node Init
     rospy.init_node('topic_state_listener', anonymous=True)
     r = ROSTopicHz(-1)
+
+    # Subscribers
+    rospy.Subscriber("control_commands", rospy.AnyMsg, r.callback_hz, cameraStreamStatusCB)
 
     while not rospy.is_shutdown():
         rospy.spin()
