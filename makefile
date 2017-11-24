@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add .
-		git commit -m "Updae README"
+		git commit -m "Added publishers to brake throttle steering gear report"
 		git push origin master	
 
 git: clean push

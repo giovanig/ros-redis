@@ -17,8 +17,10 @@ from geometry_msgs.msg import Twist
 
 from anm_msgs.msg import ControlCommands
 from anm_msgs.msg import VehicleState
+from dbw_mkz_msgs.msg import WatchdogCounter
 from dbw_mkz_msgs.msg import ThrottleReport
 from dbw_mkz_msgs.msg import BrakeReport
+from dbw_mkz_msgs.msg import Gear
 from dbw_mkz_msgs.msg import GearReport
 from dbw_mkz_msgs.msg import SteeringReport
 
@@ -78,6 +80,24 @@ def steering_report_callback(data):
 
     con.publish("_vehicle_throttle_report", str_msg)
 
+def brake_report_callback(data):
+    # Current time
+    now_ = rospy.get_rostime()
+
+    msg = [now_, data.pedal_input, data.pedal_cmd, data.pedal_output, data.torque_input, data.torque_cmd, data.torque_output, data.boo_input, data.boo_cmd, data.boo_output, data.enabled, data.override, data.driver, data.watchdog_counter, data.watchdog_braking, data.fault_wdc]
+    str_msg = ','.join(map(str, msg)) 
+
+    con.publish("_vehicle_throttle_report", str_msg)
+
+def gear_report_callback(data):
+    # Current time
+    now_ = rospy.get_rostime()
+
+    msg = [now_, data.state, data.cmd, data.override, data.fault_bus]
+    str_msg = ','.join(map(str, msg)) 
+
+    con.publish("_vehicle_throttle_report", str_msg)
+
 def vehicle_state_callback(data):
     # Current time
     now_ = rospy.get_rostime()
@@ -102,8 +122,8 @@ def listener():
     rospy.Subscriber("navsat/fix", NavSatFix, navsat_fix_callback)
     rospy.Subscriber("vehicle/throttle_report", ThrottleReport, throttle_report_callback)
     rospy.Subscriber("vehicle/steering_report", SteeringReport, steering_report_callback)
-    # rospy.Subscriber("vehicle/brake_report", BrakeReport, brake_report_callback)
-    # rospy.Subscriber("vehicle/gear_report", GearReport, gear_report_callback)
+    rospy.Subscriber("vehicle/brake_report", BrakeReport, brake_report_callback)
+    rospy.Subscriber("vehicle/gear_report", GearReport, gear_report_callback)
     rospy.Subscriber("vehicle_state", VehicleState, vehicle_state_callback)    
     
 
