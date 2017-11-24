@@ -47,7 +47,7 @@ def navsat_fix_callback(data):
     # Current time
     now_ = rospy.get_rostime()
 
-    msg = [now_, data.status, data.latitude, data.longitude, data.altitude]
+    msg = [now_, data.status.rstrip(), data.latitude, data.longitude, data.altitude]
     str_msg = ','.join(map(str, msg)) 
 
     con.publish("_navsat_fix", str_msg)
