@@ -51,7 +51,7 @@ def control_commands_callback(data):
 
     con.publish("_control_commands", str_msg)
 
-    print(str_msg)
+    # print(str_msg)
 
 def navsat_fix_callback(data):
     # Current time
