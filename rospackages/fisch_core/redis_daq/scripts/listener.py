@@ -78,7 +78,7 @@ def steering_report_callback(data):
     msg = [now_, data.steering_wheel_angle, data.steering_wheel_angle_cmd, data.steering_wheel_torque, data.speed, data.enabled, data.override, data.driver, data.fault_wdc]
     str_msg = ','.join(map(str, msg)) 
 
-    con.publish("_vehicle_throttle_report", str_msg)
+    con.publish("_vehicle_steering_report", str_msg)
 
 def brake_report_callback(data):
     # Current time
@@ -87,7 +87,7 @@ def brake_report_callback(data):
     msg = [now_, data.pedal_input, data.pedal_cmd, data.pedal_output, data.torque_input, data.torque_cmd, data.torque_output, data.boo_input, data.boo_cmd, data.boo_output, data.enabled, data.override, data.driver, data.watchdog_counter, data.watchdog_braking, data.fault_wdc]
     str_msg = ','.join(map(str, msg)) 
 
-    con.publish("_vehicle_throttle_report", str_msg)
+    con.publish("_vehicle_brak_report", str_msg)
 
 def gear_report_callback(data):
     # Current time
@@ -96,7 +96,7 @@ def gear_report_callback(data):
     msg = [now_, data.state, data.cmd, data.override, data.fault_bus]
     str_msg = ','.join(map(str, msg)) 
 
-    con.publish("_vehicle_throttle_report", str_msg)
+    con.publish("_vehicle_gear_report", str_msg)
 
 def vehicle_state_callback(data):
     # Current time
@@ -105,7 +105,7 @@ def vehicle_state_callback(data):
     msg = [now_, data.child_frame_id, data.position, data.orientation, data.velocity, data.acceleration]
     str_msg = ','.join(map(str, msg)) 
 
-    con.publish("_vehicle_throttle_report", str_msg)
+    con.publish("_vehicle_state_report", str_msg)
 
 def listener():
 
