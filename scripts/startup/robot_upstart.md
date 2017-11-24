@@ -17,11 +17,12 @@ Package needs to be build first.
 
     systemctl status fischRedis.service
 
-**Start/Stop Service**
+**Start/Stop/Restart Service**
 
-    sudo service fischRedis start
-    sudo service fischRedis stop
-
+    sudo systemctl restart fischRedis.service
+    sudo systemctl start fischRedis.service
+    sudo systemctl stop fischRedis.service
+    
 **Enable/Disable Service**
 
     sudo systemctl enable fischRedis.service

@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add .
-		git commit -m "Remove py module from package and install pip2 module on machine"
+		git commit -m "Updae README"
 		git push origin master	
 
 git: clean push
