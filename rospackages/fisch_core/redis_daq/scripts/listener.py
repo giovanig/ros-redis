@@ -9,7 +9,9 @@
 import sys, os, time
 import redis
 import rospy
+
 from anm_msgs.msg import ControlCommands
+from sensor_msgs.msg import NavSatFix # http://docs.ros.org/jade/api/sensor_msgs/html/msg/NavSatFix.html
 
 
 hostname = 'localhost'
@@ -41,7 +43,15 @@ def control_commands_callback(data):
 
     print(str_msg)
 
-    
+def navsat_fix_callback(data):
+    # Current time
+    now_ = rospy.get_rostime()
+
+     msg = [now_, data.status, data.latitude, data.longitude, data.altitude]
+    str_msg = ','.join(map(str, msg)) 
+
+    con.publish("_navsat_fix", str_msg)
+
 def listener():
 
     # In ROS, nodes are uniquely named. If two nodes with the same
@@ -54,6 +64,7 @@ def listener():
     # List subscribers
     # Subscriber(topic_name, message_type, callback_function)
     rospy.Subscriber("control_commands", ControlCommands, control_commands_callback)
+    rospy.Subscriber("navsat/fix", NavSatFix, navsat_fix_callback)
 
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
