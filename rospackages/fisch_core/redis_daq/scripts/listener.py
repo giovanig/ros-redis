@@ -10,13 +10,17 @@ import sys, os, time
 import redis
 import rospy
 
-from anm_msgs.msg import ControlCommands
 from sensor_msgs.msg import NavSatFix # http://docs.ros.org/jade/api/sensor_msgs/html/msg/NavSatFix.html
+from geometry_msgs.msg import Point
+from geometry_msgs.msg import Vector3
+from geometry_msgs.msg import Twist
+
+from anm_msgs.msg import ControlCommands
+from anm_msgs.msg import VehicleState
 from dbw_mkz_msgs.msg import ThrottleReport
 from dbw_mkz_msgs.msg import BrakeReport
 from dbw_mkz_msgs.msg import GearReport
 from dbw_mkz_msgs.msg import SteeringReport
-from dbw_mkz_msgs.msg import WheelSpeedReport
 
 hostname = 'localhost'
 port = 6379
@@ -65,6 +69,15 @@ def throttle_report_callback(data):
 
     con.publish("_vehicle_throttle_report", str_msg)
 
+def vehicle_state_callback(data):
+    # Current time
+    now_ = rospy.get_rostime()
+
+    msg = [now_, data.child_frame_id, data.position, data.orientation, data.velocity, data.acceleration]
+    str_msg = ','.join(map(str, msg)) 
+
+    con.publish("_vehicle_throttle_report", str_msg)
+
 def listener():
 
     # In ROS, nodes are uniquely named. If two nodes with the same
@@ -82,7 +95,7 @@ def listener():
     # rospy.Subscriber("vehicle/steering_report", SteeringReport, steering_report_callback)
     # rospy.Subscriber("vehicle/brake_report", BrakeReport, brake_report_callback)
     # rospy.Subscriber("vehicle/gear_report", GearReport, gear_report_callback)
-    # rospy.Subscriber("vehicle/wheel_speed_report", NavSatFix, wheel_speed_report_callback)    
+    rospy.Subscriber("vehicle_state", VehicleState, vehicle_state_callback)    
     
 
     # spin() simply keeps python from exiting until this node is stopped
