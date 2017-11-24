@@ -28,6 +28,20 @@ Package needs to be build first.
     sudo systemctl enable fischRedis.service
     sudo systemctl disable fischRedis.service
 
+**Service stored at**
+
+    /lib/systemd/system/fischRedis.service
+
+**Check if process is running**
+
+    ps -ef|grep fischRedis
+    
+**Check if ROS is publishing data**
+
+    source ~/waterloo/renesas-demo/scripts/set_h3_ros_master.bash
+    rostopic list
+    rostopic echo /control_commands
+
 **References**
 
 usage: install [-h] [--job JOB] [--interface ethN] [--user NAME]
