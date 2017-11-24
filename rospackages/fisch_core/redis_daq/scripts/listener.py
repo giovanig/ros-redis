@@ -31,9 +31,9 @@ def control_commands_callback(data):
     rospy.loginfo("Seq %d", (data.header.seq))
     
     # Current time
-    cur_time = rospy.get_time()
+    now_ = rospy.get_rostime()
 
-    msg = [data.steering_pos_cmd, data.steering_vel_cmd ,data.steering_EN, data.throttle_cmd, data.throttle_EN, data.brake_cmd, data.brake_EN, data.gear_cmd.gear, data.turn_signal_cmd.value]
+    msg = [now_, data.steering_pos_cmd, data.steering_vel_cmd ,data.steering_EN, data.throttle_cmd, data.throttle_EN, data.brake_cmd, data.brake_EN, data.gear_cmd.gear, data.turn_signal_cmd.value]
     str_msg = ','.join(map(str, msg)) 
 
 

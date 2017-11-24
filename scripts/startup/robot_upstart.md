@@ -32,10 +32,25 @@ Package needs to be build first.
 
     /lib/systemd/system/fischRedis.service
 
+**Auto restart on failure**
+
+### https://jonarcher.info/2015/08/ensure-systemd-services-restart-on-failure/
+
+    sudo vim /lib/systemd/system/fischRedis.service
+
+Under the [Service] section in the file i added the following 2 lines:
+```
+Restart=always
+RestartSec=3
+```
+
+    sudo systemctl daemon-reload
+    sudo systemctl restart fischRedis.service
+
 **Check if process is running**
 
     ps -ef|grep fischRedis
-    
+
 **Check if ROS is publishing data**
 
     source ~/waterloo/renesas-demo/scripts/set_h3_ros_master.bash
