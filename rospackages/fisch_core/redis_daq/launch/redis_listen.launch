@@ -2,4 +2,6 @@
     <node pkg="redis_daq" type="listener.py" name="redis_listener" output="screen">
         <!-- <rosparam command="load" file="$(find redis_daq)/config/redis_daq_params.yaml" /> -->
     </node>
+
+    <node pkg="redis_daq" type="getTopicStatistics.py" name="redis_ros_statistics" output="screen">    </node>
 </launch>
