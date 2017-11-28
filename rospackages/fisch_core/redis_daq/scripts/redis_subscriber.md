@@ -8,8 +8,13 @@
 
     python redis2csv.py
 
-
 # Access redis while in the skyline PC
+
+**ssh in the car PC from stratford**
+
+    ssh dev@192.168.5.36
+
+**connect to local redis server**
 
     redis-cli
 
