@@ -1,0 +1,11 @@
+Before running the code DAQ, the following two scripts need to be run.
+
+    bash ros_install.bash 
+
+Installs the appropriate version of ROS on the system if it is not already installed
+
+    bash redis_install.bash
+
+Installs redis and additional dependencies to the system, if not already installed. 
+
+After this, consult the readme to make the appropriate cahnges to the configuration files. 

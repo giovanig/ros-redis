@@ -6,11 +6,11 @@
 
 **Prerequisites**
 
-Package needs to be build first.
+ROS package needs to be build first.
 
 **Install Job**
 
-    rosrun robot_upstart install --job fischRedis --master http://192.168.200.101:11311 redis_daq/launch/redis_listen.launch
+    rosrun robot_upstart install --job fischRedis --user root --master http://192.168.200.101:11311 redis_daq/launch/redis_listen.launch
     sudo systemctl daemon-reload && sudo systemctl start fischRedis
 
 **Check status**
