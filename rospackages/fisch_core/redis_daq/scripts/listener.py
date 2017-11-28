@@ -10,6 +10,10 @@ import sys, os, time
 import redis
 import rospy
 
+from std_msgs.msg import String
+from std_msgs.msg import Bool
+from std_msgs.msg import Empty
+
 from sensor_msgs.msg import NavSatFix # http://docs.ros.org/jade/api/sensor_msgs/html/msg/NavSatFix.html
 from geometry_msgs.msg import Point
 from geometry_msgs.msg import Vector3
@@ -23,6 +27,11 @@ from dbw_mkz_msgs.msg import BrakeReport
 from dbw_mkz_msgs.msg import Gear
 from dbw_mkz_msgs.msg import GearReport
 from dbw_mkz_msgs.msg import SteeringReport
+
+# Publishers
+# publisher for debugging purposes
+control_commands_pub = rospy.Publisher('redis_control_commands', String, queue_size=10)
+
 
 hostname = 'localhost'
 port = 6379
@@ -51,7 +60,9 @@ def control_commands_callback(data):
 
     con.publish("_control_commands", str_msg)
 
-    print(str_msg)
+    # print(str_msg)
+    # rostopic echo /redis_control_commands
+    control_commands_pub.publish(str_msg)
 
 def navsat_fix_callback(data):
     # Current time
@@ -114,9 +125,9 @@ def listener():
     # anonymous=True flag means that rospy will choose a unique
     # name for our 'listener' node so that multiple listeners can
     # run simultaneously.
-    rospy.init_node('redis_listener', anonymous=False)
+    rospy.init_node('redis_listener', anonymous=False) 
 
-    # List subscribers
+    # Subscribers
     #### rospy.Subscriber(topic_name, message_type, callback_function)
     rospy.Subscriber("control_commands", ControlCommands, control_commands_callback)
     rospy.Subscriber("navsat/fix", NavSatFix, navsat_fix_callback)
@@ -125,7 +136,6 @@ def listener():
     rospy.Subscriber("vehicle/brake_report", BrakeReport, brake_report_callback)
     rospy.Subscriber("vehicle/gear_report", GearReport, gear_report_callback)
     rospy.Subscriber("vehicle_state", VehicleState, vehicle_state_callback)    
-    
 
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()

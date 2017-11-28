@@ -2,6 +2,7 @@
 
 import sys, os, time
 import rospy, rostopic, rosgraph
+import socket
 from rostopic import ROSTopicHz 
 
 from std_msgs.msg import String
@@ -10,48 +11,24 @@ from std_msgs.msg import Empty
 
 from anm_msgs.msg import ControlCommands
 
-# https://github.com/ros/ros_comm/blob/indigo-devel/tools/rostopic/src/rostopic/__init__.py
-def _check_master():
-    """
-    Make sure that master is available
-    :raises: :exc:`ROSTopicException` If unable to successfully communicate with master
-    """
-    try:
-        rosgraph.Master('/rostopic').getPid()
-    except socket.error:
-        raise ROSTopicIOException("Unable to communicate with master!")
 
+def control_commands_stat(data):
+    
+    # Current time
+    now_ = rospy.get_rostime()
 
-def _master_get_topic_types(master):
-    try:
-        val = master.getTopicTypes()
-    except Fault:
-        #TODO: remove, this is for 1.1
-        sys.stderr.write("WARNING: rostopic is being used against an older version of ROS/roscore\n")
-        val = master.getPublishedTopics('/')
-    return val
+    msg = [now_, data.steering_pos_cmd, data.steering_vel_cmd ,data.steering_EN, data.throttle_cmd, data.throttle_EN, data.brake_cmd, data.brake_EN, data.gear_cmd.gear, data.turn_signal_cmd.value]
+    str_msg = ','.join(map(str, msg)) 
 
-
-def cameraStreamStatusCB(data):
-    rospy.loginfo(rospy.get_caller_id() + " I heard error")
-
+    print(str_msg)
 
 def topicListener():
-    # Node Init
-    rospy.init_node('topic_state_listener', anonymous=True)
-    r = ROSTopicHz(-1)
+    print()
 
-    # Subscribers
-    rospy.Subscriber("control_commands", rospy.AnyMsg, r.callback_hz, cameraStreamStatusCB)
-
-    while not rospy.is_shutdown():
-        rospy.spin()
 
 if __name__ == '__main__':
+    rospy.init_node('topic_state_listener', anonymous=True)
 
-    try:
-        val = _master_get_topic_types(rosgraph.Master('/rostopic'))
-    except socket.error:
-        raise ROSTopicIOException("Unable to communicate with master!")
-    
-    topicListener()
+    # while not rospy.is_shutdown():
+    rospy.Subscriber("control_commands", ControlCommands, control_commands_stat)
+    rospy.spin()
