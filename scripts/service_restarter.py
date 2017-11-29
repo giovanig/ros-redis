@@ -15,7 +15,7 @@ import rospy, rosnode
 
 if __name__ == '__main__':
 
-    process = subprocess.Popen("ssh root@192.168.200.101 rosnode list  | grep something",
+    proc = subprocess.Popen("ssh root@192.168.200.101 rosnode list  | grep something",
                 shell=True,
                 stdout=subprocess.PIPE, stderr=subprocess.PIPE,
             )
