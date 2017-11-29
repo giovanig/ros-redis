@@ -28,6 +28,9 @@ from dbw_mkz_msgs.msg import Gear
 from dbw_mkz_msgs.msg import GearReport
 from dbw_mkz_msgs.msg import SteeringReport
 
+# var to check if the car is in autonomy mode
+autonomy_enabled = False
+
 # Publishers
 # publisher for debugging purposes
 control_commands_pub = rospy.Publisher('redis_control_commands', String, queue_size=10)
@@ -73,6 +76,15 @@ def navsat_fix_callback(data):
 
     con.publish("_navsat_fix", str_msg)
 
+def vehicle_state_callback(data):
+    # Current time
+    now_ = rospy.get_rostime()
+
+    msg = [now_, data.child_frame_id, data.position, data.orientation, data.velocity, data.acceleration]
+    str_msg = ','.join(map(str, msg)) 
+
+    con.publish("_vehicle_state_report", str_msg)
+
 def throttle_report_callback(data):
     # Current time
     now_ = rospy.get_rostime()
@@ -91,15 +103,6 @@ def steering_report_callback(data):
 
     con.publish("_vehicle_steering_report", str_msg)
 
-def brake_report_callback(data):
-    # Current time
-    now_ = rospy.get_rostime()
-
-    msg = [now_, data.pedal_input, data.pedal_cmd, data.pedal_output, data.torque_input, data.torque_cmd, data.torque_output, data.boo_input, data.boo_cmd, data.boo_output, data.enabled, data.override, data.driver, data.watchdog_counter, data.watchdog_braking, data.fault_wdc]
-    str_msg = ','.join(map(str, msg)) 
-
-    con.publish("_vehicle_brak_report", str_msg)
-
 def gear_report_callback(data):
     # Current time
     now_ = rospy.get_rostime()
@@ -109,14 +112,24 @@ def gear_report_callback(data):
 
     con.publish("_vehicle_gear_report", str_msg)
 
-def vehicle_state_callback(data):
+def brake_report_callback(data):
     # Current time
     now_ = rospy.get_rostime()
 
-    msg = [now_, data.child_frame_id, data.position, data.orientation, data.velocity, data.acceleration]
+    msg = [now_, data.pedal_input, data.pedal_cmd, data.pedal_output, data.torque_input, data.torque_cmd, data.torque_output, data.boo_input, data.boo_cmd, data.boo_output, data.enabled, data.override, data.driver, data.watchdog_counter, data.watchdog_braking, data.fault_wdc]
     str_msg = ','.join(map(str, msg)) 
 
-    con.publish("_vehicle_state_report", str_msg)
+    global autonomy_enabled
+    autonomy_enabled = data.enabled
+
+    con.publish("_vehicle_brak_report", str_msg)
+
+    autonomy_state(now_, autonomy_enabled)
+
+def autonomy_state(*args, **kwargs):
+
+    str_msg = ','.join(map(str, args)) 
+    con.publish("_autonomy_state", str_msg)
 
 def listener():
 

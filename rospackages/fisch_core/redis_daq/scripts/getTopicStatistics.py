@@ -30,7 +30,7 @@ def callback_stat(data,topic):
     msg = [now_, topic]
     str_msg = ','.join(map(str, msg)) 
 
-    print (str_msg)
+    # print (str_msg)
     con.publish("_topic_stats", str_msg)
 
 def topicListener():
