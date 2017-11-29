@@ -41,7 +41,7 @@ ROS package needs to be build first.
 Under the [Service] section in the file i added the following 2 lines:
 ```
 Restart=always
-RestartSec=3
+RestartSec=60
 ```
 
     sudo systemctl daemon-reload
