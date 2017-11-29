@@ -37,6 +37,6 @@ if __name__ == '__main__':
 
     if "/rosout" in rosnode_list:
         if "/redis_listener" not in rosnode_list:
-            # return_code = subprocess.call('sudo systemctl restart fischRedis.service', shell=True)
-            return_code = subprocess.call('roslaunch redis_daq redis_listen.launch ', shell=True)
+            return_code = subprocess.call('sudo systemctl restart fischRedis.service', shell=True)
+            # return_code = subprocess.call('roslaunch redis_daq redis_listen.launch &', shell=True)
             
