@@ -153,6 +153,7 @@ def listener():
     if not rospy.is_shutdown():  
         rospy.spin()
     else:
+        rospy.signal_shutdown("Unable to communicate with ROS_MASTER")
         return
 
     # spin() simply keeps python from exiting until this node is stopped
