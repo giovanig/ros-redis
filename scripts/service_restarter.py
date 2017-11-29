@@ -34,6 +34,8 @@ if __name__ == '__main__':
             )
     (stdoutdata, stderrdata) = proc.communicate()
 
-    data_string = stdoutdata.split('\n')
-    print(type(data_string))
-    print(data_string)
+    rosnode_list = stdoutdata.split('\n')
+
+
+    if "/rosout" in data_string:
+        print(rosnode_list)
