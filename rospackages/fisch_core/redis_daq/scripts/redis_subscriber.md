@@ -19,6 +19,7 @@
     redis-cli
 
     SUBSCRIBE _control_commands
+    SUBSCRIBE _topic_stats
 
 
 
