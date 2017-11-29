@@ -36,13 +36,13 @@ def callback_stat(data,topic):
 def topicListener():
     rospy.init_node('topic_state_listener', anonymous=True)
 
-    # topics_and_types = rospy.get_published_topics()
-    # for topic, ttype in topics_and_types:
-    #     print("topic: {} \t\t\t\t\t\t type: {}".format(topic, ttype))
+    topics_and_types = rospy.get_published_topics()
+    for topic, ttype in topics_and_types:
+        print("topic: {} \t\t\t\t\t\t type: {}".format(topic, ttype))
 
-    rospy.Subscriber("control_commands", anm_msgs.ControlCommands, callback = callback_stat, callback_args =  "control_commands")
-    rospy.Subscriber("vehicle_state", anm_msgs.VehicleState, callback = callback_stat, callback_args =  "vehicle_state")
-    rospy.spin()
+    # rospy.Subscriber("control_commands", anm_msgs.ControlCommands, callback = callback_stat, callback_args =  "control_commands")
+    # rospy.Subscriber("vehicle_state", anm_msgs.VehicleState, callback = callback_stat, callback_args =  "vehicle_state")
+    # rospy.spin()
         
 
 if __name__ == '__main__':
