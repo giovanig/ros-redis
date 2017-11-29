@@ -140,6 +140,8 @@ def timer_callback(event):
     if rosnode.rosnode_ping("/rosout"):
         print("Can communicate with this node")
 
+    print("Timer callback")
+
 def listener():
 
     # In ROS, nodes are uniquely named. If two nodes with the same
