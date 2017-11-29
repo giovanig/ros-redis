@@ -37,5 +37,5 @@ if __name__ == '__main__':
     rosnode_list = stdoutdata.split('\n')
 
 
-    if "/rosout" in data_string:
+    if "/rosout" in rosnode_list:
         print(rosnode_list)
