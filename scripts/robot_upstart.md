@@ -44,6 +44,11 @@ Restart=always
 RestartSec=60
 ```
 
+```
+WatchdogSec=300
+Restart=always
+```
+
     sudo systemctl daemon-reload
     sudo systemctl restart fischRedis.service
 
