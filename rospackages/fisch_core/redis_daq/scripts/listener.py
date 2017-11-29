@@ -148,7 +148,10 @@ def listener():
     rospy.Subscriber("vehicle/steering_report", SteeringReport, steering_report_callback)
     rospy.Subscriber("vehicle/brake_report", BrakeReport, brake_report_callback)
     rospy.Subscriber("vehicle/gear_report", GearReport, gear_report_callback)
-    rospy.Subscriber("vehicle_state", VehicleState, vehicle_state_callback)    
+    rospy.Subscriber("vehicle_state", VehicleState, vehicle_state_callback)  
+
+    if rospy.is_shutdown():  
+        return
 
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
