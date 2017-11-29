@@ -7,8 +7,10 @@
 # https://gist.github.com/sunboy-2050/9543963
 
 import sys, os, time
+import subprocess
 import redis
 import rospy
+import rosnode
 
 from std_msgs.msg import String
 from std_msgs.msg import Bool
@@ -131,6 +133,12 @@ def autonomy_state(*args, **kwargs):
     str_msg = ','.join(map(str, args)) 
     con.publish("_autonomy_state", str_msg)
 
+def timer_callback(event):
+    if rospy.is_shutdown():
+        print("Unable to communicate with ROS_MASTER")
+
+    # if rosnode.rosnode_ping("/rosout")
+
 def listener():
 
     # In ROS, nodes are uniquely named. If two nodes with the same
@@ -139,6 +147,9 @@ def listener():
     # name for our 'listener' node so that multiple listeners can
     # run simultaneously.
     rospy.init_node('redis_listener', anonymous=False) 
+
+    # ros timer
+    timer = rospy.Timer(rospy.Duration(0.5), timer_callback)
 
     # Subscribers
     #### rospy.Subscriber(topic_name, message_type, callback_function)
@@ -149,7 +160,6 @@ def listener():
     rospy.Subscriber("vehicle/brake_report", BrakeReport, brake_report_callback)
     rospy.Subscriber("vehicle/gear_report", GearReport, gear_report_callback)
     rospy.Subscriber("vehicle_state", VehicleState, vehicle_state_callback)  
-
 
     rospy.spin()
 

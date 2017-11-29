@@ -1,5 +1,5 @@
 <launch>
-    <node pkg="redis_daq" type="listener.py" name="redis_listener" output="screen">
+    <node pkg="redis_daq" type="listener.py" name="redis_listener" output="screen" respawn="true">
         <!-- <rosparam command="load" file="$(find redis_daq)/config/redis_daq_params.yaml" /> -->
     </node>
 
