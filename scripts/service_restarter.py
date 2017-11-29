@@ -28,7 +28,7 @@ if __name__ == '__main__':
     print(return_code)
 
     
-    proc = subprocess.Popen("rosnode list",
+    proc = subprocess.Popen("rosnode list | grep /rosout",
                 shell=True,
                 stdout=subprocess.PIPE, stderr=subprocess.PIPE,
             )
