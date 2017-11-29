@@ -179,6 +179,7 @@ def listener():
     
 
 if __name__ == '__main__':
+    print("Starting listener node")
     try:
         listener()
     except rospy.ROSInterruptException:
