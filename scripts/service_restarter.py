@@ -22,10 +22,8 @@ if __name__ == '__main__':
     # os.system('export ROS_IP="192.168.200.100"')
 
     return_code = subprocess.call('export ROS_MASTER_URI="http://192.168.200.101_NUM:11311"', shell=True)  
-    print(return_code)
 
     return_code = subprocess.call('export ROS_IP="192.168.200.100"', shell=True)  
-    print(return_code)
 
     
     proc = subprocess.Popen("rosnode list",
@@ -38,4 +36,5 @@ if __name__ == '__main__':
 
 
     if "/rosout" in rosnode_list:
-        print(rosnode_list)
+        if "/redis_listener" not in rosnode_list:
+            return_code = subprocess.call('sudo systemctl restart fischRedis.service', shell=True)
