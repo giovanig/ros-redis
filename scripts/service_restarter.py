@@ -8,6 +8,8 @@
 # cd /lib/systemd/system
 # sudo vim fisch_nodeCheck.service
 
+# https://www.tecmint.com/run-sudo-command-without-password-linux/
+
 import sys, os, time
 import subprocess
 
