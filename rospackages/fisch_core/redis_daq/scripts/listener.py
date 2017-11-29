@@ -137,7 +137,8 @@ def timer_callback(event):
     if rospy.is_shutdown():
         print("Unable to communicate with ROS_MASTER")
 
-    # if rosnode.rosnode_ping("/rosout")
+    if rosnode.rosnode_ping("/rosout")
+        print("Can communicate with this node")
 
 def listener():
 
