@@ -13,8 +13,21 @@ import subprocess
 
 import rospy, rosnode
 
+# path to directory of python file
+dirname, filename = os.path.split(os.path.abspath(__file__))
+
 if __name__ == '__main__':
 
+    # os.system('export ROS_MASTER_URI="http://192.168.200.101_NUM:11311"')
+    # os.system('export ROS_IP="192.168.200.100"')
+
+    return_code = subprocess.call('export ROS_MASTER_URI="http://192.168.200.101_NUM:11311"', shell=True)  
+    print(return_code)
+
+    return_code = subprocess.call('export ROS_IP="192.168.200.100"', shell=True)  
+    print(return_code)
+
+    
     proc = subprocess.Popen("ssh root@192.168.200.101 rosnode list",
                 shell=True,
                 stdout=subprocess.PIPE, stderr=subprocess.PIPE,
