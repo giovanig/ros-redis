@@ -34,4 +34,6 @@ if __name__ == '__main__':
             )
     (stdoutdata, stderrdata) = proc.communicate()
 
-    print(type(stdoutdata))
+    data_string = stdoutdata.split('\n')
+    print(type(data_string))
+    print(data_string)
