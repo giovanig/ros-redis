@@ -152,7 +152,7 @@ def listener():
     rospy.init_node('redis_listener', anonymous=False) 
 
     # ros timer
-    rospy.Timer(rospy.Duration(1.0), timer_callback)
+    # rospy.Timer(rospy.Duration(1.0), timer_callback)
 
     # Subscribers
     #### rospy.Subscriber(topic_name, message_type, callback_function)
