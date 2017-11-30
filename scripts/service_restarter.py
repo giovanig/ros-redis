@@ -23,7 +23,7 @@ if __name__ == '__main__':
     # os.system('export ROS_MASTER_URI="http://192.168.200.101_NUM:11311"')
     # os.system('export ROS_IP="192.168.200.100"')
 
-    return_code = subprocess.call('export ROS_MASTER_URI="http://192.168.200.101_NUM:11311"', shell=True)  
+    return_code = subprocess.call('export ROS_MASTER_URI="http://192.168.200.101:11311"', shell=True)  
 
     return_code = subprocess.call('export ROS_IP="192.168.200.100"', shell=True)  
 
@@ -33,6 +33,7 @@ if __name__ == '__main__':
                 stdout=subprocess.PIPE, stderr=subprocess.PIPE,
             )
     (stdoutdata, stderrdata) = proc.communicate()
+    print(stderrdata)
 
     rosnode_list = stdoutdata.split('\n')
 
