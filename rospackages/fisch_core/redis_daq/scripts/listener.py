@@ -164,19 +164,7 @@ def listener():
     rospy.Subscriber("vehicle/gear_report", GearReport, gear_report_callback)
     rospy.Subscriber("vehicle_state", VehicleState, vehicle_state_callback)  
 
-    rospy.spin()
-
-    # if not rospy.is_shutdown():  
-    #     rospy.spin()
-    # else:
-    #     rospy.signal_shutdown("Unable to communicate with ROS_MASTER")
-    #     return
-
-    # try:
-    #     rospy.spin()
-
-    # spin() simply keeps python from exiting until this node is stopped
-    
+    rospy.spin() 
 
 if __name__ == '__main__':
     print("Starting listener node")
