@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add .
-		git commit -m "Update rosackage"
+		git commit -m "Added msg types"
 		git push origin master	
 
 git: clean push
