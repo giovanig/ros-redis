@@ -10,7 +10,7 @@ import dbw_mkz_msgs.msg as dbw_mkz_msgs
 
 
 def topicListener():
-    rospy.init_node('topic_decoder', anonymous=True)
+    rospy.init_node('message_decoder', anonymous=True)
 
     topics_and_types = rospy.get_published_topics()
     for topic, ttype in topics_and_types:

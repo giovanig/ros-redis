@@ -16,7 +16,7 @@ from std_msgs.msg import String
 from std_msgs.msg import Bool
 from std_msgs.msg import Empty
 
-from sensor_msgs.msg import NavSatFix # http://docs.ros.org/jade/api/sensor_msgs/html/msg/NavSatFix.html
+from sensor_msgs.msg import NavSatFix # http://docs.ros.org/kinetic/api/sensor_msgs/html/msg/NavSatFix.html
 from geometry_msgs.msg import Point
 from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import Twist
@@ -59,7 +59,16 @@ def control_commands_callback(data):
     # Current time
     now_ = rospy.get_rostime()
 
-    msg = [now_, data.steering_pos_cmd, data.steering_vel_cmd ,data.steering_EN, data.throttle_cmd, data.throttle_EN, data.brake_cmd, data.brake_EN, data.gear_cmd.gear, data.turn_signal_cmd.value]
+    msg = [now_, data.steering_pos_cmd, 
+    data.steering_vel_cmd ,
+    data.steering_EN, 
+    data.throttle_cmd, 
+    data.throttle_EN, 
+    data.brake_cmd, 
+    data.brake_EN, 
+    data.gear_cmd.gear, 
+    data.turn_signal_cmd.value]
+
     str_msg = ','.join(map(str, msg)) 
 
 
