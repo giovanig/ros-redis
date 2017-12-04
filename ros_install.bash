@@ -26,6 +26,8 @@ echo "Installing ROS $ROS_DISTRO ..."
 sudo apt-get -qq install python-rosinstall python-catkin-pkg python-rosdep python-wstool ros-$ROS_DISTRO-catkin ros-$ROS_DISTRO-desktop > /dev/null
 sudo apt-get -qq install ros-$ROS_DISTRO-pcl-ros ros-$ROS_DISTRO-image-transport ros-$ROS_DISTRO-image-transport-plugins ros-$ROS_DISTRO-libg2o > /dev/null
 
+sudo apt-get -qq install ros-$ROS_DISTRO-rospy-message-converter ros-$ROS_DISTRO-robot-upstart -y
+
 source /opt/ros/$ROS_DISTRO/setup.bash
 
 # Prepare rosdep to install dependencies.

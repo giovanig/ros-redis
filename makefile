@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add .
-		git commit -m "Added msg types"
+		git commit -m "Update ros install"
 		git push origin master	
 
 git: clean push
