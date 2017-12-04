@@ -10,6 +10,7 @@ from std_msgs.msg import Empty
 
 import rospy, rostopic, rosmsg
 
+# https://github.com/baalexander/rospy_message_converter
 from rospy_message_converter import json_message_converter
 
 from sensor_msgs.msg import NavSatFix # http://docs.ros.org/kinetic/api/sensor_msgs/html/msg/NavSatFix.html
