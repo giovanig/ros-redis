@@ -27,9 +27,9 @@ if __name__ == '__main__':
             else:
                 rosnode_list = stdoutdata.split('\n')
                 if "/rosout" in rosnode_list:
-                    if "/redis_listener" in rosnode_list:
+                    if "/rosmsg2redis_json" in rosnode_list:
                         # print("No errors")
                         time.sleep(2)
                     else:
-                        print("redis_listener node not found in rosnode list")
+                        print("rosmsg2redis_json node not found in rosnode list")
                         sys.exit(1)
