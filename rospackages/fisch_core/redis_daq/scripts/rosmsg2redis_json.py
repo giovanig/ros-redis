@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 
 import sys, os, time
@@ -11,7 +12,7 @@ from std_msgs.msg import Empty
 import rospy, rostopic, rosmsg
 
 # https://github.com/baalexander/rospy_message_converter
-from rospy_message_converter import json_message_converter
+from rospy_message_converter import message_converter
 
 from sensor_msgs.msg import NavSatFix # http://docs.ros.org/kinetic/api/sensor_msgs/html/msg/NavSatFix.html
 from geometry_msgs.msg import Point
@@ -40,15 +41,10 @@ def rosmsg_info():
 
 def rosmag_redis_json(data,topic):
 
-    json_str = json_message_converter.convert_ros_message_to_json(data)
+    dictionary = message_converter.convert_ros_message_to_dictionary(data)
+    dictionary['timestamp'] = current_milli_time()
 
-    append_fields = ('"timestamp" : "%s", ')% (str(current_milli_time()).strip())
-    json_str = json_str[:1]+append_fields+json_str[1:]
-
-    json_str = '{"' + topic + '" : ' + json_str + ' }'
-
-    print(json_str)
-  
+    json_str = json.dumps({topic: dictionary})
     con.publish(topic, json_str)
 
     if topic.strip() == "_vehicle_brak_report":
