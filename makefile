@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add .
-		git commit -m "Update ros install"
+		git commit -m "Update node to publish rosmsg in json format"
 		git push origin master	
 
 git: clean push
