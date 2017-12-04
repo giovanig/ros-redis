@@ -57,7 +57,7 @@ def rosmag_redis_json(data,topic):
     
 
 def topicListener():
-    rospy.init_node('message_decoder', anonymous=True)
+    rospy.init_node('rosmsg2redis_json', anonymous=True)
 
     rospy.Subscriber("control_commands", anm_msgs.ControlCommands, callback = rosmag_redis_json, callback_args =  "_control_commands")
     rospy.Subscriber("checked_commands", anm_msgs.ControlCommands, callback = rosmag_redis_json, callback_args =  "_checked_commands")
