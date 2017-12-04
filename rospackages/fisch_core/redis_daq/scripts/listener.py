@@ -127,7 +127,21 @@ def brake_report_callback(data):
     # Current time
     now_ = rospy.get_rostime()
 
-    msg = [now_, data.pedal_input, data.pedal_cmd, data.pedal_output, data.torque_input, data.torque_cmd, data.torque_output, data.boo_input, data.boo_cmd, data.boo_output, data.enabled, data.override, data.driver, data.watchdog_counter, data.watchdog_braking, data.fault_wdc]
+    msg = [now_, data.pedal_input, 
+    data.pedal_cmd, 
+    data.pedal_output, 
+    data.torque_input, 
+    data.torque_cmd, 
+    data.torque_output, 
+    data.boo_input, 
+    data.boo_cmd, 
+    data.boo_output, 
+    data.enabled, 
+    data.override, 
+    data.driver, 
+    data.watchdog_counter, 
+    data.watchdog_braking, 
+    data.fault_wdc]
     str_msg = ','.join(map(str, msg)) 
 
     global autonomy_enabled
