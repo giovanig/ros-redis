@@ -21,7 +21,6 @@ from geometry_msgs.msg import Twist
 import anm_msgs.msg as anm_msgs
 import dbw_mkz_msgs.msg as dbw_mkz_msgs
 
-
 hostname = 'localhost'
 port = 6379
 password = ''
@@ -32,6 +31,8 @@ con = redis.StrictRedis(
     port=port,
     db=0)
 
+current_milli_time = lambda: int(round(time.time() * 1000))
+
 def rosmsg_info():
     topics_and_types = rospy.get_published_topics()
     for topic, ttype in topics_and_types:
@@ -41,11 +42,12 @@ def rosmag_redis_json(data,topic):
 
     json_str = json_message_converter.convert_ros_message_to_json(data)
 
-    append_fields = ('"timestamp" : %d, ')% (rospy.get_rostime().nsecs)
+    append_fields = ('"timestamp" : "%s", ')% (str(current_milli_time()).strip())
     json_str = json_str[:1]+append_fields+json_str[1:]
 
     json_str = '{"' + topic + '" : ' + json_str + ' }'
-    # print(json_str)
+
+    print(json_str)
   
     con.publish(topic, json_str)
 
