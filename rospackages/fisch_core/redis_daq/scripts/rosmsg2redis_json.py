@@ -51,8 +51,8 @@ def rosmag_redis_json(data,topic):
     if topic.strip() == "_vehicle_brak_report":
         # var to check if the car is in autonomy mode
         autonomy_status =  '{"_autonomy_state" : {"status" : %s} }' % (data.enabled)
-        print(autonomy_status)
-        # con.publish("_autonomy_state", autonomy_status)
+        # print(autonomy_status)
+        con.publish("_autonomy_state", autonomy_status)
 
     
 
