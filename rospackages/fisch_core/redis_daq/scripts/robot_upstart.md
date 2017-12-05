@@ -56,6 +56,15 @@ Restart=always
 
     ps -ef|grep fischRedis
 
+**Delete the service**
+
+    sudo systemctl stop fischRedis.service
+    sudo systemctl disable fischRedis.service
+    sudo rm /lib/systemd/system/fischRedis.service
+    sudo systemctl daemon-reload
+    sudo systemctl reset-failed
+
+
 **Check if ROS is publishing data**
 
     source ~/waterloo/renesas-demo/scripts/set_h3_ros_master.bash
