@@ -47,7 +47,7 @@ def rosmag_redis_json(data,topic):
 
     json_str = '{"' + topic + '" : ' + json_str + ' }'
 
-    print(json_str)
+    # print(json_str)
   
     con.publish(topic, json_str)
 
