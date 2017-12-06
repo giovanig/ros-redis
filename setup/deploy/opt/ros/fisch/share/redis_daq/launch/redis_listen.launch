@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="redis_daq" type="rosmsg2redis_json.py" name="rosmsg2redis_json" output="screen"  required="true">
+        <!-- <rosparam command="load" file="$(find redis_daq)/config/redis_daq_params.yaml" />   respawn="true" -->
+    </node>
+
+    <node pkg="redis_daq" type="master_checker.py" name="master_checker" output="screen" required="true">    </node>
+</launch>

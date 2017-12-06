@@ -1,0 +1,8 @@
+prefix=/opt/ros/fisch
+
+Name: redis_daq
+Description: Description of redis_daq
+Version: 0.0.0
+Cflags: -I/opt/ros/fisch/include
+Libs: -L/opt/ros/fisch/lib 
+Requires: roscpp rospy std_msgs anm_msgs dbw_mkz_msgs

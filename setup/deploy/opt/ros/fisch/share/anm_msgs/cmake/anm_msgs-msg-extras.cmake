@@ -1,0 +1,2 @@
+set(anm_msgs_MESSAGE_FILES "msg/BoundingBox.msg;msg/BoundingBox3d.msg;msg/CommandCheckingReport.msg;msg/ControlCommands.msg;msg/DynamicObstacle.msg;msg/DynamicObstacleList.msg;msg/HMIReport.msg;msg/NearestAnmWaypoint.msg;msg/NodeStatus.msg;msg/PathState.msg;msg/PointCloud2Clusters.msg;msg/ShuttleRequest.msg;msg/SystemState.msg;msg/TrackedObject.msg;msg/TrackedObjectList.msg;msg/V2XStopSign.msg;msg/V2XStopSignList.msg;msg/V2XTrafficLight.msg;msg/V2XTrafficLightList.msg;msg/V2XVehicle.msg;msg/V2XVehicleList.msg;msg/VehicleState.msg")
+set(anm_msgs_SERVICE_FILES "")

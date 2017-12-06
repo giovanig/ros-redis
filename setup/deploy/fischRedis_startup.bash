@@ -16,5 +16,5 @@ if [ -e "$BINARY_SETUP" ]; then
     source "$BINARY_SETUP"
     roslaunch --screen redis_daq redis_listen.launch # > /dev/null 2>&1
 else
-    echo "Autonomoose installation can not be found"
+    echo "redis_daq installation can not be found"
 fi

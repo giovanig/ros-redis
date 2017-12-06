@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add .
-		git commit -m "deploy scripts that dont need catkin_ws on the skyline PC"
+		git commit -m "Deployment scripts set for service"
 		git push origin master	
 
 git: clean push
