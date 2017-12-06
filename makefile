@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add .
-		git commit -m "Update node to publish rosmsg in json format"
+		git commit -m "deploy scripts that dont need catkin_ws on the skyline PC"
 		git push origin master	
 
 git: clean push
