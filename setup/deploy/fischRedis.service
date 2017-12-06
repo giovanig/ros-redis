@@ -1,0 +1,12 @@
+[Unit]
+Description=Service to handle ROS nodes responsible for fisch AV-DAQ
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /usr/local/bin/fischRedis_startup.bash
+Restart=always
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target

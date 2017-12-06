@@ -38,6 +38,14 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
+## Mark executable scripts (Python etc.) for installation
+## in contrast to setup.py, you can choose the destination
+install(PROGRAMS
+  scripts/rosmsg2redis_json.py
+  scripts/master_checker.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/redis_daq.cpp
