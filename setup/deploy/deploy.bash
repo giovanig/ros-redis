@@ -22,6 +22,7 @@ read_args()
     DELETE_SERVICE=
     SERVICE_STATUS=
     RESTART_SERVICE=
+    INSTALL_FROM_REPO=
     for arg in "$@"; do
         case $arg in
             -b)
@@ -50,7 +51,10 @@ read_args()
                 SERVICE_STATUS="true";;  
             -r)
                 NO_FLAGS=false
-                RESTART_SERVICE="true";;             
+                RESTART_SERVICE="true";;       
+            -i)
+                NO_FLAGS=false
+                INSTALL_FROM_REPO="true";;        
         esac
     done
 }
@@ -101,6 +105,11 @@ main()
     if [ -n "$RESTART_SERVICE" ]; then
         echo "Restart Delete fischRedis service"
         sudo systemctl restart fischRedis
+    fi 
+
+    if [ -n "$INSTALL_FROM_REPO" ]; then
+        echo "Install the build to local machine from the repo"
+        bash $SCRIPT_DIR/install_from_repo.bash
     fi 
 }
 
