@@ -20,6 +20,8 @@ read_args()
     ENABLE_STARTUP=
     DISABLE_STARTUP=
     DELETE_SERVICE=
+    SERVICE_STATUS=
+    RESTART_SERVICE=
     for arg in "$@"; do
         case $arg in
             -b)
@@ -42,7 +44,13 @@ read_args()
                 DISABLE_STARTUP="true";;
             -x)
                 NO_FLAGS=false
-                DELETE_SERVICE="true";;                
+                DELETE_SERVICE="true";;     
+            -s)
+                NO_FLAGS=false
+                SERVICE_STATUS="true";;  
+            -r)
+                NO_FLAGS=false
+                RESTART_SERVICE="true";;             
         esac
     done
 }
@@ -83,6 +91,16 @@ main()
     if [ -n "$DELETE_SERVICE" ]; then
         echo "Delete fischRedis service"
         bash $SCRIPT_DIR/delete_service.bash
+    fi 
+
+    if [ -n "$SERVICE_STATUS" ]; then
+        echo "check status fischRedis service"
+        systemctl status fischRedis
+    fi 
+
+    if [ -n "$RESTART_SERVICE" ]; then
+        echo "Restart Delete fischRedis service"
+        sudo systemctl restart fischRedis
     fi 
 }
 
