@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add .
-		git commit -m "Deployment scripts set for service"
+		git commit -m "Add p1hc udp capability in new package"
 		git push origin master	
 
 git: clean push
