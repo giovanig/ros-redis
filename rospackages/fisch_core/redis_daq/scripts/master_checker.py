@@ -11,6 +11,8 @@ my_env["ROS_MASTER_URI"] = "http://192.168.200.101:11311"
 my_env["ROS_IP"] = "192.168.200.100"
 
 if __name__ == '__main__':
+    # give enough time for the node to be up and running before checking
+    time.sleep(5)
 
     while True:
             proc = subprocess.Popen("rosnode list",

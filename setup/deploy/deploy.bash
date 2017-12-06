@@ -103,7 +103,7 @@ main()
     fi 
 
     if [ -n "$RESTART_SERVICE" ]; then
-        echo "Restart Delete fischRedis service"
+        echo "Restart fischRedis service"
         sudo systemctl restart fischRedis
     fi 
 
