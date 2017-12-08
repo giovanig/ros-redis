@@ -4,7 +4,6 @@
 # https://stackoverflow.com/questions/27521637/python-ctypes-structure-wrong-byte-size
 # https://stackoverflow.com/questions/4110378/python-struct-size-changed-by-alignment
 
-# fuser -k 8000/udp
 
 import time
 import socket

@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="p1hc_fault_detector" type="p1hc_fault_detector_node" name="p1hc_fault_detector_node" output="screen">
+        <rosparam command="load" file="$(find p1hc_fault_detector)/config/udp_params.yaml" />
+    </node>
+</launch>

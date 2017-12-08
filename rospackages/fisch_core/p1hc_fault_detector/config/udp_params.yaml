@@ -1,0 +1,13 @@
+# Ethernet port
+rxPort: 8003
+
+# How often to poll the ethernet socket for new messages
+udpPoll_Period: 0.0005
+
+# The path from $HOME to the log directory
+log_directory: /catkin_ws/logs/runtime
+log_maxFileSize: 262144
+log_maxFiles: 5
+
+# Enable raw message logging - set to 1 for enabled, 0 disable
+log_rawMessage: 0

@@ -1,0 +1,9 @@
+<library path="lib/libp1hc_fault_detector_nodelet">
+    <class name="p1hc_fault_detector/p1hc_fault_detector_nodelet"
+           type="p1hc_fault_detector_nodelet::UdpNodelet"
+           base_class_type="nodelet::Nodelet">
+        <description>
+           Route Publisher Nodelet.
+        </description>
+    </class>
+</library>
