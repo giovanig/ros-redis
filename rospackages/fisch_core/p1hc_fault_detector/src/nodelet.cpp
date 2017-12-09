@@ -146,7 +146,7 @@ void UdpNodelet::udpPoll() {
         {
             packetPtr = (UdpRxPacket_t *)udpBuffer;
 
-            if(packetPtr->dataSpeedOffline == 0)
+            if(packetPtr->failureDetected == 1)
             {
                 ROS_INFO("P1HC alerted of a fault");
                 std_msgs::Empty failAlert;

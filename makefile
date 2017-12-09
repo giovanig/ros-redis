@@ -7,8 +7,8 @@ pull:
 		git pull --all
 
 push: 
-		git add .
-		git commit -m "cpp version of p1hc_fault_detector first commit"
+		git add . .gitignore
+		git commit -m "add gitignore file"
 		git push origin master	
 
 git: clean push
