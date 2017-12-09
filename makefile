@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add .
-		git commit -m "Add p1hc udp capability in new package"
+		git commit -m "cpp version of p1hc_fault_detector first commit"
 		git push origin master	
 
 git: clean push

@@ -9,9 +9,12 @@
 #ifndef NODELET_H
 #define NODELET_H
 
+#include <string>
+
 #include <ros/ros.h>
 #include <ros/package.h>
 #include <std_msgs/String.h>
+#include <std_msgs/Empty.h>
 #include <nodelet/nodelet.h>
 #include <pluginlib/class_list_macros.h>
 

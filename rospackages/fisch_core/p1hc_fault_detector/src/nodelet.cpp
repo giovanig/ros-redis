@@ -119,10 +119,10 @@ void UdpNodelet::SetupPublisher () {
     std::stringstream ns;
 
     pubs_.clear();
-    ns << "can_bus_dbw";
+    ns << ""; // "can_bus_dbw";
     ros::NodeHandle node(nh_, ns.str());
     pubs_.push_back(
-    node.advertise<can_msgs::Frame>("can_rx", 100, false));
+    node.advertise<std_msgs::Empty>("p1hc_fail_occurred", 100, false));
 }
 
 void UdpNodelet::udpPoll() {
@@ -132,18 +132,30 @@ void UdpNodelet::udpPoll() {
     if (!udpSocketInitFail)
     {
         int udpRxFail = this->udp.ReceivePacket(udpBuffer, sizeof(udpBuffer));
-        if (!udpRxFail)
+        // ROS_INFO("got something %s\n", inet_ntoa(this->udp.client.sin_addr));
+
+        // Since multiple devices can be sending data at port 8003 via broadcast
+        // we need to ensure we are only processing data sent by the P1HC
+        std::string p1hc_ip ("192.168.200.110");
+        std::string client_ip = (inet_ntoa(this->udp.client.sin_addr));
+        
+        // if((p1hc_ip.compare(client_ip)) == 0)
+        // {ROS_INFO("Client IP: %s matches P1HC IP: %s \n", p1hc_ip.c_str() , client_ip.c_str());}
+
+        if (!udpRxFail && ((p1hc_ip.compare(client_ip)) == 0))
         {
             packetPtr = (UdpRxPacket_t *)udpBuffer;
-            can_msgs::Frame msg;
-            // msg.header.frame_id = "????";
-            msg.header.stamp = ros::Time::now();
-            msg.id = packetPtr->id;
-            msg.is_extended = 0;
-            msg.dlc = packetPtr->dlc;
-            memcpy(msg.data.elems, packetPtr->data, 8);
-            pubs_[0].publish(msg);
-            if (debugLogMessageRaw_) udp.debugLogMessageRaw(udpBuffer);
+
+            if(packetPtr->dataSpeedOffline == 0)
+            {
+                ROS_INFO("P1HC alerted of a fault");
+                std_msgs::Empty failAlert;
+                // failAlert.header.stamp = ros::Time::now();                
+                // failAlert.dlc = packetPtr->dlc;
+                // memcpy(failAlert.data.elems, packetPtr->data, 8);
+                pubs_[0].publish(failAlert);
+                // if (debugLogMessageRaw_) udp.debugLogMessageRaw(udpBuffer);
+            }            
         }
     }
     else
