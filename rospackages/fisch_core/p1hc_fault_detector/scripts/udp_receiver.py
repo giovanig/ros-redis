@@ -57,6 +57,7 @@ ETH_txBuffer_t = [
 # fuser -k 8003/udp
 
 HOST = "255.255.255.255"   # IP addr the P1HC is sending udp packet to
+P1HC_IP = "192.168.200.110"   # P1HC IP addr
 DEST_PORT = 8003 # Destination port where the udp packet is being sent to 
 BUFFER_SIZE = 1024
 c_struct = 'BBBBIII'     # 16 -  # B = 1, I = 4
@@ -97,17 +98,20 @@ def udp_rec():
         # IP and port information from recieved message
         ip = addr[0]
         port = addr[1]
-        # print("IP: " + str(ip) + "\t PORT: " + str(port))
+
+        if not (ip.strip() == P1HC_IP.strip()):
+            continue        
 
         # decode binary data to struct
         decoded_data = unpack(c_struct, bin_data)
 
         if not bin_data:
-            break
+            continue
 
         clear()
 
         # print('Message[' + ip + ':' + str(port) + '] - ' + format(decoded_data))
+        print("IP: " + str(ip) + "\t PORT: " + str(port))
         for idx, val in enumerate(decoded_data):
             print("{:20s} {:5d} ".format(ETH_txBuffer_t[idx], val)) 
             if (idx==0) and (val==1):
