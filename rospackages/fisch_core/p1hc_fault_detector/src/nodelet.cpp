@@ -148,7 +148,7 @@ void UdpNodelet::udpPoll() {
 
             if(packetPtr->failureDetected == 1)
             {
-                ROS_INFO("P1HC alerted of a fault");
+                ROS_INFO("P1HC alerted of a faultType %d", packetPtr->failureType);
                 std_msgs::Empty failAlert;
                 // failAlert.header.stamp = ros::Time::now();                
                 // failAlert.dlc = packetPtr->dlc;

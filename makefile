@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add . .gitignore
-		git commit -m "add gitignore file"
+		git commit -m "ROS_INFO packetPtr->failureType notification added"
 		git push origin master	
 
 git: clean push
