@@ -1,5 +1,5 @@
 # Ethernet port
-rxPort: 8003
+rxPort: 8103
 
 # How often to poll the ethernet socket for new messages
 udpPoll_Period: 0.0005

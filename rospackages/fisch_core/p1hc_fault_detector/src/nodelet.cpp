@@ -93,7 +93,7 @@ void UdpNodelet::loadParams() {
     }
     else
     {
-        this->rxPort_ = 8003;
+        this->rxPort_ = 8103;
         ROS_INFO("Loaded default rxPort: %d", this->rxPort_);
     }
 }
