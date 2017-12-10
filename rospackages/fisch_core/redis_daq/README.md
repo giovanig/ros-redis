@@ -40,18 +40,22 @@ If on the PC itself. Navigate to the repo and git pull and then install
 
 Check Service status
 
+    cd path/to/ros-redis/
     bash setup/deploy/deploy.bash -s
 
 Restart Service
 
+    cd path/to/ros-redis/
     bash setup/deploy/deploy.bash -r
 
 Disable Service Startup
 
+    cd path/to/ros-redis/
     bash setup/deploy/deploy.bash -d
 
 Delete service
 
+    cd path/to/ros-redis/
     bash setup/deploy/deploy.bash -x
 
 **Set ROS_MASTER_URI**
