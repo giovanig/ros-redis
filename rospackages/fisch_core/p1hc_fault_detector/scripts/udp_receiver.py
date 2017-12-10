@@ -54,11 +54,11 @@ ETH_txBuffer_t = [
 ]
 
 
-# fuser -k 8003/udp
+# fuser -k 8103/udp
 
 HOST = "255.255.255.255"   # IP addr the P1HC is sending udp packet to
 P1HC_IP = "192.168.200.110"   # P1HC IP addr
-DEST_PORT = 8003 # Destination port where the udp packet is being sent to 
+DEST_PORT = 8103 # Destination port where the udp packet is being sent to 
 BUFFER_SIZE = 1024
 c_struct = 'BBBBIII'     # 16 -  # B = 1, I = 4
 print(calcsize(c_struct))
