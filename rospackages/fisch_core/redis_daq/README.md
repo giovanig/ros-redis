@@ -1,28 +1,68 @@
 # Redis Package
 
-**Symlink the python package to the ROS package**
+**INSTALL**
 
-    cd redis_daq/scripts/
-    ln -s /usr/local/lib/python<version_number>/dist-packages/redis redis
+Run the install scripts provided at the start of the repo to for fresh installation if not done so already
 
-**Link the project**
+**Build project locally**
 
-    ln -sfn /path/to/ros-redis/rospackages/fisch_core/redis_daq/ ~/catkin_ws/src/redis_daq
+To build the project the repo should be in the ~/catkin_ws/src 
+
+    cd path/to/ros-redis/
+    bash setup/deploy/deploy.bash -b -c 
     
-**Build Project**
+-b builds the package
+-c copies the install directory to the local repo
 
-    cd ~/catkin_ws
-    catkin build redis_daq
+To install to the same machine where you build
+
+    bash setup/deploy/deploy.bash -l
+
+**Install the build to PC**
+
+The PC has an IP of "192.168.200.100"
+
+If on the same subnet as the PC "192.168.200.xxx", can install from the machine that does the build
+
+    bash setup/deploy/deploy.bash -p
+
+If on the PC itself. Navigate to the repo and git pull and then install
+
+    cd path/to/ros-redis/
+    bash setup/deploy/deploy.bash -i
+
+**Set package as Service (Enabled)**
+
+    cd path/to/ros-redis/
+    bash setup/deploy/deploy.bash -e
+
+### Other service related commands
+
+Check Service status
+
+    bash setup/deploy/deploy.bash -s
+
+Restart Service
+
+    bash setup/deploy/deploy.bash -r
+
+Disable Service Startup
+
+    bash setup/deploy/deploy.bash -d
+
+Delete service
+
+    bash setup/deploy/deploy.bash -x
 
 **Set ROS_MASTER_URI**
 
 	source /path/to/renesas-demo/scripts/set_h3_ros_master.bash
 
-**roslaunch Package**
+**roslaunch Package manually**
 
     roslaunch redis_daq redis_listen.launch
 
-**Rosrun Package**
+**Rosrun Package manually**
 
     rosrun redis_daq listener.py
 
