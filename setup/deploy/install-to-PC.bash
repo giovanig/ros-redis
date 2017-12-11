@@ -6,12 +6,14 @@ set -e
 
 if [ -d "$CATKIN_DIR/deploy/install/" ]; then
     echo ""
-    echo "Rsyncing $CATKIN_DIR/deploy/install/ to ${TARGET_ECU}/..."
+    echo "Rsyncing $CATKIN_DIR/deploy/install/ to ${TARGET_ECU}/home/dev..."
 
-    rsync -rlEzK --info=progress2 $CATKIN_DIR/deploy/install/ dev@${TARGET_ECU}:/
+    rsync -rlEzK --info=progress2 $CATKIN_DIR/deploy/install/ dev@${TARGET_ECU}:/home/dev/
 
     if [ $? -eq 0 ]; then
         echo "Transfer successful. To complete the installation, on the ECU (${TARGET_ECU}) execute"
+        echo ""
+        echo "sudo mv /home/dev/opt/ros/fisch /opt/ros"
         exit 0
     else
         echo "Transfer failed!" >&2

@@ -64,11 +64,18 @@ Delete service
 
 **roslaunch Package manually**
 
+    source /opt/ros/fisch/setup.bash
     roslaunch redis_daq redis_listen.launch
 
 **Rosrun Package manually**
 
+    /opt/ros/fisch/setup.bash
     rosrun redis_daq listener.py
+
+**See redis pub on terminal**
+
+    redis-cli SUBSCRIBE <channel_name>
+    redis-cli SUBSCRIBE _autonomy_state
 
 **Store Redis database to csv**
 

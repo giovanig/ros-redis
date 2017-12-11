@@ -9,7 +9,7 @@ import dbw_mkz_msgs.msg
 import std_msgs.msg
 
 class GearReport(genpy.Message):
-  _md5sum = "f33342dfeb80c29d8fe4b31e22519594"
+  _md5sum = "785b94d5bfee677e7f0da982153f2711"
   _type = "dbw_mkz_msgs/GearReport"
   _has_header = True #flag to mark the presence of a Header object
   _full_text = """Header header
@@ -19,6 +19,9 @@ Gear state
 
 # Gear command enumeration
 Gear cmd
+
+# Gear reject enumeration
+GearReject reject
 
 # Status
 bool override
@@ -54,9 +57,20 @@ uint8 REVERSE=2
 uint8 NEUTRAL=3
 uint8 DRIVE=4
 uint8 LOW=5
+
+================================================================================
+MSG: dbw_mkz_msgs/GearReject
+uint8 value
+
+uint8 NONE=0              # Not rejected
+uint8 SHIFT_IN_PROGRESS=1 # Shift in progress
+uint8 OVERRIDE=2          # Override on brake, throttle, or steering
+uint8 ROTARY_LOW=3        # Rotary shifter can't shift to Low
+uint8 ROTARY_PARK=4       # Rotary shifter can't shift out of Park
+uint8 VEHICLE=5           # Rejected by vehicle (try pressing the brakes)
 """
-  __slots__ = ['header','state','cmd','override','fault_bus']
-  _slot_types = ['std_msgs/Header','dbw_mkz_msgs/Gear','dbw_mkz_msgs/Gear','bool','bool']
+  __slots__ = ['header','state','cmd','reject','override','fault_bus']
+  _slot_types = ['std_msgs/Header','dbw_mkz_msgs/Gear','dbw_mkz_msgs/Gear','dbw_mkz_msgs/GearReject','bool','bool']
 
   def __init__(self, *args, **kwds):
     """
@@ -66,7 +80,7 @@ uint8 LOW=5
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,state,cmd,override,fault_bus
+       header,state,cmd,reject,override,fault_bus
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -81,6 +95,8 @@ uint8 LOW=5
         self.state = dbw_mkz_msgs.msg.Gear()
       if self.cmd is None:
         self.cmd = dbw_mkz_msgs.msg.Gear()
+      if self.reject is None:
+        self.reject = dbw_mkz_msgs.msg.GearReject()
       if self.override is None:
         self.override = False
       if self.fault_bus is None:
@@ -89,6 +105,7 @@ uint8 LOW=5
       self.header = std_msgs.msg.Header()
       self.state = dbw_mkz_msgs.msg.Gear()
       self.cmd = dbw_mkz_msgs.msg.Gear()
+      self.reject = dbw_mkz_msgs.msg.GearReject()
       self.override = False
       self.fault_bus = False
 
@@ -113,7 +130,7 @@ uint8 LOW=5
         length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_get_struct_4B().pack(_x.state.gear, _x.cmd.gear, _x.override, _x.fault_bus))
+      buff.write(_get_struct_5B().pack(_x.state.gear, _x.cmd.gear, _x.reject.value, _x.override, _x.fault_bus))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -129,6 +146,8 @@ uint8 LOW=5
         self.state = dbw_mkz_msgs.msg.Gear()
       if self.cmd is None:
         self.cmd = dbw_mkz_msgs.msg.Gear()
+      if self.reject is None:
+        self.reject = dbw_mkz_msgs.msg.GearReject()
       end = 0
       _x = self
       start = end
@@ -145,8 +164,8 @@ uint8 LOW=5
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 4
-      (_x.state.gear, _x.cmd.gear, _x.override, _x.fault_bus,) = _get_struct_4B().unpack(str[start:end])
+      end += 5
+      (_x.state.gear, _x.cmd.gear, _x.reject.value, _x.override, _x.fault_bus,) = _get_struct_5B().unpack(str[start:end])
       self.override = bool(self.override)
       self.fault_bus = bool(self.fault_bus)
       return self
@@ -170,7 +189,7 @@ uint8 LOW=5
         length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_get_struct_4B().pack(_x.state.gear, _x.cmd.gear, _x.override, _x.fault_bus))
+      buff.write(_get_struct_5B().pack(_x.state.gear, _x.cmd.gear, _x.reject.value, _x.override, _x.fault_bus))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -187,6 +206,8 @@ uint8 LOW=5
         self.state = dbw_mkz_msgs.msg.Gear()
       if self.cmd is None:
         self.cmd = dbw_mkz_msgs.msg.Gear()
+      if self.reject is None:
+        self.reject = dbw_mkz_msgs.msg.GearReject()
       end = 0
       _x = self
       start = end
@@ -203,8 +224,8 @@ uint8 LOW=5
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 4
-      (_x.state.gear, _x.cmd.gear, _x.override, _x.fault_bus,) = _get_struct_4B().unpack(str[start:end])
+      end += 5
+      (_x.state.gear, _x.cmd.gear, _x.reject.value, _x.override, _x.fault_bus,) = _get_struct_5B().unpack(str[start:end])
       self.override = bool(self.override)
       self.fault_bus = bool(self.fault_bus)
       return self
@@ -221,9 +242,9 @@ def _get_struct_3I():
     if _struct_3I is None:
         _struct_3I = struct.Struct("<3I")
     return _struct_3I
-_struct_4B = None
-def _get_struct_4B():
-    global _struct_4B
-    if _struct_4B is None:
-        _struct_4B = struct.Struct("<4B")
-    return _struct_4B
+_struct_5B = None
+def _get_struct_5B():
+    global _struct_5B
+    if _struct_5B is None:
+        _struct_5B = struct.Struct("<5B")
+    return _struct_5B

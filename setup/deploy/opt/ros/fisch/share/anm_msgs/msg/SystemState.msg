@@ -3,12 +3,16 @@
 # architecture/system supervisor folder
 
 # The following constants are used to define the states
-uint8 ST_OFF = 0        # in manual mode - system is off
-uint8 ST_STANDBY = 1    # in manual mode - system is ready to go to auto mode
-uint8 ST_NOT_READY = 2  # in manual mode - system is not ready to go auto mode
-uint8 ST_PARKED = 3     # in auto mode - system is autonomously parked
-uint8 ST_DRIVE = 4      # in auto mode - system is autonomously driving
-uint8 ST_EPULLOVER = 5  # in auto mode - system is emergency pulling over
+uint8 ST_OFF = 0         # in manual mode - system is off
+uint8 ST_STANDBY = 1     # in manual mode - system is ready to go to auto mode
+uint8 ST_NOT_READY = 2   # in manual mode - system is not ready to go auto mode
+uint8 ST_PARKED = 3      # in auto mode - system is autonomously parked
+uint8 ST_DRIVE = 4       # in auto mode - system is autonomously driving
+uint8 ST_ENAVIGATION = 5 # in auto mode - system is emergency navigation
+uint8 ST_FINDPARKING = 6 # in auto mode - system is finding parking
+uint8 ST_PLATOONING  = 7 # in auto mode - system is platooning
+uint8 ST_EPULLOVER  = 8  # in auto mode - system is emergency pullover
+uint8 ST_REVERSE_PARK = 9  # in auto mode - system is reverse parking
 
 # Message definition
 Header header

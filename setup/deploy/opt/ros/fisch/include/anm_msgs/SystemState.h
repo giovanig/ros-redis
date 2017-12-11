@@ -63,7 +63,11 @@ struct SystemState_
      enum { ST_NOT_READY = 2u };
      enum { ST_PARKED = 3u };
      enum { ST_DRIVE = 4u };
-     enum { ST_EPULLOVER = 5u };
+     enum { ST_ENAVIGATION = 5u };
+     enum { ST_FINDPARKING = 6u };
+     enum { ST_PLATOONING = 7u };
+     enum { ST_EPULLOVER = 8u };
+     enum { ST_REVERSE_PARK = 9u };
  
 
   typedef boost::shared_ptr< ::anm_msgs::SystemState_<ContainerAllocator> > Ptr;
@@ -77,6 +81,14 @@ typedef boost::shared_ptr< ::anm_msgs::SystemState > SystemStatePtr;
 typedef boost::shared_ptr< ::anm_msgs::SystemState const> SystemStateConstPtr;
 
 // constants requiring out of line definition
+
+   
+
+   
+
+   
+
+   
 
    
 
@@ -109,7 +121,7 @@ namespace message_traits
 
 
 // BOOLTRAITS {'IsFixedSize': False, 'IsMessage': True, 'HasHeader': True}
-// {'sensor_msgs': ['/opt/ros/kinetic/share/sensor_msgs/cmake/../msg'], 'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'dbw_mkz_msgs': ['/home/wqkhan/catkin_ws/deploy/install/opt/ros/fisch/share/dbw_mkz_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'anm_msgs': ['/home/wqkhan/catkin_ws/src/renesas-demo/autonomoose/rospackages/autonomoose_core/anm_msgs/msg']}
+// {'nav_msgs': ['/opt/ros/kinetic/share/nav_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'actionlib_msgs': ['/opt/ros/kinetic/share/actionlib_msgs/cmake/../msg'], 'sensor_msgs': ['/opt/ros/kinetic/share/sensor_msgs/cmake/../msg'], 'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'anm_msgs': ['/home/wqkhan/catkin_ws/src/renesas-demo/autonomoose/rospackages/autonomoose_core/anm_msgs/msg'], 'dbw_mkz_msgs': ['/home/wqkhan/catkin_ws/deploy/install/opt/ros/fisch/share/dbw_mkz_msgs/cmake/../msg']}
 
 // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
 
@@ -152,12 +164,12 @@ struct MD5Sum< ::anm_msgs::SystemState_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "cbef3d6b7a4084b15097fdfe26dfc637";
+    return "ab7a717a3afecf397cade346b52416bb";
   }
 
   static const char* value(const ::anm_msgs::SystemState_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xcbef3d6b7a4084b1ULL;
-  static const uint64_t static_value2 = 0x5097fdfe26dfc637ULL;
+  static const uint64_t static_value1 = 0xab7a717a3afecf39ULL;
+  static const uint64_t static_value2 = 0x7cade346b52416bbULL;
 };
 
 template<class ContainerAllocator>
@@ -181,12 +193,16 @@ struct Definition< ::anm_msgs::SystemState_<ContainerAllocator> >
 # architecture/system supervisor folder\n\
 \n\
 # The following constants are used to define the states\n\
-uint8 ST_OFF = 0        # in manual mode - system is off\n\
-uint8 ST_STANDBY = 1    # in manual mode - system is ready to go to auto mode\n\
-uint8 ST_NOT_READY = 2  # in manual mode - system is not ready to go auto mode\n\
-uint8 ST_PARKED = 3     # in auto mode - system is autonomously parked\n\
-uint8 ST_DRIVE = 4      # in auto mode - system is autonomously driving\n\
-uint8 ST_EPULLOVER = 5  # in auto mode - system is emergency pulling over\n\
+uint8 ST_OFF = 0         # in manual mode - system is off\n\
+uint8 ST_STANDBY = 1     # in manual mode - system is ready to go to auto mode\n\
+uint8 ST_NOT_READY = 2   # in manual mode - system is not ready to go auto mode\n\
+uint8 ST_PARKED = 3      # in auto mode - system is autonomously parked\n\
+uint8 ST_DRIVE = 4       # in auto mode - system is autonomously driving\n\
+uint8 ST_ENAVIGATION = 5 # in auto mode - system is emergency navigation\n\
+uint8 ST_FINDPARKING = 6 # in auto mode - system is finding parking\n\
+uint8 ST_PLATOONING  = 7 # in auto mode - system is platooning\n\
+uint8 ST_EPULLOVER  = 8  # in auto mode - system is emergency pullover\n\
+uint8 ST_REVERSE_PARK = 9  # in auto mode - system is reverse parking\n\
 \n\
 # Message definition\n\
 Header header\n\

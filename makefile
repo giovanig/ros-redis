@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add . .gitignore
-		git commit -m "Updated p1hc_fault_detector port to 8103"
+		git commit -m "fix dbw_mkz_msgs report issue"
 		git push origin master	
 
 git: clean push

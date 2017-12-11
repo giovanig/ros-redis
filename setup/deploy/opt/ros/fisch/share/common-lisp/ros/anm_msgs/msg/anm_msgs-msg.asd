@@ -4,10 +4,13 @@
 (defsystem "anm_msgs-msg"
   :depends-on (:roslisp-msg-protocol :roslisp-utils :dbw_mkz_msgs-msg
                :geometry_msgs-msg
+               :nav_msgs-msg
                :sensor_msgs-msg
                :std_msgs-msg
 )
   :components ((:file "_package")
+    (:file "BehaviouralAttributes" :depends-on ("_package_BehaviouralAttributes"))
+    (:file "_package_BehaviouralAttributes" :depends-on ("_package"))
     (:file "BoundingBox" :depends-on ("_package_BoundingBox"))
     (:file "_package_BoundingBox" :depends-on ("_package"))
     (:file "BoundingBox3d" :depends-on ("_package_BoundingBox3d"))
@@ -16,6 +19,8 @@
     (:file "_package_CommandCheckingReport" :depends-on ("_package"))
     (:file "ControlCommands" :depends-on ("_package_ControlCommands"))
     (:file "_package_ControlCommands" :depends-on ("_package"))
+    (:file "DOMReport" :depends-on ("_package_DOMReport"))
+    (:file "_package_DOMReport" :depends-on ("_package"))
     (:file "DynamicObstacle" :depends-on ("_package_DynamicObstacle"))
     (:file "_package_DynamicObstacle" :depends-on ("_package"))
     (:file "DynamicObstacleList" :depends-on ("_package_DynamicObstacleList"))
@@ -30,10 +35,18 @@
     (:file "_package_PathState" :depends-on ("_package"))
     (:file "PointCloud2Clusters" :depends-on ("_package_PointCloud2Clusters"))
     (:file "_package_PointCloud2Clusters" :depends-on ("_package"))
+    (:file "RODElement" :depends-on ("_package_RODElement"))
+    (:file "_package_RODElement" :depends-on ("_package"))
+    (:file "RODElementFeedback" :depends-on ("_package_RODElementFeedback"))
+    (:file "_package_RODElementFeedback" :depends-on ("_package"))
     (:file "ShuttleRequest" :depends-on ("_package_ShuttleRequest"))
     (:file "_package_ShuttleRequest" :depends-on ("_package"))
+    (:file "SystemHealthReport" :depends-on ("_package_SystemHealthReport"))
+    (:file "_package_SystemHealthReport" :depends-on ("_package"))
     (:file "SystemState" :depends-on ("_package_SystemState"))
     (:file "_package_SystemState" :depends-on ("_package"))
+    (:file "SystemStateRequest" :depends-on ("_package_SystemStateRequest"))
+    (:file "_package_SystemStateRequest" :depends-on ("_package"))
     (:file "TrackedObject" :depends-on ("_package_TrackedObject"))
     (:file "_package_TrackedObject" :depends-on ("_package"))
     (:file "TrackedObjectList" :depends-on ("_package_TrackedObjectList"))

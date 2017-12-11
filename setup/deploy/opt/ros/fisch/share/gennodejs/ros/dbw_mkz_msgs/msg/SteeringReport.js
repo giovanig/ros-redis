@@ -26,12 +26,11 @@ class SteeringReport {
       this.speed = null;
       this.enabled = null;
       this.override = null;
-      this.driver = null;
+      this.timeout = null;
       this.fault_wdc = null;
       this.fault_bus1 = null;
       this.fault_bus2 = null;
       this.fault_calibration = null;
-      this.fault_connector = null;
     }
     else {
       if (initObj.hasOwnProperty('header')) {
@@ -76,11 +75,11 @@ class SteeringReport {
       else {
         this.override = false;
       }
-      if (initObj.hasOwnProperty('driver')) {
-        this.driver = initObj.driver
+      if (initObj.hasOwnProperty('timeout')) {
+        this.timeout = initObj.timeout
       }
       else {
-        this.driver = false;
+        this.timeout = false;
       }
       if (initObj.hasOwnProperty('fault_wdc')) {
         this.fault_wdc = initObj.fault_wdc
@@ -106,12 +105,6 @@ class SteeringReport {
       else {
         this.fault_calibration = false;
       }
-      if (initObj.hasOwnProperty('fault_connector')) {
-        this.fault_connector = initObj.fault_connector
-      }
-      else {
-        this.fault_connector = false;
-      }
     }
   }
 
@@ -131,8 +124,8 @@ class SteeringReport {
     bufferOffset = _serializer.bool(obj.enabled, buffer, bufferOffset);
     // Serialize message field [override]
     bufferOffset = _serializer.bool(obj.override, buffer, bufferOffset);
-    // Serialize message field [driver]
-    bufferOffset = _serializer.bool(obj.driver, buffer, bufferOffset);
+    // Serialize message field [timeout]
+    bufferOffset = _serializer.bool(obj.timeout, buffer, bufferOffset);
     // Serialize message field [fault_wdc]
     bufferOffset = _serializer.bool(obj.fault_wdc, buffer, bufferOffset);
     // Serialize message field [fault_bus1]
@@ -141,8 +134,6 @@ class SteeringReport {
     bufferOffset = _serializer.bool(obj.fault_bus2, buffer, bufferOffset);
     // Serialize message field [fault_calibration]
     bufferOffset = _serializer.bool(obj.fault_calibration, buffer, bufferOffset);
-    // Serialize message field [fault_connector]
-    bufferOffset = _serializer.bool(obj.fault_connector, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -164,8 +155,8 @@ class SteeringReport {
     data.enabled = _deserializer.bool(buffer, bufferOffset);
     // Deserialize message field [override]
     data.override = _deserializer.bool(buffer, bufferOffset);
-    // Deserialize message field [driver]
-    data.driver = _deserializer.bool(buffer, bufferOffset);
+    // Deserialize message field [timeout]
+    data.timeout = _deserializer.bool(buffer, bufferOffset);
     // Deserialize message field [fault_wdc]
     data.fault_wdc = _deserializer.bool(buffer, bufferOffset);
     // Deserialize message field [fault_bus1]
@@ -174,15 +165,13 @@ class SteeringReport {
     data.fault_bus2 = _deserializer.bool(buffer, bufferOffset);
     // Deserialize message field [fault_calibration]
     data.fault_calibration = _deserializer.bool(buffer, bufferOffset);
-    // Deserialize message field [fault_connector]
-    data.fault_connector = _deserializer.bool(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += std_msgs.msg.Header.getMessageSize(object.header);
-    return length + 24;
+    return length + 23;
   }
 
   static datatype() {
@@ -192,7 +181,7 @@ class SteeringReport {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '25bf2c220d904531d8bc16ab5271325d';
+    return '435efc512abdd87ef2f942c0e8ed296d';
   }
 
   static messageDefinition() {
@@ -211,7 +200,7 @@ class SteeringReport {
     # Status
     bool enabled  # Enabled
     bool override # Driver override
-    bool driver   # Driver activity
+    bool timeout  # Command timeout
     
     # Watchdog Counter
     bool fault_wdc
@@ -220,7 +209,6 @@ class SteeringReport {
     bool fault_bus1
     bool fault_bus2
     bool fault_calibration
-    bool fault_connector # This fault can be ignored
     
     ================================================================================
     MSG: std_msgs/Header
@@ -298,11 +286,11 @@ class SteeringReport {
       resolved.override = false
     }
 
-    if (msg.driver !== undefined) {
-      resolved.driver = msg.driver;
+    if (msg.timeout !== undefined) {
+      resolved.timeout = msg.timeout;
     }
     else {
-      resolved.driver = false
+      resolved.timeout = false
     }
 
     if (msg.fault_wdc !== undefined) {
@@ -331,13 +319,6 @@ class SteeringReport {
     }
     else {
       resolved.fault_calibration = false
-    }
-
-    if (msg.fault_connector !== undefined) {
-      resolved.fault_connector = msg.fault_connector;
-    }
-    else {
-      resolved.fault_connector = false
     }
 
     return resolved;

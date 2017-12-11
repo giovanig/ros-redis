@@ -9,7 +9,7 @@ import dbw_mkz_msgs.msg
 import std_msgs.msg
 
 class BrakeReport(genpy.Message):
-  _md5sum = "a306c167d365176ae6159e3c4e3f3197"
+  _md5sum = "5716c7ce378fb5a251e0ff30ac24500e"
   _type = "dbw_mkz_msgs/BrakeReport"
   _has_header = True #flag to mark the presence of a Header object
   _full_text = """Header header
@@ -34,6 +34,7 @@ bool boo_output
 bool enabled  # Enabled
 bool override # Driver override
 bool driver   # Driver activity
+bool timeout  # Command timeout
 
 # Watchdog Counter
 WatchdogCounter watchdog_counter
@@ -44,7 +45,6 @@ bool fault_wdc
 bool fault_ch1
 bool fault_ch2
 bool fault_boo
-bool fault_connector # This fault can be ignored
 
 ================================================================================
 MSG: std_msgs/Header
@@ -85,8 +85,8 @@ uint8 STEERING_DISABLED=13 # Steering transition to disabled while in gear or mo
 uint8 STEERING_COMMAND=14  # Steering command timeout after 100ms
 uint8 STEERING_REPORT=15   # Steering report timeout after 100ms
 """
-  __slots__ = ['header','pedal_input','pedal_cmd','pedal_output','torque_input','torque_cmd','torque_output','boo_input','boo_cmd','boo_output','enabled','override','driver','watchdog_counter','watchdog_braking','fault_wdc','fault_ch1','fault_ch2','fault_boo','fault_connector']
-  _slot_types = ['std_msgs/Header','float32','float32','float32','float32','float32','float32','bool','bool','bool','bool','bool','bool','dbw_mkz_msgs/WatchdogCounter','bool','bool','bool','bool','bool','bool']
+  __slots__ = ['header','pedal_input','pedal_cmd','pedal_output','torque_input','torque_cmd','torque_output','boo_input','boo_cmd','boo_output','enabled','override','driver','timeout','watchdog_counter','watchdog_braking','fault_wdc','fault_ch1','fault_ch2','fault_boo']
+  _slot_types = ['std_msgs/Header','float32','float32','float32','float32','float32','float32','bool','bool','bool','bool','bool','bool','bool','dbw_mkz_msgs/WatchdogCounter','bool','bool','bool','bool','bool']
 
   def __init__(self, *args, **kwds):
     """
@@ -96,7 +96,7 @@ uint8 STEERING_REPORT=15   # Steering report timeout after 100ms
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,pedal_input,pedal_cmd,pedal_output,torque_input,torque_cmd,torque_output,boo_input,boo_cmd,boo_output,enabled,override,driver,watchdog_counter,watchdog_braking,fault_wdc,fault_ch1,fault_ch2,fault_boo,fault_connector
+       header,pedal_input,pedal_cmd,pedal_output,torque_input,torque_cmd,torque_output,boo_input,boo_cmd,boo_output,enabled,override,driver,timeout,watchdog_counter,watchdog_braking,fault_wdc,fault_ch1,fault_ch2,fault_boo
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -131,6 +131,8 @@ uint8 STEERING_REPORT=15   # Steering report timeout after 100ms
         self.override = False
       if self.driver is None:
         self.driver = False
+      if self.timeout is None:
+        self.timeout = False
       if self.watchdog_counter is None:
         self.watchdog_counter = dbw_mkz_msgs.msg.WatchdogCounter()
       if self.watchdog_braking is None:
@@ -143,8 +145,6 @@ uint8 STEERING_REPORT=15   # Steering report timeout after 100ms
         self.fault_ch2 = False
       if self.fault_boo is None:
         self.fault_boo = False
-      if self.fault_connector is None:
-        self.fault_connector = False
     else:
       self.header = std_msgs.msg.Header()
       self.pedal_input = 0.
@@ -159,13 +159,13 @@ uint8 STEERING_REPORT=15   # Steering report timeout after 100ms
       self.enabled = False
       self.override = False
       self.driver = False
+      self.timeout = False
       self.watchdog_counter = dbw_mkz_msgs.msg.WatchdogCounter()
       self.watchdog_braking = False
       self.fault_wdc = False
       self.fault_ch1 = False
       self.fault_ch2 = False
       self.fault_boo = False
-      self.fault_connector = False
 
   def _get_types(self):
     """
@@ -188,7 +188,7 @@ uint8 STEERING_REPORT=15   # Steering report timeout after 100ms
         length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_get_struct_6f13B().pack(_x.pedal_input, _x.pedal_cmd, _x.pedal_output, _x.torque_input, _x.torque_cmd, _x.torque_output, _x.boo_input, _x.boo_cmd, _x.boo_output, _x.enabled, _x.override, _x.driver, _x.watchdog_counter.source, _x.watchdog_braking, _x.fault_wdc, _x.fault_ch1, _x.fault_ch2, _x.fault_boo, _x.fault_connector))
+      buff.write(_get_struct_6f13B().pack(_x.pedal_input, _x.pedal_cmd, _x.pedal_output, _x.torque_input, _x.torque_cmd, _x.torque_output, _x.boo_input, _x.boo_cmd, _x.boo_output, _x.enabled, _x.override, _x.driver, _x.timeout, _x.watchdog_counter.source, _x.watchdog_braking, _x.fault_wdc, _x.fault_ch1, _x.fault_ch2, _x.fault_boo))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -219,19 +219,19 @@ uint8 STEERING_REPORT=15   # Steering report timeout after 100ms
       _x = self
       start = end
       end += 37
-      (_x.pedal_input, _x.pedal_cmd, _x.pedal_output, _x.torque_input, _x.torque_cmd, _x.torque_output, _x.boo_input, _x.boo_cmd, _x.boo_output, _x.enabled, _x.override, _x.driver, _x.watchdog_counter.source, _x.watchdog_braking, _x.fault_wdc, _x.fault_ch1, _x.fault_ch2, _x.fault_boo, _x.fault_connector,) = _get_struct_6f13B().unpack(str[start:end])
+      (_x.pedal_input, _x.pedal_cmd, _x.pedal_output, _x.torque_input, _x.torque_cmd, _x.torque_output, _x.boo_input, _x.boo_cmd, _x.boo_output, _x.enabled, _x.override, _x.driver, _x.timeout, _x.watchdog_counter.source, _x.watchdog_braking, _x.fault_wdc, _x.fault_ch1, _x.fault_ch2, _x.fault_boo,) = _get_struct_6f13B().unpack(str[start:end])
       self.boo_input = bool(self.boo_input)
       self.boo_cmd = bool(self.boo_cmd)
       self.boo_output = bool(self.boo_output)
       self.enabled = bool(self.enabled)
       self.override = bool(self.override)
       self.driver = bool(self.driver)
+      self.timeout = bool(self.timeout)
       self.watchdog_braking = bool(self.watchdog_braking)
       self.fault_wdc = bool(self.fault_wdc)
       self.fault_ch1 = bool(self.fault_ch1)
       self.fault_ch2 = bool(self.fault_ch2)
       self.fault_boo = bool(self.fault_boo)
-      self.fault_connector = bool(self.fault_connector)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -253,7 +253,7 @@ uint8 STEERING_REPORT=15   # Steering report timeout after 100ms
         length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_get_struct_6f13B().pack(_x.pedal_input, _x.pedal_cmd, _x.pedal_output, _x.torque_input, _x.torque_cmd, _x.torque_output, _x.boo_input, _x.boo_cmd, _x.boo_output, _x.enabled, _x.override, _x.driver, _x.watchdog_counter.source, _x.watchdog_braking, _x.fault_wdc, _x.fault_ch1, _x.fault_ch2, _x.fault_boo, _x.fault_connector))
+      buff.write(_get_struct_6f13B().pack(_x.pedal_input, _x.pedal_cmd, _x.pedal_output, _x.torque_input, _x.torque_cmd, _x.torque_output, _x.boo_input, _x.boo_cmd, _x.boo_output, _x.enabled, _x.override, _x.driver, _x.timeout, _x.watchdog_counter.source, _x.watchdog_braking, _x.fault_wdc, _x.fault_ch1, _x.fault_ch2, _x.fault_boo))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -285,19 +285,19 @@ uint8 STEERING_REPORT=15   # Steering report timeout after 100ms
       _x = self
       start = end
       end += 37
-      (_x.pedal_input, _x.pedal_cmd, _x.pedal_output, _x.torque_input, _x.torque_cmd, _x.torque_output, _x.boo_input, _x.boo_cmd, _x.boo_output, _x.enabled, _x.override, _x.driver, _x.watchdog_counter.source, _x.watchdog_braking, _x.fault_wdc, _x.fault_ch1, _x.fault_ch2, _x.fault_boo, _x.fault_connector,) = _get_struct_6f13B().unpack(str[start:end])
+      (_x.pedal_input, _x.pedal_cmd, _x.pedal_output, _x.torque_input, _x.torque_cmd, _x.torque_output, _x.boo_input, _x.boo_cmd, _x.boo_output, _x.enabled, _x.override, _x.driver, _x.timeout, _x.watchdog_counter.source, _x.watchdog_braking, _x.fault_wdc, _x.fault_ch1, _x.fault_ch2, _x.fault_boo,) = _get_struct_6f13B().unpack(str[start:end])
       self.boo_input = bool(self.boo_input)
       self.boo_cmd = bool(self.boo_cmd)
       self.boo_output = bool(self.boo_output)
       self.enabled = bool(self.enabled)
       self.override = bool(self.override)
       self.driver = bool(self.driver)
+      self.timeout = bool(self.timeout)
       self.watchdog_braking = bool(self.watchdog_braking)
       self.fault_wdc = bool(self.fault_wdc)
       self.fault_ch1 = bool(self.fault_ch1)
       self.fault_ch2 = bool(self.fault_ch2)
       self.fault_boo = bool(self.fault_boo)
-      self.fault_connector = bool(self.fault_connector)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill

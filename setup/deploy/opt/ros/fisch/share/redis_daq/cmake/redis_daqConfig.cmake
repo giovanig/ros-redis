@@ -67,7 +67,7 @@ set(redis_daq_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(redis_daq_SOURCE_PREFIX /home/wqkhan/catkin_ws/src/ros-redis/rospackages/fisch_core/redis_daq)
+  set(redis_daq_SOURCE_PREFIX /home/wqkhan/catkin_ws/src/redis_daq)
   set(redis_daq_DEVEL_PREFIX /home/wqkhan/catkin_ws/deploy/devel/.private/redis_daq)
   set(redis_daq_INSTALL_PREFIX "")
   set(redis_daq_PREFIX ${redis_daq_DEVEL_PREFIX})

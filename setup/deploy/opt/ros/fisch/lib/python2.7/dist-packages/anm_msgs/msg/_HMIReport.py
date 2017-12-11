@@ -8,30 +8,26 @@ import struct
 import std_msgs.msg
 
 class HMIReport(genpy.Message):
-  _md5sum = "515b6d3b9f37b3178d08258bc23fa8f9"
+  _md5sum = "b9053208a0924d8bbe1073b5b6cbebfb"
   _type = "anm_msgs/HMIReport"
   _has_header = True #flag to mark the presence of a Header object
-  _full_text = """# This message indicates input changes on the HMI
-# Any field with an '_pressed' at the end is a button update (1 = update, 0 = not)
-# Any field after with a 1 means PASS/ON/SET, and 0 means FAIIL/OFF/UNSET (except gear change)
-# For gear change, 0=park, 1=drive, 2=reverse, 3=neutral, 4=low
+  _full_text = """# This message indicates the requests from the HMI
 
+# Defined modes:
+uint8 HMI_REQ_MANUAL = 0
+uint8 HMI_REQ_STOP_AND_PARK = 1
+uint8 HMI_REQ_FIND_PARKING = 2
+uint8 HMI_REQ_DRIVE_ROUTE = 3
+uint8 HMI_REQ_DRIVE_PLATOONING = 4
+uint8 HMI_REQ_SIMULATE_FAIL_STACK = 101
+uint8 HMI_REQ_FORCE_EMERGENCY_NAV = 102
+uint8 HMI_REQ_FORCE_EMERGENCY_PULLOVER = 103
+uint8 HMI_REQ_INVALID = 126
+uint8 HMI_REQ_NONE = 127
+
+# Message definition
 Header header
-uint8 auto_toggle_pressed
-uint8 manual_estop_pressed
-uint8 auto_engage_pressed
-uint8 auto_disengage_pressed
-uint8 environment_checks_pressed
-uint8 system_checks_pressed
-uint8 emergency_pullover_exit_pressed
-uint8 manual_drive_pressed
-uint8 gear_change_pressed
-uint8 auto_toggle
-uint8 manual_estop
-uint8 environment_checks
-uint8 system_checks
-uint8 emergency_pullover_exit
-uint8 gear_setting
+uint8 request
 
 
 ================================================================================
@@ -52,8 +48,20 @@ time stamp
 # 1: global frame
 string frame_id
 """
-  __slots__ = ['header','auto_toggle_pressed','manual_estop_pressed','auto_engage_pressed','auto_disengage_pressed','environment_checks_pressed','system_checks_pressed','emergency_pullover_exit_pressed','manual_drive_pressed','gear_change_pressed','auto_toggle','manual_estop','environment_checks','system_checks','emergency_pullover_exit','gear_setting']
-  _slot_types = ['std_msgs/Header','uint8','uint8','uint8','uint8','uint8','uint8','uint8','uint8','uint8','uint8','uint8','uint8','uint8','uint8','uint8']
+  # Pseudo-constants
+  HMI_REQ_MANUAL = 0
+  HMI_REQ_STOP_AND_PARK = 1
+  HMI_REQ_FIND_PARKING = 2
+  HMI_REQ_DRIVE_ROUTE = 3
+  HMI_REQ_DRIVE_PLATOONING = 4
+  HMI_REQ_SIMULATE_FAIL_STACK = 101
+  HMI_REQ_FORCE_EMERGENCY_NAV = 102
+  HMI_REQ_FORCE_EMERGENCY_PULLOVER = 103
+  HMI_REQ_INVALID = 126
+  HMI_REQ_NONE = 127
+
+  __slots__ = ['header','request']
+  _slot_types = ['std_msgs/Header','uint8']
 
   def __init__(self, *args, **kwds):
     """
@@ -63,7 +71,7 @@ string frame_id
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,auto_toggle_pressed,manual_estop_pressed,auto_engage_pressed,auto_disengage_pressed,environment_checks_pressed,system_checks_pressed,emergency_pullover_exit_pressed,manual_drive_pressed,gear_change_pressed,auto_toggle,manual_estop,environment_checks,system_checks,emergency_pullover_exit,gear_setting
+       header,request
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -74,53 +82,11 @@ string frame_id
       #message fields cannot be None, assign default values for those that are
       if self.header is None:
         self.header = std_msgs.msg.Header()
-      if self.auto_toggle_pressed is None:
-        self.auto_toggle_pressed = 0
-      if self.manual_estop_pressed is None:
-        self.manual_estop_pressed = 0
-      if self.auto_engage_pressed is None:
-        self.auto_engage_pressed = 0
-      if self.auto_disengage_pressed is None:
-        self.auto_disengage_pressed = 0
-      if self.environment_checks_pressed is None:
-        self.environment_checks_pressed = 0
-      if self.system_checks_pressed is None:
-        self.system_checks_pressed = 0
-      if self.emergency_pullover_exit_pressed is None:
-        self.emergency_pullover_exit_pressed = 0
-      if self.manual_drive_pressed is None:
-        self.manual_drive_pressed = 0
-      if self.gear_change_pressed is None:
-        self.gear_change_pressed = 0
-      if self.auto_toggle is None:
-        self.auto_toggle = 0
-      if self.manual_estop is None:
-        self.manual_estop = 0
-      if self.environment_checks is None:
-        self.environment_checks = 0
-      if self.system_checks is None:
-        self.system_checks = 0
-      if self.emergency_pullover_exit is None:
-        self.emergency_pullover_exit = 0
-      if self.gear_setting is None:
-        self.gear_setting = 0
+      if self.request is None:
+        self.request = 0
     else:
       self.header = std_msgs.msg.Header()
-      self.auto_toggle_pressed = 0
-      self.manual_estop_pressed = 0
-      self.auto_engage_pressed = 0
-      self.auto_disengage_pressed = 0
-      self.environment_checks_pressed = 0
-      self.system_checks_pressed = 0
-      self.emergency_pullover_exit_pressed = 0
-      self.manual_drive_pressed = 0
-      self.gear_change_pressed = 0
-      self.auto_toggle = 0
-      self.manual_estop = 0
-      self.environment_checks = 0
-      self.system_checks = 0
-      self.emergency_pullover_exit = 0
-      self.gear_setting = 0
+      self.request = 0
 
   def _get_types(self):
     """
@@ -142,8 +108,7 @@ string frame_id
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
-      _x = self
-      buff.write(_get_struct_15B().pack(_x.auto_toggle_pressed, _x.manual_estop_pressed, _x.auto_engage_pressed, _x.auto_disengage_pressed, _x.environment_checks_pressed, _x.system_checks_pressed, _x.emergency_pullover_exit_pressed, _x.manual_drive_pressed, _x.gear_change_pressed, _x.auto_toggle, _x.manual_estop, _x.environment_checks, _x.system_checks, _x.emergency_pullover_exit, _x.gear_setting))
+      buff.write(_get_struct_B().pack(self.request))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -169,10 +134,9 @@ string frame_id
         self.header.frame_id = str[start:end].decode('utf-8')
       else:
         self.header.frame_id = str[start:end]
-      _x = self
       start = end
-      end += 15
-      (_x.auto_toggle_pressed, _x.manual_estop_pressed, _x.auto_engage_pressed, _x.auto_disengage_pressed, _x.environment_checks_pressed, _x.system_checks_pressed, _x.emergency_pullover_exit_pressed, _x.manual_drive_pressed, _x.gear_change_pressed, _x.auto_toggle, _x.manual_estop, _x.environment_checks, _x.system_checks, _x.emergency_pullover_exit, _x.gear_setting,) = _get_struct_15B().unpack(str[start:end])
+      end += 1
+      (self.request,) = _get_struct_B().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -193,8 +157,7 @@ string frame_id
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
-      _x = self
-      buff.write(_get_struct_15B().pack(_x.auto_toggle_pressed, _x.manual_estop_pressed, _x.auto_engage_pressed, _x.auto_disengage_pressed, _x.environment_checks_pressed, _x.system_checks_pressed, _x.emergency_pullover_exit_pressed, _x.manual_drive_pressed, _x.gear_change_pressed, _x.auto_toggle, _x.manual_estop, _x.environment_checks, _x.system_checks, _x.emergency_pullover_exit, _x.gear_setting))
+      buff.write(_get_struct_B().pack(self.request))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -221,10 +184,9 @@ string frame_id
         self.header.frame_id = str[start:end].decode('utf-8')
       else:
         self.header.frame_id = str[start:end]
-      _x = self
       start = end
-      end += 15
-      (_x.auto_toggle_pressed, _x.manual_estop_pressed, _x.auto_engage_pressed, _x.auto_disengage_pressed, _x.environment_checks_pressed, _x.system_checks_pressed, _x.emergency_pullover_exit_pressed, _x.manual_drive_pressed, _x.gear_change_pressed, _x.auto_toggle, _x.manual_estop, _x.environment_checks, _x.system_checks, _x.emergency_pullover_exit, _x.gear_setting,) = _get_struct_15B().unpack(str[start:end])
+      end += 1
+      (self.request,) = _get_struct_B().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -239,9 +201,9 @@ def _get_struct_3I():
     if _struct_3I is None:
         _struct_3I = struct.Struct("<3I")
     return _struct_3I
-_struct_15B = None
-def _get_struct_15B():
-    global _struct_15B
-    if _struct_15B is None:
-        _struct_15B = struct.Struct("<15B")
-    return _struct_15B
+_struct_B = None
+def _get_struct_B():
+    global _struct_B
+    if _struct_B is None:
+        _struct_B = struct.Struct("<B")
+    return _struct_B

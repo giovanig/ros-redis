@@ -13,6 +13,8 @@
           OVERRIDE
           DRIVER-VAL
           DRIVER
+          TIMEOUT-VAL
+          TIMEOUT
           WATCHDOG_COUNTER-VAL
           WATCHDOG_COUNTER
           FAULT_WDC-VAL
@@ -21,6 +23,4 @@
           FAULT_CH1
           FAULT_CH2-VAL
           FAULT_CH2
-          FAULT_CONNECTOR-VAL
-          FAULT_CONNECTOR
 ))

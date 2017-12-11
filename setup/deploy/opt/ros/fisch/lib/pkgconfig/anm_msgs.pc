@@ -5,4 +5,4 @@ Description: Description of anm_msgs
 Version: 0.0.0
 Cflags: -I/opt/ros/fisch/include
 Libs: -L/opt/ros/fisch/lib 
-Requires: message_generation roscpp std_msgs geometry_msgs dbw_mkz_msgs sensor_msgs
+Requires: message_generation roscpp std_msgs geometry_msgs dbw_mkz_msgs sensor_msgs nav_msgs

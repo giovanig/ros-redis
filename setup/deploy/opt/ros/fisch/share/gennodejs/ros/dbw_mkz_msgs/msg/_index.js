@@ -5,6 +5,7 @@ let Wiper = require('./Wiper.js');
 let TurnSignalCmd = require('./TurnSignalCmd.js');
 let BrakeInfoReport = require('./BrakeInfoReport.js');
 let AmbientLight = require('./AmbientLight.js');
+let WheelPositionReport = require('./WheelPositionReport.js');
 let ThrottleCmd = require('./ThrottleCmd.js');
 let HillStartAssist = require('./HillStartAssist.js');
 let BrakeReport = require('./BrakeReport.js');
@@ -12,6 +13,7 @@ let GearCmd = require('./GearCmd.js');
 let WheelSpeedReport = require('./WheelSpeedReport.js');
 let ThrottleReport = require('./ThrottleReport.js');
 let TirePressureReport = require('./TirePressureReport.js');
+let GearReject = require('./GearReject.js');
 let FuelLevelReport = require('./FuelLevelReport.js');
 let SteeringCmd = require('./SteeringCmd.js');
 let ThrottleInfoReport = require('./ThrottleInfoReport.js');
@@ -31,6 +33,7 @@ module.exports = {
   TurnSignalCmd: TurnSignalCmd,
   BrakeInfoReport: BrakeInfoReport,
   AmbientLight: AmbientLight,
+  WheelPositionReport: WheelPositionReport,
   ThrottleCmd: ThrottleCmd,
   HillStartAssist: HillStartAssist,
   BrakeReport: BrakeReport,
@@ -38,6 +41,7 @@ module.exports = {
   WheelSpeedReport: WheelSpeedReport,
   ThrottleReport: ThrottleReport,
   TirePressureReport: TirePressureReport,
+  GearReject: GearReject,
   FuelLevelReport: FuelLevelReport,
   SteeringCmd: SteeringCmd,
   ThrottleInfoReport: ThrottleInfoReport,

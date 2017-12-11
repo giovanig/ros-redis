@@ -32,12 +32,11 @@ struct SteeringReport_
     , speed(0.0)
     , enabled(false)
     , override(false)
-    , driver(false)
+    , timeout(false)
     , fault_wdc(false)
     , fault_bus1(false)
     , fault_bus2(false)
-    , fault_calibration(false)
-    , fault_connector(false)  {
+    , fault_calibration(false)  {
     }
   SteeringReport_(const ContainerAllocator& _alloc)
     : header(_alloc)
@@ -47,12 +46,11 @@ struct SteeringReport_
     , speed(0.0)
     , enabled(false)
     , override(false)
-    , driver(false)
+    , timeout(false)
     , fault_wdc(false)
     , fault_bus1(false)
     , fault_bus2(false)
-    , fault_calibration(false)
-    , fault_connector(false)  {
+    , fault_calibration(false)  {
   (void)_alloc;
     }
 
@@ -79,8 +77,8 @@ struct SteeringReport_
    typedef uint8_t _override_type;
   _override_type override;
 
-   typedef uint8_t _driver_type;
-  _driver_type driver;
+   typedef uint8_t _timeout_type;
+  _timeout_type timeout;
 
    typedef uint8_t _fault_wdc_type;
   _fault_wdc_type fault_wdc;
@@ -93,9 +91,6 @@ struct SteeringReport_
 
    typedef uint8_t _fault_calibration_type;
   _fault_calibration_type fault_calibration;
-
-   typedef uint8_t _fault_connector_type;
-  _fault_connector_type fault_connector;
 
 
 
@@ -174,12 +169,12 @@ struct MD5Sum< ::dbw_mkz_msgs::SteeringReport_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "25bf2c220d904531d8bc16ab5271325d";
+    return "435efc512abdd87ef2f942c0e8ed296d";
   }
 
   static const char* value(const ::dbw_mkz_msgs::SteeringReport_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x25bf2c220d904531ULL;
-  static const uint64_t static_value2 = 0xd8bc16ab5271325dULL;
+  static const uint64_t static_value1 = 0x435efc512abdd87eULL;
+  static const uint64_t static_value2 = 0xf2f942c0e8ed296dULL;
 };
 
 template<class ContainerAllocator>
@@ -211,7 +206,7 @@ float32 speed                     # m/s\n\
 # Status\n\
 bool enabled  # Enabled\n\
 bool override # Driver override\n\
-bool driver   # Driver activity\n\
+bool timeout  # Command timeout\n\
 \n\
 # Watchdog Counter\n\
 bool fault_wdc\n\
@@ -220,7 +215,6 @@ bool fault_wdc\n\
 bool fault_bus1\n\
 bool fault_bus2\n\
 bool fault_calibration\n\
-bool fault_connector # This fault can be ignored\n\
 \n\
 ================================================================================\n\
 MSG: std_msgs/Header\n\
@@ -264,12 +258,11 @@ namespace serialization
       stream.next(m.speed);
       stream.next(m.enabled);
       stream.next(m.override);
-      stream.next(m.driver);
+      stream.next(m.timeout);
       stream.next(m.fault_wdc);
       stream.next(m.fault_bus1);
       stream.next(m.fault_bus2);
       stream.next(m.fault_calibration);
-      stream.next(m.fault_connector);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -303,8 +296,8 @@ struct Printer< ::dbw_mkz_msgs::SteeringReport_<ContainerAllocator> >
     Printer<uint8_t>::stream(s, indent + "  ", v.enabled);
     s << indent << "override: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.override);
-    s << indent << "driver: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.driver);
+    s << indent << "timeout: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.timeout);
     s << indent << "fault_wdc: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.fault_wdc);
     s << indent << "fault_bus1: ";
@@ -313,8 +306,6 @@ struct Printer< ::dbw_mkz_msgs::SteeringReport_<ContainerAllocator> >
     Printer<uint8_t>::stream(s, indent + "  ", v.fault_bus2);
     s << indent << "fault_calibration: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.fault_calibration);
-    s << indent << "fault_connector: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.fault_connector);
   }
 };
 

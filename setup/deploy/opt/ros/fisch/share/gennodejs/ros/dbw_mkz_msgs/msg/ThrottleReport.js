@@ -27,11 +27,11 @@ class ThrottleReport {
       this.enabled = null;
       this.override = null;
       this.driver = null;
+      this.timeout = null;
       this.watchdog_counter = null;
       this.fault_wdc = null;
       this.fault_ch1 = null;
       this.fault_ch2 = null;
-      this.fault_connector = null;
     }
     else {
       if (initObj.hasOwnProperty('header')) {
@@ -76,6 +76,12 @@ class ThrottleReport {
       else {
         this.driver = false;
       }
+      if (initObj.hasOwnProperty('timeout')) {
+        this.timeout = initObj.timeout
+      }
+      else {
+        this.timeout = false;
+      }
       if (initObj.hasOwnProperty('watchdog_counter')) {
         this.watchdog_counter = initObj.watchdog_counter
       }
@@ -100,12 +106,6 @@ class ThrottleReport {
       else {
         this.fault_ch2 = false;
       }
-      if (initObj.hasOwnProperty('fault_connector')) {
-        this.fault_connector = initObj.fault_connector
-      }
-      else {
-        this.fault_connector = false;
-      }
     }
   }
 
@@ -125,6 +125,8 @@ class ThrottleReport {
     bufferOffset = _serializer.bool(obj.override, buffer, bufferOffset);
     // Serialize message field [driver]
     bufferOffset = _serializer.bool(obj.driver, buffer, bufferOffset);
+    // Serialize message field [timeout]
+    bufferOffset = _serializer.bool(obj.timeout, buffer, bufferOffset);
     // Serialize message field [watchdog_counter]
     bufferOffset = WatchdogCounter.serialize(obj.watchdog_counter, buffer, bufferOffset);
     // Serialize message field [fault_wdc]
@@ -133,8 +135,6 @@ class ThrottleReport {
     bufferOffset = _serializer.bool(obj.fault_ch1, buffer, bufferOffset);
     // Serialize message field [fault_ch2]
     bufferOffset = _serializer.bool(obj.fault_ch2, buffer, bufferOffset);
-    // Serialize message field [fault_connector]
-    bufferOffset = _serializer.bool(obj.fault_connector, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -156,6 +156,8 @@ class ThrottleReport {
     data.override = _deserializer.bool(buffer, bufferOffset);
     // Deserialize message field [driver]
     data.driver = _deserializer.bool(buffer, bufferOffset);
+    // Deserialize message field [timeout]
+    data.timeout = _deserializer.bool(buffer, bufferOffset);
     // Deserialize message field [watchdog_counter]
     data.watchdog_counter = WatchdogCounter.deserialize(buffer, bufferOffset);
     // Deserialize message field [fault_wdc]
@@ -164,8 +166,6 @@ class ThrottleReport {
     data.fault_ch1 = _deserializer.bool(buffer, bufferOffset);
     // Deserialize message field [fault_ch2]
     data.fault_ch2 = _deserializer.bool(buffer, bufferOffset);
-    // Deserialize message field [fault_connector]
-    data.fault_connector = _deserializer.bool(buffer, bufferOffset);
     return data;
   }
 
@@ -182,7 +182,7 @@ class ThrottleReport {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'a7fd7b93c8549e83c319e38a18f6dbdc';
+    return 'dc371d36db36a47de2ffaa1302bf4aec';
   }
 
   static messageDefinition() {
@@ -191,7 +191,7 @@ class ThrottleReport {
     Header header
     
     # Throttle pedal
-    # Unitless, range 0.15 to 0.50
+    # Unitless, range 0.15 to 0.80
     float32 pedal_input
     float32 pedal_cmd
     float32 pedal_output
@@ -200,6 +200,7 @@ class ThrottleReport {
     bool enabled  # Enabled
     bool override # Driver override
     bool driver   # Driver activity
+    bool timeout  # Command timeout
     
     # Watchdog Counter
     WatchdogCounter watchdog_counter
@@ -208,7 +209,6 @@ class ThrottleReport {
     # Faults
     bool fault_ch1
     bool fault_ch2
-    bool fault_connector # This fault can be ignored
     
     ================================================================================
     MSG: std_msgs/Header
@@ -307,6 +307,13 @@ class ThrottleReport {
       resolved.driver = false
     }
 
+    if (msg.timeout !== undefined) {
+      resolved.timeout = msg.timeout;
+    }
+    else {
+      resolved.timeout = false
+    }
+
     if (msg.watchdog_counter !== undefined) {
       resolved.watchdog_counter = WatchdogCounter.Resolve(msg.watchdog_counter)
     }
@@ -333,13 +340,6 @@ class ThrottleReport {
     }
     else {
       resolved.fault_ch2 = false
-    }
-
-    if (msg.fault_connector !== undefined) {
-      resolved.fault_connector = msg.fault_connector;
-    }
-    else {
-      resolved.fault_connector = false
     }
 
     return resolved;

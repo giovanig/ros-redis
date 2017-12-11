@@ -33,11 +33,11 @@ struct ThrottleReport_
     , enabled(false)
     , override(false)
     , driver(false)
+    , timeout(false)
     , watchdog_counter()
     , fault_wdc(false)
     , fault_ch1(false)
-    , fault_ch2(false)
-    , fault_connector(false)  {
+    , fault_ch2(false)  {
     }
   ThrottleReport_(const ContainerAllocator& _alloc)
     : header(_alloc)
@@ -47,11 +47,11 @@ struct ThrottleReport_
     , enabled(false)
     , override(false)
     , driver(false)
+    , timeout(false)
     , watchdog_counter(_alloc)
     , fault_wdc(false)
     , fault_ch1(false)
-    , fault_ch2(false)
-    , fault_connector(false)  {
+    , fault_ch2(false)  {
   (void)_alloc;
     }
 
@@ -78,6 +78,9 @@ struct ThrottleReport_
    typedef uint8_t _driver_type;
   _driver_type driver;
 
+   typedef uint8_t _timeout_type;
+  _timeout_type timeout;
+
    typedef  ::dbw_mkz_msgs::WatchdogCounter_<ContainerAllocator>  _watchdog_counter_type;
   _watchdog_counter_type watchdog_counter;
 
@@ -89,9 +92,6 @@ struct ThrottleReport_
 
    typedef uint8_t _fault_ch2_type;
   _fault_ch2_type fault_ch2;
-
-   typedef uint8_t _fault_connector_type;
-  _fault_connector_type fault_connector;
 
 
 
@@ -170,12 +170,12 @@ struct MD5Sum< ::dbw_mkz_msgs::ThrottleReport_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "a7fd7b93c8549e83c319e38a18f6dbdc";
+    return "dc371d36db36a47de2ffaa1302bf4aec";
   }
 
   static const char* value(const ::dbw_mkz_msgs::ThrottleReport_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xa7fd7b93c8549e83ULL;
-  static const uint64_t static_value2 = 0xc319e38a18f6dbdcULL;
+  static const uint64_t static_value1 = 0xdc371d36db36a47dULL;
+  static const uint64_t static_value2 = 0xe2ffaa1302bf4aecULL;
 };
 
 template<class ContainerAllocator>
@@ -197,7 +197,7 @@ struct Definition< ::dbw_mkz_msgs::ThrottleReport_<ContainerAllocator> >
     return "Header header\n\
 \n\
 # Throttle pedal\n\
-# Unitless, range 0.15 to 0.50\n\
+# Unitless, range 0.15 to 0.80\n\
 float32 pedal_input\n\
 float32 pedal_cmd\n\
 float32 pedal_output\n\
@@ -206,6 +206,7 @@ float32 pedal_output\n\
 bool enabled  # Enabled\n\
 bool override # Driver override\n\
 bool driver   # Driver activity\n\
+bool timeout  # Command timeout\n\
 \n\
 # Watchdog Counter\n\
 WatchdogCounter watchdog_counter\n\
@@ -214,7 +215,6 @@ bool fault_wdc\n\
 # Faults\n\
 bool fault_ch1\n\
 bool fault_ch2\n\
-bool fault_connector # This fault can be ignored\n\
 \n\
 ================================================================================\n\
 MSG: std_msgs/Header\n\
@@ -279,11 +279,11 @@ namespace serialization
       stream.next(m.enabled);
       stream.next(m.override);
       stream.next(m.driver);
+      stream.next(m.timeout);
       stream.next(m.watchdog_counter);
       stream.next(m.fault_wdc);
       stream.next(m.fault_ch1);
       stream.next(m.fault_ch2);
-      stream.next(m.fault_connector);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -317,6 +317,8 @@ struct Printer< ::dbw_mkz_msgs::ThrottleReport_<ContainerAllocator> >
     Printer<uint8_t>::stream(s, indent + "  ", v.override);
     s << indent << "driver: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.driver);
+    s << indent << "timeout: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.timeout);
     s << indent << "watchdog_counter: ";
     s << std::endl;
     Printer< ::dbw_mkz_msgs::WatchdogCounter_<ContainerAllocator> >::stream(s, indent + "  ", v.watchdog_counter);
@@ -326,8 +328,6 @@ struct Printer< ::dbw_mkz_msgs::ThrottleReport_<ContainerAllocator> >
     Printer<uint8_t>::stream(s, indent + "  ", v.fault_ch1);
     s << indent << "fault_ch2: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.fault_ch2);
-    s << indent << "fault_connector: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.fault_connector);
   }
 };
 

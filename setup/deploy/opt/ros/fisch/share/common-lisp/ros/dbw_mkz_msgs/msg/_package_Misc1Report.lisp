@@ -31,6 +31,16 @@
           BTN_CC_GAP_DEC
           BTN_LA_ON_OFF-VAL
           BTN_LA_ON_OFF
+          BTN_LD_OK-VAL
+          BTN_LD_OK
+          BTN_LD_UP-VAL
+          BTN_LD_UP
+          BTN_LD_DOWN-VAL
+          BTN_LD_DOWN
+          BTN_LD_LEFT-VAL
+          BTN_LD_LEFT
+          BTN_LD_RIGHT-VAL
+          BTN_LD_RIGHT
           FAULT_BUS-VAL
           FAULT_BUS
           DOOR_DRIVER-VAL

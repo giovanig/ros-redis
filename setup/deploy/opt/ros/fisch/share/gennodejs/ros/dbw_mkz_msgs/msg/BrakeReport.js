@@ -33,13 +33,13 @@ class BrakeReport {
       this.enabled = null;
       this.override = null;
       this.driver = null;
+      this.timeout = null;
       this.watchdog_counter = null;
       this.watchdog_braking = null;
       this.fault_wdc = null;
       this.fault_ch1 = null;
       this.fault_ch2 = null;
       this.fault_boo = null;
-      this.fault_connector = null;
     }
     else {
       if (initObj.hasOwnProperty('header')) {
@@ -120,6 +120,12 @@ class BrakeReport {
       else {
         this.driver = false;
       }
+      if (initObj.hasOwnProperty('timeout')) {
+        this.timeout = initObj.timeout
+      }
+      else {
+        this.timeout = false;
+      }
       if (initObj.hasOwnProperty('watchdog_counter')) {
         this.watchdog_counter = initObj.watchdog_counter
       }
@@ -156,12 +162,6 @@ class BrakeReport {
       else {
         this.fault_boo = false;
       }
-      if (initObj.hasOwnProperty('fault_connector')) {
-        this.fault_connector = initObj.fault_connector
-      }
-      else {
-        this.fault_connector = false;
-      }
     }
   }
 
@@ -193,6 +193,8 @@ class BrakeReport {
     bufferOffset = _serializer.bool(obj.override, buffer, bufferOffset);
     // Serialize message field [driver]
     bufferOffset = _serializer.bool(obj.driver, buffer, bufferOffset);
+    // Serialize message field [timeout]
+    bufferOffset = _serializer.bool(obj.timeout, buffer, bufferOffset);
     // Serialize message field [watchdog_counter]
     bufferOffset = WatchdogCounter.serialize(obj.watchdog_counter, buffer, bufferOffset);
     // Serialize message field [watchdog_braking]
@@ -205,8 +207,6 @@ class BrakeReport {
     bufferOffset = _serializer.bool(obj.fault_ch2, buffer, bufferOffset);
     // Serialize message field [fault_boo]
     bufferOffset = _serializer.bool(obj.fault_boo, buffer, bufferOffset);
-    // Serialize message field [fault_connector]
-    bufferOffset = _serializer.bool(obj.fault_connector, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -240,6 +240,8 @@ class BrakeReport {
     data.override = _deserializer.bool(buffer, bufferOffset);
     // Deserialize message field [driver]
     data.driver = _deserializer.bool(buffer, bufferOffset);
+    // Deserialize message field [timeout]
+    data.timeout = _deserializer.bool(buffer, bufferOffset);
     // Deserialize message field [watchdog_counter]
     data.watchdog_counter = WatchdogCounter.deserialize(buffer, bufferOffset);
     // Deserialize message field [watchdog_braking]
@@ -252,8 +254,6 @@ class BrakeReport {
     data.fault_ch2 = _deserializer.bool(buffer, bufferOffset);
     // Deserialize message field [fault_boo]
     data.fault_boo = _deserializer.bool(buffer, bufferOffset);
-    // Deserialize message field [fault_connector]
-    data.fault_connector = _deserializer.bool(buffer, bufferOffset);
     return data;
   }
 
@@ -270,7 +270,7 @@ class BrakeReport {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'a306c167d365176ae6159e3c4e3f3197';
+    return '5716c7ce378fb5a251e0ff30ac24500e';
   }
 
   static messageDefinition() {
@@ -298,6 +298,7 @@ class BrakeReport {
     bool enabled  # Enabled
     bool override # Driver override
     bool driver   # Driver activity
+    bool timeout  # Command timeout
     
     # Watchdog Counter
     WatchdogCounter watchdog_counter
@@ -308,7 +309,6 @@ class BrakeReport {
     bool fault_ch1
     bool fault_ch2
     bool fault_boo
-    bool fault_connector # This fault can be ignored
     
     ================================================================================
     MSG: std_msgs/Header
@@ -449,6 +449,13 @@ class BrakeReport {
       resolved.driver = false
     }
 
+    if (msg.timeout !== undefined) {
+      resolved.timeout = msg.timeout;
+    }
+    else {
+      resolved.timeout = false
+    }
+
     if (msg.watchdog_counter !== undefined) {
       resolved.watchdog_counter = WatchdogCounter.Resolve(msg.watchdog_counter)
     }
@@ -489,13 +496,6 @@ class BrakeReport {
     }
     else {
       resolved.fault_boo = false
-    }
-
-    if (msg.fault_connector !== undefined) {
-      resolved.fault_connector = msg.fault_connector;
-    }
-    else {
-      resolved.fault_connector = false
     }
 
     return resolved;

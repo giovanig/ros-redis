@@ -44,6 +44,11 @@ struct Misc1Report_
     , btn_cc_gap_inc(false)
     , btn_cc_gap_dec(false)
     , btn_la_on_off(false)
+    , btn_ld_ok(false)
+    , btn_ld_up(false)
+    , btn_ld_down(false)
+    , btn_ld_left(false)
+    , btn_ld_right(false)
     , fault_bus(false)
     , door_driver(false)
     , door_passenger(false)
@@ -73,6 +78,11 @@ struct Misc1Report_
     , btn_cc_gap_inc(false)
     , btn_cc_gap_dec(false)
     , btn_la_on_off(false)
+    , btn_ld_ok(false)
+    , btn_ld_up(false)
+    , btn_ld_down(false)
+    , btn_ld_left(false)
+    , btn_ld_right(false)
     , fault_bus(false)
     , door_driver(false)
     , door_passenger(false)
@@ -136,6 +146,21 @@ struct Misc1Report_
 
    typedef uint8_t _btn_la_on_off_type;
   _btn_la_on_off_type btn_la_on_off;
+
+   typedef uint8_t _btn_ld_ok_type;
+  _btn_ld_ok_type btn_ld_ok;
+
+   typedef uint8_t _btn_ld_up_type;
+  _btn_ld_up_type btn_ld_up;
+
+   typedef uint8_t _btn_ld_down_type;
+  _btn_ld_down_type btn_ld_down;
+
+   typedef uint8_t _btn_ld_left_type;
+  _btn_ld_left_type btn_ld_left;
+
+   typedef uint8_t _btn_ld_right_type;
+  _btn_ld_right_type btn_ld_right;
 
    typedef uint8_t _fault_bus_type;
   _fault_bus_type fault_bus;
@@ -247,12 +272,12 @@ struct MD5Sum< ::dbw_mkz_msgs::Misc1Report_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "9ecd16fb81815b3e46e0550feea1da2f";
+    return "c5c1e0d6ba52586919873bf9b0355143";
   }
 
   static const char* value(const ::dbw_mkz_msgs::Misc1Report_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x9ecd16fb81815b3eULL;
-  static const uint64_t static_value2 = 0x46e0550feea1da2fULL;
+  static const uint64_t static_value1 = 0xc5c1e0d6ba525869ULL;
+  static const uint64_t static_value2 = 0x19873bf9b0355143ULL;
 };
 
 template<class ContainerAllocator>
@@ -297,6 +322,11 @@ bool btn_cc_set_dec   # Cruise Control Set-\n\
 bool btn_cc_gap_inc   # Cruise Control Gap+\n\
 bool btn_cc_gap_dec   # Cruise Control Gap-\n\
 bool btn_la_on_off    # Lane Assist On/Off Toggle\n\
+bool btn_ld_ok        # Left D-Pad OK\n\
+bool btn_ld_up        # Left D-Pad Up\n\
+bool btn_ld_down      # Left D-Pad Down\n\
+bool btn_ld_left      # Left D-Pad Left\n\
+bool btn_ld_right     # Left D-Pad Right\n\
 \n\
 # Faults\n\
 bool fault_bus\n\
@@ -408,6 +438,11 @@ namespace serialization
       stream.next(m.btn_cc_gap_inc);
       stream.next(m.btn_cc_gap_dec);
       stream.next(m.btn_la_on_off);
+      stream.next(m.btn_ld_ok);
+      stream.next(m.btn_ld_up);
+      stream.next(m.btn_ld_down);
+      stream.next(m.btn_ld_left);
+      stream.next(m.btn_ld_right);
       stream.next(m.fault_bus);
       stream.next(m.door_driver);
       stream.next(m.door_passenger);
@@ -473,6 +508,16 @@ struct Printer< ::dbw_mkz_msgs::Misc1Report_<ContainerAllocator> >
     Printer<uint8_t>::stream(s, indent + "  ", v.btn_cc_gap_dec);
     s << indent << "btn_la_on_off: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.btn_la_on_off);
+    s << indent << "btn_ld_ok: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.btn_ld_ok);
+    s << indent << "btn_ld_up: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.btn_ld_up);
+    s << indent << "btn_ld_down: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.btn_ld_down);
+    s << indent << "btn_ld_left: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.btn_ld_left);
+    s << indent << "btn_ld_right: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.btn_ld_right);
     s << indent << "fault_bus: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.fault_bus);
     s << indent << "door_driver: ";

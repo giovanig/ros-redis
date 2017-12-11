@@ -21,6 +21,8 @@ from geometry_msgs.msg import Twist
 import anm_msgs.msg as anm_msgs
 import dbw_mkz_msgs.msg as dbw_mkz_msgs
 
+# from dbw_mkz_msgs.msg import BrakeReport
+
 hostname = 'localhost'
 port = 6379
 password = ''
@@ -39,7 +41,7 @@ def rosmsg_info():
         print("topic: %40s \t type: %55s"%(topic, ttype))
 
 def rosmag_redis_json(data,topic):
-
+    # print(topic)
     json_str = json_message_converter.convert_ros_message_to_json(data)
 
     append_fields = ('"timestamp" : "%s", ')% (str(current_milli_time()).strip())
@@ -71,6 +73,9 @@ def topicListener():
     rospy.Subscriber("vehicle/gear_report", dbw_mkz_msgs.GearReport, callback = rosmag_redis_json, callback_args =  "_vehicle_gear_report")
     rospy.Subscriber("vehicle_state", anm_msgs.VehicleState, callback = rosmag_redis_json, callback_args =  "_vehicle_state_report")
     rospy.Subscriber("vehicle/p1hc_enable_flag", Bool, callback = rosmag_redis_json, callback_args =  "_vehicle_p1hc_enable_flag")
+    rospy.Subscriber("drive_mode", String, callback = rosmag_redis_json, callback_args =  "_drive_mode")
+    rospy.Subscriber("p1hc_fail_occurred", Empty, callback = rosmag_redis_json, callback_args =  "_p1hc_fail_occurred")
+    rospy.Subscriber("p1hc_dataspeed_offline", Bool, callback = rosmag_redis_json, callback_args =  "_p1hc_dataspeed_offline")
     
 
     rospy.spin()

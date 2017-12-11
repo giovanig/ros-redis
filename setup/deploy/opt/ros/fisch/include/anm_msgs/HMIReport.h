@@ -26,39 +26,11 @@ struct HMIReport_
 
   HMIReport_()
     : header()
-    , auto_toggle_pressed(0)
-    , manual_estop_pressed(0)
-    , auto_engage_pressed(0)
-    , auto_disengage_pressed(0)
-    , environment_checks_pressed(0)
-    , system_checks_pressed(0)
-    , emergency_pullover_exit_pressed(0)
-    , manual_drive_pressed(0)
-    , gear_change_pressed(0)
-    , auto_toggle(0)
-    , manual_estop(0)
-    , environment_checks(0)
-    , system_checks(0)
-    , emergency_pullover_exit(0)
-    , gear_setting(0)  {
+    , request(0)  {
     }
   HMIReport_(const ContainerAllocator& _alloc)
     : header(_alloc)
-    , auto_toggle_pressed(0)
-    , manual_estop_pressed(0)
-    , auto_engage_pressed(0)
-    , auto_disengage_pressed(0)
-    , environment_checks_pressed(0)
-    , system_checks_pressed(0)
-    , emergency_pullover_exit_pressed(0)
-    , manual_drive_pressed(0)
-    , gear_change_pressed(0)
-    , auto_toggle(0)
-    , manual_estop(0)
-    , environment_checks(0)
-    , system_checks(0)
-    , emergency_pullover_exit(0)
-    , gear_setting(0)  {
+    , request(0)  {
   (void)_alloc;
     }
 
@@ -67,53 +39,21 @@ struct HMIReport_
    typedef  ::std_msgs::Header_<ContainerAllocator>  _header_type;
   _header_type header;
 
-   typedef uint8_t _auto_toggle_pressed_type;
-  _auto_toggle_pressed_type auto_toggle_pressed;
-
-   typedef uint8_t _manual_estop_pressed_type;
-  _manual_estop_pressed_type manual_estop_pressed;
-
-   typedef uint8_t _auto_engage_pressed_type;
-  _auto_engage_pressed_type auto_engage_pressed;
-
-   typedef uint8_t _auto_disengage_pressed_type;
-  _auto_disengage_pressed_type auto_disengage_pressed;
-
-   typedef uint8_t _environment_checks_pressed_type;
-  _environment_checks_pressed_type environment_checks_pressed;
-
-   typedef uint8_t _system_checks_pressed_type;
-  _system_checks_pressed_type system_checks_pressed;
-
-   typedef uint8_t _emergency_pullover_exit_pressed_type;
-  _emergency_pullover_exit_pressed_type emergency_pullover_exit_pressed;
-
-   typedef uint8_t _manual_drive_pressed_type;
-  _manual_drive_pressed_type manual_drive_pressed;
-
-   typedef uint8_t _gear_change_pressed_type;
-  _gear_change_pressed_type gear_change_pressed;
-
-   typedef uint8_t _auto_toggle_type;
-  _auto_toggle_type auto_toggle;
-
-   typedef uint8_t _manual_estop_type;
-  _manual_estop_type manual_estop;
-
-   typedef uint8_t _environment_checks_type;
-  _environment_checks_type environment_checks;
-
-   typedef uint8_t _system_checks_type;
-  _system_checks_type system_checks;
-
-   typedef uint8_t _emergency_pullover_exit_type;
-  _emergency_pullover_exit_type emergency_pullover_exit;
-
-   typedef uint8_t _gear_setting_type;
-  _gear_setting_type gear_setting;
+   typedef uint8_t _request_type;
+  _request_type request;
 
 
-
+    enum { HMI_REQ_MANUAL = 0u };
+     enum { HMI_REQ_STOP_AND_PARK = 1u };
+     enum { HMI_REQ_FIND_PARKING = 2u };
+     enum { HMI_REQ_DRIVE_ROUTE = 3u };
+     enum { HMI_REQ_DRIVE_PLATOONING = 4u };
+     enum { HMI_REQ_SIMULATE_FAIL_STACK = 101u };
+     enum { HMI_REQ_FORCE_EMERGENCY_NAV = 102u };
+     enum { HMI_REQ_FORCE_EMERGENCY_PULLOVER = 103u };
+     enum { HMI_REQ_INVALID = 126u };
+     enum { HMI_REQ_NONE = 127u };
+ 
 
   typedef boost::shared_ptr< ::anm_msgs::HMIReport_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::anm_msgs::HMIReport_<ContainerAllocator> const> ConstPtr;
@@ -126,6 +66,26 @@ typedef boost::shared_ptr< ::anm_msgs::HMIReport > HMIReportPtr;
 typedef boost::shared_ptr< ::anm_msgs::HMIReport const> HMIReportConstPtr;
 
 // constants requiring out of line definition
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
 
 
 
@@ -146,7 +106,7 @@ namespace message_traits
 
 
 // BOOLTRAITS {'IsFixedSize': False, 'IsMessage': True, 'HasHeader': True}
-// {'sensor_msgs': ['/opt/ros/kinetic/share/sensor_msgs/cmake/../msg'], 'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'dbw_mkz_msgs': ['/home/wqkhan/catkin_ws/deploy/install/opt/ros/fisch/share/dbw_mkz_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'anm_msgs': ['/home/wqkhan/catkin_ws/src/renesas-demo/autonomoose/rospackages/autonomoose_core/anm_msgs/msg']}
+// {'nav_msgs': ['/opt/ros/kinetic/share/nav_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'actionlib_msgs': ['/opt/ros/kinetic/share/actionlib_msgs/cmake/../msg'], 'sensor_msgs': ['/opt/ros/kinetic/share/sensor_msgs/cmake/../msg'], 'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'anm_msgs': ['/home/wqkhan/catkin_ws/src/renesas-demo/autonomoose/rospackages/autonomoose_core/anm_msgs/msg'], 'dbw_mkz_msgs': ['/home/wqkhan/catkin_ws/deploy/install/opt/ros/fisch/share/dbw_mkz_msgs/cmake/../msg']}
 
 // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
 
@@ -189,12 +149,12 @@ struct MD5Sum< ::anm_msgs::HMIReport_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "515b6d3b9f37b3178d08258bc23fa8f9";
+    return "b9053208a0924d8bbe1073b5b6cbebfb";
   }
 
   static const char* value(const ::anm_msgs::HMIReport_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x515b6d3b9f37b317ULL;
-  static const uint64_t static_value2 = 0x8d08258bc23fa8f9ULL;
+  static const uint64_t static_value1 = 0xb9053208a0924d8bULL;
+  static const uint64_t static_value2 = 0xbe1073b5b6cbebfbULL;
 };
 
 template<class ContainerAllocator>
@@ -213,27 +173,23 @@ struct Definition< ::anm_msgs::HMIReport_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "# This message indicates input changes on the HMI\n\
-# Any field with an '_pressed' at the end is a button update (1 = update, 0 = not)\n\
-# Any field after with a 1 means PASS/ON/SET, and 0 means FAIIL/OFF/UNSET (except gear change)\n\
-# For gear change, 0=park, 1=drive, 2=reverse, 3=neutral, 4=low\n\
+    return "# This message indicates the requests from the HMI\n\
 \n\
+# Defined modes:\n\
+uint8 HMI_REQ_MANUAL = 0\n\
+uint8 HMI_REQ_STOP_AND_PARK = 1\n\
+uint8 HMI_REQ_FIND_PARKING = 2\n\
+uint8 HMI_REQ_DRIVE_ROUTE = 3\n\
+uint8 HMI_REQ_DRIVE_PLATOONING = 4\n\
+uint8 HMI_REQ_SIMULATE_FAIL_STACK = 101\n\
+uint8 HMI_REQ_FORCE_EMERGENCY_NAV = 102\n\
+uint8 HMI_REQ_FORCE_EMERGENCY_PULLOVER = 103\n\
+uint8 HMI_REQ_INVALID = 126\n\
+uint8 HMI_REQ_NONE = 127\n\
+\n\
+# Message definition\n\
 Header header\n\
-uint8 auto_toggle_pressed\n\
-uint8 manual_estop_pressed\n\
-uint8 auto_engage_pressed\n\
-uint8 auto_disengage_pressed\n\
-uint8 environment_checks_pressed\n\
-uint8 system_checks_pressed\n\
-uint8 emergency_pullover_exit_pressed\n\
-uint8 manual_drive_pressed\n\
-uint8 gear_change_pressed\n\
-uint8 auto_toggle\n\
-uint8 manual_estop\n\
-uint8 environment_checks\n\
-uint8 system_checks\n\
-uint8 emergency_pullover_exit\n\
-uint8 gear_setting\n\
+uint8 request\n\
 \n\
 \n\
 ================================================================================\n\
@@ -272,21 +228,7 @@ namespace serialization
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
       stream.next(m.header);
-      stream.next(m.auto_toggle_pressed);
-      stream.next(m.manual_estop_pressed);
-      stream.next(m.auto_engage_pressed);
-      stream.next(m.auto_disengage_pressed);
-      stream.next(m.environment_checks_pressed);
-      stream.next(m.system_checks_pressed);
-      stream.next(m.emergency_pullover_exit_pressed);
-      stream.next(m.manual_drive_pressed);
-      stream.next(m.gear_change_pressed);
-      stream.next(m.auto_toggle);
-      stream.next(m.manual_estop);
-      stream.next(m.environment_checks);
-      stream.next(m.system_checks);
-      stream.next(m.emergency_pullover_exit);
-      stream.next(m.gear_setting);
+      stream.next(m.request);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -308,36 +250,8 @@ struct Printer< ::anm_msgs::HMIReport_<ContainerAllocator> >
     s << indent << "header: ";
     s << std::endl;
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
-    s << indent << "auto_toggle_pressed: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.auto_toggle_pressed);
-    s << indent << "manual_estop_pressed: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.manual_estop_pressed);
-    s << indent << "auto_engage_pressed: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.auto_engage_pressed);
-    s << indent << "auto_disengage_pressed: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.auto_disengage_pressed);
-    s << indent << "environment_checks_pressed: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.environment_checks_pressed);
-    s << indent << "system_checks_pressed: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.system_checks_pressed);
-    s << indent << "emergency_pullover_exit_pressed: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.emergency_pullover_exit_pressed);
-    s << indent << "manual_drive_pressed: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.manual_drive_pressed);
-    s << indent << "gear_change_pressed: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.gear_change_pressed);
-    s << indent << "auto_toggle: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.auto_toggle);
-    s << indent << "manual_estop: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.manual_estop);
-    s << indent << "environment_checks: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.environment_checks);
-    s << indent << "system_checks: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.system_checks);
-    s << indent << "emergency_pullover_exit: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.emergency_pullover_exit);
-    s << indent << "gear_setting: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.gear_setting);
+    s << indent << "request: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.request);
   }
 };
 

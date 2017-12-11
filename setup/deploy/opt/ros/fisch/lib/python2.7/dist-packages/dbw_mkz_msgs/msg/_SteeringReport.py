@@ -8,7 +8,7 @@ import struct
 import std_msgs.msg
 
 class SteeringReport(genpy.Message):
-  _md5sum = "25bf2c220d904531d8bc16ab5271325d"
+  _md5sum = "435efc512abdd87ef2f942c0e8ed296d"
   _type = "dbw_mkz_msgs/SteeringReport"
   _has_header = True #flag to mark the presence of a Header object
   _full_text = """Header header
@@ -24,7 +24,7 @@ float32 speed                     # m/s
 # Status
 bool enabled  # Enabled
 bool override # Driver override
-bool driver   # Driver activity
+bool timeout  # Command timeout
 
 # Watchdog Counter
 bool fault_wdc
@@ -33,7 +33,6 @@ bool fault_wdc
 bool fault_bus1
 bool fault_bus2
 bool fault_calibration
-bool fault_connector # This fault can be ignored
 
 ================================================================================
 MSG: std_msgs/Header
@@ -53,8 +52,8 @@ time stamp
 # 1: global frame
 string frame_id
 """
-  __slots__ = ['header','steering_wheel_angle','steering_wheel_angle_cmd','steering_wheel_torque','speed','enabled','override','driver','fault_wdc','fault_bus1','fault_bus2','fault_calibration','fault_connector']
-  _slot_types = ['std_msgs/Header','float32','float32','float32','float32','bool','bool','bool','bool','bool','bool','bool','bool']
+  __slots__ = ['header','steering_wheel_angle','steering_wheel_angle_cmd','steering_wheel_torque','speed','enabled','override','timeout','fault_wdc','fault_bus1','fault_bus2','fault_calibration']
+  _slot_types = ['std_msgs/Header','float32','float32','float32','float32','bool','bool','bool','bool','bool','bool','bool']
 
   def __init__(self, *args, **kwds):
     """
@@ -64,7 +63,7 @@ string frame_id
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,steering_wheel_angle,steering_wheel_angle_cmd,steering_wheel_torque,speed,enabled,override,driver,fault_wdc,fault_bus1,fault_bus2,fault_calibration,fault_connector
+       header,steering_wheel_angle,steering_wheel_angle_cmd,steering_wheel_torque,speed,enabled,override,timeout,fault_wdc,fault_bus1,fault_bus2,fault_calibration
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -87,8 +86,8 @@ string frame_id
         self.enabled = False
       if self.override is None:
         self.override = False
-      if self.driver is None:
-        self.driver = False
+      if self.timeout is None:
+        self.timeout = False
       if self.fault_wdc is None:
         self.fault_wdc = False
       if self.fault_bus1 is None:
@@ -97,8 +96,6 @@ string frame_id
         self.fault_bus2 = False
       if self.fault_calibration is None:
         self.fault_calibration = False
-      if self.fault_connector is None:
-        self.fault_connector = False
     else:
       self.header = std_msgs.msg.Header()
       self.steering_wheel_angle = 0.
@@ -107,12 +104,11 @@ string frame_id
       self.speed = 0.
       self.enabled = False
       self.override = False
-      self.driver = False
+      self.timeout = False
       self.fault_wdc = False
       self.fault_bus1 = False
       self.fault_bus2 = False
       self.fault_calibration = False
-      self.fault_connector = False
 
   def _get_types(self):
     """
@@ -135,7 +131,7 @@ string frame_id
         length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_get_struct_4f8B().pack(_x.steering_wheel_angle, _x.steering_wheel_angle_cmd, _x.steering_wheel_torque, _x.speed, _x.enabled, _x.override, _x.driver, _x.fault_wdc, _x.fault_bus1, _x.fault_bus2, _x.fault_calibration, _x.fault_connector))
+      buff.write(_get_struct_4f7B().pack(_x.steering_wheel_angle, _x.steering_wheel_angle_cmd, _x.steering_wheel_torque, _x.speed, _x.enabled, _x.override, _x.timeout, _x.fault_wdc, _x.fault_bus1, _x.fault_bus2, _x.fault_calibration))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -163,16 +159,15 @@ string frame_id
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 24
-      (_x.steering_wheel_angle, _x.steering_wheel_angle_cmd, _x.steering_wheel_torque, _x.speed, _x.enabled, _x.override, _x.driver, _x.fault_wdc, _x.fault_bus1, _x.fault_bus2, _x.fault_calibration, _x.fault_connector,) = _get_struct_4f8B().unpack(str[start:end])
+      end += 23
+      (_x.steering_wheel_angle, _x.steering_wheel_angle_cmd, _x.steering_wheel_torque, _x.speed, _x.enabled, _x.override, _x.timeout, _x.fault_wdc, _x.fault_bus1, _x.fault_bus2, _x.fault_calibration,) = _get_struct_4f7B().unpack(str[start:end])
       self.enabled = bool(self.enabled)
       self.override = bool(self.override)
-      self.driver = bool(self.driver)
+      self.timeout = bool(self.timeout)
       self.fault_wdc = bool(self.fault_wdc)
       self.fault_bus1 = bool(self.fault_bus1)
       self.fault_bus2 = bool(self.fault_bus2)
       self.fault_calibration = bool(self.fault_calibration)
-      self.fault_connector = bool(self.fault_connector)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -194,7 +189,7 @@ string frame_id
         length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_get_struct_4f8B().pack(_x.steering_wheel_angle, _x.steering_wheel_angle_cmd, _x.steering_wheel_torque, _x.speed, _x.enabled, _x.override, _x.driver, _x.fault_wdc, _x.fault_bus1, _x.fault_bus2, _x.fault_calibration, _x.fault_connector))
+      buff.write(_get_struct_4f7B().pack(_x.steering_wheel_angle, _x.steering_wheel_angle_cmd, _x.steering_wheel_torque, _x.speed, _x.enabled, _x.override, _x.timeout, _x.fault_wdc, _x.fault_bus1, _x.fault_bus2, _x.fault_calibration))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -223,16 +218,15 @@ string frame_id
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 24
-      (_x.steering_wheel_angle, _x.steering_wheel_angle_cmd, _x.steering_wheel_torque, _x.speed, _x.enabled, _x.override, _x.driver, _x.fault_wdc, _x.fault_bus1, _x.fault_bus2, _x.fault_calibration, _x.fault_connector,) = _get_struct_4f8B().unpack(str[start:end])
+      end += 23
+      (_x.steering_wheel_angle, _x.steering_wheel_angle_cmd, _x.steering_wheel_torque, _x.speed, _x.enabled, _x.override, _x.timeout, _x.fault_wdc, _x.fault_bus1, _x.fault_bus2, _x.fault_calibration,) = _get_struct_4f7B().unpack(str[start:end])
       self.enabled = bool(self.enabled)
       self.override = bool(self.override)
-      self.driver = bool(self.driver)
+      self.timeout = bool(self.timeout)
       self.fault_wdc = bool(self.fault_wdc)
       self.fault_bus1 = bool(self.fault_bus1)
       self.fault_bus2 = bool(self.fault_bus2)
       self.fault_calibration = bool(self.fault_calibration)
-      self.fault_connector = bool(self.fault_connector)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -247,9 +241,9 @@ def _get_struct_3I():
     if _struct_3I is None:
         _struct_3I = struct.Struct("<3I")
     return _struct_3I
-_struct_4f8B = None
-def _get_struct_4f8B():
-    global _struct_4f8B
-    if _struct_4f8B is None:
-        _struct_4f8B = struct.Struct("<4f8B")
-    return _struct_4f8B
+_struct_4f7B = None
+def _get_struct_4f7B():
+    global _struct_4f7B
+    if _struct_4f7B is None:
+        _struct_4f7B = struct.Struct("<4f7B")
+    return _struct_4f7B

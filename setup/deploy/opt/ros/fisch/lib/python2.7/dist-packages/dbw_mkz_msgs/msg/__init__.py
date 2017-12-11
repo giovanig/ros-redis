@@ -5,6 +5,7 @@ from ._BrakeReport import *
 from ._FuelLevelReport import *
 from ._Gear import *
 from ._GearCmd import *
+from ._GearReject import *
 from ._GearReport import *
 from ._HillStartAssist import *
 from ._Misc1Report import *
@@ -20,5 +21,6 @@ from ._TurnSignal import *
 from ._TurnSignalCmd import *
 from ._TwistCmd import *
 from ._WatchdogCounter import *
+from ._WheelPositionReport import *
 from ._WheelSpeedReport import *
 from ._Wiper import *
