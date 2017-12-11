@@ -18,9 +18,8 @@
 
     redis-cli
 
-    SUBSCRIBE _control_commands
-    SUBSCRIBE _topic_stats
-
+    redis-cli SUBSCRIBE _control_commands
+    redis-cli SUBSCRIBE _vehicle_brake_report
 
 
 Whenever the Skyline car is on, it automatically creates a ssh reserve tunnel with the sf-pc15.esg.uwaterloo.ca machine. One tunnel is for allowing ssh connection and another tunnel is for the Redis. 
