@@ -43,6 +43,7 @@ include_directories(
 install(PROGRAMS
   scripts/rosmsg2redis_json.py
   scripts/master_checker.py
+  scripts/getTopicInfo.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
