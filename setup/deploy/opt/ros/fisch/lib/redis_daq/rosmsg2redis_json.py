@@ -76,7 +76,7 @@ def topicListener():
     rospy.Subscriber("drive_mode", String, callback = rosmag_redis_json, callback_args =  "_drive_mode")
     rospy.Subscriber("p1hc_fail_occurred", Empty, callback = rosmag_redis_json, callback_args =  "_p1hc_fail_occurred")
     rospy.Subscriber("p1hc_dataspeed_offline", Bool, callback = rosmag_redis_json, callback_args =  "_p1hc_dataspeed_offline")
-'''
+    '''
     rospy.Subscriber("can_bus_dbw/can_rx", Bool, callback = rosmag_redis_json, callback_args =  "_can_bus_dbw_can_rx")
     rospy.Subscriber("can_bus_dbw/can_tx", Bool, callback = rosmag_redis_json, callback_args =  "_can_bus_dbw_can_tx")
     rospy.Subscriber("checking_report", Bool, callback = rosmag_redis_json, callback_args =  "_checking_report")
@@ -161,8 +161,8 @@ def topicListener():
     rospy.Subscriber("vehicle_control/parameter_descriptions", Bool, callback = rosmag_redis_json, callback_args =  "_vehicle_control_parameter_descriptions")
     rospy.Subscriber("vehicle_control/parameter_updates", Bool, callback = rosmag_redis_json, callback_args =  "_vehicle_control_parameter_updates")
     rospy.Subscriber("vehicle_control_bypass", Bool, callback = rosmag_redis_json, callback_args =  "_vehicle_control_bypass")
- '''   
-    
+    '''   
+
 
     rospy.spin()
 
