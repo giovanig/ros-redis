@@ -35,3 +35,8 @@ Whenever the Skyline car is on, it automatically creates a ssh reserve tunnel wi
 **Connect to Redis instance running on the car (master) through sf-pc15.esg.uwaterloo.ca** 
 
     redis -h localhost -p 20223  
+
+***SCP Files***
+
+    scp -P 20224 dev@localhost:/tmp/rostopic_info.ods /home/skyline/
+    scp -P 20222 skyline@sf-pc15.esg.uwaterloo.ca:/home/skyline/rostopic_info.ods ~/Downloads
