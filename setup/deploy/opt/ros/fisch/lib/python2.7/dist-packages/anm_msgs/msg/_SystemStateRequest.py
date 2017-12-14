@@ -9,7 +9,7 @@ import anm_msgs.msg
 import std_msgs.msg
 
 class SystemStateRequest(genpy.Message):
-  _md5sum = "0c64e8ff4ef392d8b8f1e28448c86939"
+  _md5sum = "6ec1139ecccffc08772e2a9685a56bbb"
   _type = "anm_msgs/SystemStateRequest"
   _has_header = True #flag to mark the presence of a Header object
   _full_text = """# This message indicates the requests for the system supervisor
@@ -59,6 +59,7 @@ uint8 ST_FINDPARKING = 6 # in auto mode - system is finding parking
 uint8 ST_PLATOONING  = 7 # in auto mode - system is platooning
 uint8 ST_EPULLOVER  = 8  # in auto mode - system is emergency pullover
 uint8 ST_REVERSE_PARK = 9  # in auto mode - system is reverse parking
+uint8 ST_PARALLEL_PARK = 10  # in auto mode - system is parallel parking
 
 # Message definition
 Header header

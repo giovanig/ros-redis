@@ -136,12 +136,12 @@ struct MD5Sum< ::anm_msgs::SystemStateRequest_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "0c64e8ff4ef392d8b8f1e28448c86939";
+    return "6ec1139ecccffc08772e2a9685a56bbb";
   }
 
   static const char* value(const ::anm_msgs::SystemStateRequest_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x0c64e8ff4ef392d8ULL;
-  static const uint64_t static_value2 = 0xb8f1e28448c86939ULL;
+  static const uint64_t static_value1 = 0x6ec1139ecccffc08ULL;
+  static const uint64_t static_value2 = 0x772e2a9685a56bbbULL;
 };
 
 template<class ContainerAllocator>
@@ -207,6 +207,7 @@ uint8 ST_FINDPARKING = 6 # in auto mode - system is finding parking\n\
 uint8 ST_PLATOONING  = 7 # in auto mode - system is platooning\n\
 uint8 ST_EPULLOVER  = 8  # in auto mode - system is emergency pullover\n\
 uint8 ST_REVERSE_PARK = 9  # in auto mode - system is reverse parking\n\
+uint8 ST_PARALLEL_PARK = 10  # in auto mode - system is parallel parking\n\
 \n\
 # Message definition\n\
 Header header\n\

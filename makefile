@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add . .gitignore
-		git commit -m "fix dbw_mkz_msgs report issue"
+		git commit -m "Add all topics in the autonomy stack"
 		git push origin master	
 
 git: clean push

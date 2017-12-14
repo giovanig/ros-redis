@@ -68,6 +68,7 @@ struct SystemState_
      enum { ST_PLATOONING = 7u };
      enum { ST_EPULLOVER = 8u };
      enum { ST_REVERSE_PARK = 9u };
+     enum { ST_PARALLEL_PARK = 10u };
  
 
   typedef boost::shared_ptr< ::anm_msgs::SystemState_<ContainerAllocator> > Ptr;
@@ -81,6 +82,8 @@ typedef boost::shared_ptr< ::anm_msgs::SystemState > SystemStatePtr;
 typedef boost::shared_ptr< ::anm_msgs::SystemState const> SystemStateConstPtr;
 
 // constants requiring out of line definition
+
+   
 
    
 
@@ -164,12 +167,12 @@ struct MD5Sum< ::anm_msgs::SystemState_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "ab7a717a3afecf397cade346b52416bb";
+    return "a4646c116eebeef26367900c1fdba673";
   }
 
   static const char* value(const ::anm_msgs::SystemState_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xab7a717a3afecf39ULL;
-  static const uint64_t static_value2 = 0x7cade346b52416bbULL;
+  static const uint64_t static_value1 = 0xa4646c116eebeef2ULL;
+  static const uint64_t static_value2 = 0x6367900c1fdba673ULL;
 };
 
 template<class ContainerAllocator>
@@ -203,6 +206,7 @@ uint8 ST_FINDPARKING = 6 # in auto mode - system is finding parking\n\
 uint8 ST_PLATOONING  = 7 # in auto mode - system is platooning\n\
 uint8 ST_EPULLOVER  = 8  # in auto mode - system is emergency pullover\n\
 uint8 ST_REVERSE_PARK = 9  # in auto mode - system is reverse parking\n\
+uint8 ST_PARALLEL_PARK = 10  # in auto mode - system is parallel parking\n\
 \n\
 # Message definition\n\
 Header header\n\

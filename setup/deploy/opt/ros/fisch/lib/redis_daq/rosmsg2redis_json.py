@@ -46,8 +46,8 @@ from visualization_msgs.msg import MarkerArray
 
 import anm_msgs.msg as anm_msgs
 import dbw_mkz_msgs.msg as dbw_mkz_msgs
-import rea_perception_msgs.msg as  rea_perception_msgs
-import etrans_msgs.msg as  etrans_msgs
+# # import rea_perception_msgs.msg as rea_perception_msgs
+# # import etrans_msgs.msg as etrans_msgs
 
 # from dbw_mkz_msgs.msg import BrakeReport
 
@@ -111,8 +111,8 @@ def topicListener():
     rospy.Subscriber("clicked_point", PointStamped, callback = rosmag_redis_json, callback_args =  "_clicked_point")
     rospy.Subscriber("cmd_vel", Float32, callback = rosmag_redis_json, callback_args =  "_cmd_vel")
     rospy.Subscriber("ekf_odom", Odometry, callback = rosmag_redis_json, callback_args =  "_ekf_odom")
-    rospy.Subscriber("etrans/intersections", etrans_msgs.etrans_intersection, callback = rosmag_redis_json, callback_args =  "_etrans_intersections")
-    rospy.Subscriber("etrans/vehicles", etrans_msgs.etrans_vehicle, callback = rosmag_redis_json, callback_args =  "_etrans_vehicles")
+    # # rospy.Subscriber("etrans/intersections", etrans_msgs.etrans_intersection, callback = rosmag_redis_json, callback_args =  "_etrans_intersections")
+    # # rospy.Subscriber("etrans/vehicles", etrans_msgs.etrans_vehicle, callback = rosmag_redis_json, callback_args =  "_etrans_vehicles")
     rospy.Subscriber("global_path", Path, callback = rosmag_redis_json, callback_args =  "_global_path")
     rospy.Subscriber("gps_odom", Odometry, callback = rosmag_redis_json, callback_args =  "_gps_odom")
     rospy.Subscriber("hmi_request", anm_msgs.HMIReport, callback = rosmag_redis_json, callback_args =  "_hmi_request")
@@ -136,12 +136,12 @@ def topicListener():
     rospy.Subscriber("odom_datum", NavSatFix, callback = rosmag_redis_json, callback_args =  "_odom_datum")
     rospy.Subscriber("parallel_parking_spot_coord", Path, callback = rosmag_redis_json, callback_args =  "_parallel_parking_spot_coord")
     rospy.Subscriber("parallel_parking_visualization", MarkerArray, callback = rosmag_redis_json, callback_args =  "_parallel_parking_visualization")
-    rospy.Subscriber("rea_perception_lane_msg", rea_perception_msgs.rea_perception_lane_msg, callback = rosmag_redis_json, callback_args =  "_rea_perception_lane_msg")
-    rospy.Subscriber("rea_perception_object_msg", rea_perception_msgs.rea_perception_object_msg, callback = rosmag_redis_json, callback_args =  "_rea_perception_object_msg")
-    rospy.Subscriber("rea_perception_orientation_msg", rea_perception_msgs.rea_perception_orientation_msg, callback = rosmag_redis_json, callback_args =  "_rea_perception_orientation_msg")
-    rospy.Subscriber("rea_perception_parking_space_msg", rea_perception_msgs.rea_perception_parking_space_msg, callback = rosmag_redis_json, callback_args =  "_rea_perception_parking_space_msg")
-    rospy.Subscriber("rea_perception_traffic_light_msg", rea_perception_msgs.rea_perception_traffic_light_msg, callback = rosmag_redis_json, callback_args =  "_rea_perception_traffic_light_msg")
-    rospy.Subscriber("rea_perception_traffic_sign_msg", rea_perception_msgs.rea_perception_traffic_sign_msg, callback = rosmag_redis_json, callback_args =  "_rea_perception_traffic_sign_msg")
+    # # rospy.Subscriber("rea_perception_lane_msg", rea_perception_msgs.rea_perception_lane_msg, callback = rosmag_redis_json, callback_args =  "_rea_perception_lane_msg")
+    # # rospy.Subscriber("rea_perception_object_msg", rea_perception_msgs.rea_perception_object_msg, callback = rosmag_redis_json, callback_args =  "_rea_perception_object_msg")
+    # # rospy.Subscriber("rea_perception_orientation_msg", rea_perception_msgs.rea_perception_orientation_msg, callback = rosmag_redis_json, callback_args =  "_rea_perception_orientation_msg")
+    # # rospy.Subscriber("rea_perception_parking_space_msg", rea_perception_msgs.rea_perception_parking_space_msg, callback = rosmag_redis_json, callback_args =  "_rea_perception_parking_space_msg")
+    # # rospy.Subscriber("rea_perception_traffic_light_msg", rea_perception_msgs.rea_perception_traffic_light_msg, callback = rosmag_redis_json, callback_args =  "_rea_perception_traffic_light_msg")
+    # # rospy.Subscriber("rea_perception_traffic_sign_msg", rea_perception_msgs.rea_perception_traffic_sign_msg, callback = rosmag_redis_json, callback_args =  "_rea_perception_traffic_sign_msg")
     rospy.Subscriber("ref_ekf/node_status", anm_msgs.NodeStatus, callback = rosmag_redis_json, callback_args =  "_ref_ekf_node_status")
     rospy.Subscriber("ref_ekf/parameter_descriptions", ConfigDescription, callback = rosmag_redis_json, callback_args =  "_ref_ekf_parameter_descriptions")
     rospy.Subscriber("ref_ekf/parameter_updates", Config, callback = rosmag_redis_json, callback_args =  "_ref_ekf_parameter_updates")
