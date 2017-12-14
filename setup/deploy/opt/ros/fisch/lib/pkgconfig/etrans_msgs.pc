@@ -1,0 +1,8 @@
+prefix=/opt/ros/fisch
+
+Name: etrans_msgs
+Description: Description of etrans_msgs
+Version: 0.1.0
+Cflags: -I/opt/ros/fisch/include
+Libs: -L/opt/ros/fisch/lib 
+Requires: message_runtime std_msgs

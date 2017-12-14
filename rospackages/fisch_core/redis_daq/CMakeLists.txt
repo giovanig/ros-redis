@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   dbw_mkz_msgs
   can_msgs
+  etrans_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -24,7 +25,7 @@ catkin_package(
 #  LIBRARIES redis_daq
 #  DEPENDS system_lib
   INCLUDE_DIRS include
-  CATKIN_DEPENDS roscpp rospy std_msgs anm_msgs dbw_mkz_msgs
+  CATKIN_DEPENDS roscpp rospy std_msgs anm_msgs dbw_mkz_msgs etrans_msgs
 )
 
 ###########

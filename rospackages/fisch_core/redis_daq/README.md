@@ -4,6 +4,19 @@
 
 Run the install scripts provided at the start of the repo to for fresh installation if not done so already
 
+**If you know what you are doing**
+ 
+ ## On Devel machine
+
+    cd path/to/ros-redis/
+    bash setup/deploy/deploy.bash -b -c -l
+
+ ## On skyline PC
+
+    cd path/to/ros-redis/
+    bash setup/deploy/deploy.bash -i -e -r
+
+
 **Build project locally**
 
 To build the project the repo should be in the ~/catkin_ws/src 

@@ -19,6 +19,7 @@
     <!-- Depends -->
   <depend>anm_msgs</depend>
   <depend>dbw_mkz_msgs</depend>    
+  <depend>etrans_msgs</depend> 
   <!-- <buildtool_depend>catkin</buildtool_depend> -->
     <depend>roscpp</depend>
     <depend>rospy</depend>

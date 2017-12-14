@@ -47,7 +47,7 @@ from visualization_msgs.msg import MarkerArray
 import anm_msgs.msg as anm_msgs
 import dbw_mkz_msgs.msg as dbw_mkz_msgs
 # # import rea_perception_msgs.msg as rea_perception_msgs
-# # import etrans_msgs.msg as etrans_msgs
+import etrans_msgs.msg as etrans_msgs
 
 # from dbw_mkz_msgs.msg import BrakeReport
 
