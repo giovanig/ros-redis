@@ -121,7 +121,8 @@ def topicListener():
     rospy.Subscriber("last_anm_waypoint", String, callback = rosmag_redis_json, callback_args =  "_last_anm_waypoint")
     rospy.Subscriber("local_path", Path, callback = rosmag_redis_json, callback_args =  "_local_path")
     rospy.Subscriber("local_planner/centers", MarkerArray, callback = rosmag_redis_json, callback_args =  "_local_planner_centers")
-    rospy.Subscriber("local_planner/modified_grid_map", OccupancyGrid, callback = rosmag_redis_json, callback_args =  "_local_planner_modified_grid_map")
+    # OccupancyGrid is a big message type, will take too much data
+    # # rospy.Subscriber("local_planner/modified_grid_map", OccupancyGrid, callback = rosmag_redis_json, callback_args =  "_local_planner_modified_grid_map")
     rospy.Subscriber("local_planner/path_set", MarkerArray, callback = rosmag_redis_json, callback_args =  "_local_planner_path_set")
     rospy.Subscriber("local_planner/truncated_lines", Marker, callback = rosmag_redis_json, callback_args =  "_local_planner_truncated_lines")
     rospy.Subscriber("local_planner/vehicle_pose", Marker, callback = rosmag_redis_json, callback_args =  "_local_planner_vehicle_pose")
