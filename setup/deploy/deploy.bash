@@ -82,6 +82,11 @@ main()
         bash $SCRIPT_DIR/install-to-PC.bash
     fi   
 
+    if [ -n "$INSTALL_FROM_REPO" ]; then
+        echo "Install the build to local machine from the repo"
+        bash $SCRIPT_DIR/install_from_repo.bash
+    fi 
+
     if [ -n "$ENABLE_STARTUP" ]; then
         echo "Enable fischRedis service"
         bash $SCRIPT_DIR/enable_startup.bash
@@ -89,7 +94,7 @@ main()
 
     if [ -n "$DISABLE_STARTUP" ]; then
         echo "Disable fischRedis service"
-        bash $SCRIPT_DIR/enable_startup.bash
+        bash $SCRIPT_DIR/disable_startup.bash
     fi 
 
     if [ -n "$DELETE_SERVICE" ]; then
@@ -105,11 +110,6 @@ main()
     if [ -n "$RESTART_SERVICE" ]; then
         echo "Restart fischRedis service"
         sudo systemctl restart fischRedis
-    fi 
-
-    if [ -n "$INSTALL_FROM_REPO" ]; then
-        echo "Install the build to local machine from the repo"
-        bash $SCRIPT_DIR/install_from_repo.bash
     fi 
 }
 
