@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add . .gitignore
-		git commit -m "Add all topics in the autonomy stack"
+		git commit -m "Updated to include selected topics from list"
 		git push origin master	
 
 git: clean push

@@ -95,7 +95,7 @@ class SystemStateRequest {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '6ec1139ecccffc08772e2a9685a56bbb';
+    return '0c64e8ff4ef392d8b8f1e28448c86939';
   }
 
   static messageDefinition() {
@@ -148,7 +148,6 @@ class SystemStateRequest {
     uint8 ST_PLATOONING  = 7 # in auto mode - system is platooning
     uint8 ST_EPULLOVER  = 8  # in auto mode - system is emergency pullover
     uint8 ST_REVERSE_PARK = 9  # in auto mode - system is reverse parking
-    uint8 ST_PARALLEL_PARK = 10  # in auto mode - system is parallel parking
     
     # Message definition
     Header header

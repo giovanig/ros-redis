@@ -98,7 +98,7 @@
    self)
   )
 
-(setf (get anm_msgs::SystemStateRequest :md5sum-) "6ec1139ecccffc08772e2a9685a56bbb")
+(setf (get anm_msgs::SystemStateRequest :md5sum-) "0c64e8ff4ef392d8b8f1e28448c86939")
 (setf (get anm_msgs::SystemStateRequest :datatype-) "anm_msgs/SystemStateRequest")
 (setf (get anm_msgs::SystemStateRequest :definition-)
       "# This message indicates the requests for the system supervisor
@@ -148,7 +148,6 @@ uint8 ST_FINDPARKING = 6 # in auto mode - system is finding parking
 uint8 ST_PLATOONING  = 7 # in auto mode - system is platooning
 uint8 ST_EPULLOVER  = 8  # in auto mode - system is emergency pullover
 uint8 ST_REVERSE_PARK = 9  # in auto mode - system is reverse parking
-uint8 ST_PARALLEL_PARK = 10  # in auto mode - system is parallel parking
 
 # Message definition
 Header header
@@ -162,6 +161,6 @@ uint8 navptschks        # is there navigation points currently? 0 = no, 1 = yes
 
 
 
-(provide :anm_msgs/SystemStateRequest "6ec1139ecccffc08772e2a9685a56bbb")
+(provide :anm_msgs/SystemStateRequest "0c64e8ff4ef392d8b8f1e28448c86939")
 
 

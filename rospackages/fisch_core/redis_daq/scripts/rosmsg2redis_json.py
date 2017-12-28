@@ -92,19 +92,21 @@ def rosmag_redis_json(data,topic):
 def topicListener():
     rospy.init_node('rosmsg2redis_json', anonymous=False)
 
+    rospy.Subscriber("vehicle/steering_report", dbw_mkz_msgs.SteeringReport, callback = rosmag_redis_json, callback_args =  "_vehicle_steering_report")
+    rospy.Subscriber("vehicle/gear_report", dbw_mkz_msgs.GearReport, callback = rosmag_redis_json, callback_args =  "_vehicle_gear_report")
+    rospy.Subscriber("vehicle_state", anm_msgs.VehicleState, callback = rosmag_redis_json, callback_args =  "_vehicle_state_report")
     rospy.Subscriber("control_commands", anm_msgs.ControlCommands, callback = rosmag_redis_json, callback_args =  "_control_commands")
     rospy.Subscriber("checked_commands", anm_msgs.ControlCommands, callback = rosmag_redis_json, callback_args =  "_checked_commands")
     rospy.Subscriber("navsat/fix", NavSatFix, callback = rosmag_redis_json, callback_args =  "_navsat_fix")
     rospy.Subscriber("vehicle/throttle_report", dbw_mkz_msgs.ThrottleReport, callback = rosmag_redis_json, callback_args =  "_vehicle_throttle_report")
-    rospy.Subscriber("vehicle/steering_report", dbw_mkz_msgs.SteeringReport, callback = rosmag_redis_json, callback_args =  "_vehicle_steering_report")
     rospy.Subscriber("vehicle/brake_report", dbw_mkz_msgs.BrakeReport, callback = rosmag_redis_json, callback_args =  "_vehicle_brake_report")
-    rospy.Subscriber("vehicle/gear_report", dbw_mkz_msgs.GearReport, callback = rosmag_redis_json, callback_args =  "_vehicle_gear_report")
-    rospy.Subscriber("vehicle_state", anm_msgs.VehicleState, callback = rosmag_redis_json, callback_args =  "_vehicle_state_report")
+    rospy.Subscriber("odom_datum", NavSatFix, callback = rosmag_redis_json, callback_args =  "_odom_datum")
+
+'''
     rospy.Subscriber("vehicle/p1hc_enable_flag", Bool, callback = rosmag_redis_json, callback_args =  "_vehicle_p1hc_enable_flag")
     rospy.Subscriber("drive_mode", String, callback = rosmag_redis_json, callback_args =  "_drive_mode")
     rospy.Subscriber("p1hc_fail_occurred", Empty, callback = rosmag_redis_json, callback_args =  "_p1hc_fail_occurred")
     rospy.Subscriber("p1hc_dataspeed_offline", Bool, callback = rosmag_redis_json, callback_args =  "_p1hc_dataspeed_offline")
-
     rospy.Subscriber("can_bus_dbw/can_rx", Frame, callback = rosmag_redis_json, callback_args =  "_can_bus_dbw_can_rx")
     rospy.Subscriber("can_bus_dbw/can_tx", Frame, callback = rosmag_redis_json, callback_args =  "_can_bus_dbw_can_tx")
     rospy.Subscriber("checking_report", anm_msgs.CommandCheckingReport, callback = rosmag_redis_json, callback_args =  "_checking_report")
@@ -134,7 +136,6 @@ def topicListener():
     # # rospy.Subscriber("novatel_data/corrimudata", Bool, callback = rosmag_redis_json, callback_args =  "_novatel_data_corrimudata")
     # # rospy.Subscriber("novatel_data/inscov", Bool, callback = rosmag_redis_json, callback_args =  "_novatel_data_inscov")
     # # rospy.Subscriber("novatel_data/inspvax", Bool, callback = rosmag_redis_json, callback_args =  "_novatel_data_inspvax")
-    rospy.Subscriber("odom_datum", NavSatFix, callback = rosmag_redis_json, callback_args =  "_odom_datum")
     rospy.Subscriber("parallel_parking_spot_coord", Path, callback = rosmag_redis_json, callback_args =  "_parallel_parking_spot_coord")
     rospy.Subscriber("parallel_parking_visualization", MarkerArray, callback = rosmag_redis_json, callback_args =  "_parallel_parking_visualization")
     # # rospy.Subscriber("rea_perception_lane_msg", rea_perception_msgs.rea_perception_lane_msg, callback = rosmag_redis_json, callback_args =  "_rea_perception_lane_msg")
@@ -192,6 +193,7 @@ def topicListener():
     rospy.Subscriber("vehicle/wheel_position_report", dbw_mkz_msgs.WheelPositionReport, callback = rosmag_redis_json, callback_args =  "_vehicle_wheel_position_report")
     rospy.Subscriber("vehicle/wheel_speed_report", dbw_mkz_msgs.WheelSpeedReport, callback = rosmag_redis_json, callback_args =  "_vehicle_wheel_speed_report")
 
+'''
     rospy.spin()
 
 
