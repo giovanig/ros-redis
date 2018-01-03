@@ -104,7 +104,7 @@ class SystemState {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'ab7a717a3afecf397cade346b52416bb';
+    return 'a4646c116eebeef26367900c1fdba673';
   }
 
   static messageDefinition() {
@@ -125,6 +125,7 @@ class SystemState {
     uint8 ST_PLATOONING  = 7 # in auto mode - system is platooning
     uint8 ST_EPULLOVER  = 8  # in auto mode - system is emergency pullover
     uint8 ST_REVERSE_PARK = 9  # in auto mode - system is reverse parking
+    uint8 ST_PARALLEL_PARK = 10  # in auto mode - system is parallel parking
     
     # Message definition
     Header header
@@ -212,6 +213,7 @@ SystemState.Constants = {
   ST_PLATOONING: 7,
   ST_EPULLOVER: 8,
   ST_REVERSE_PARK: 9,
+  ST_PARALLEL_PARK: 10,
 }
 
 module.exports = SystemState;

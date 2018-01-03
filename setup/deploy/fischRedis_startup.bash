@@ -5,7 +5,7 @@ set -e
 
 BINARY_SETUP=/opt/ros/fisch/setup.bash
 
-ROS_MASTER_URI="http://192.168.200.101:11311"
+ROS_MASTER_URI="http://192.168.200.103:11311"
 ROS_IP=$(ifconfig | perl -nle 's/dr:(\S+)/print $1/e' | grep 192.168.200.)
 
 export ROS_MASTER_URI
