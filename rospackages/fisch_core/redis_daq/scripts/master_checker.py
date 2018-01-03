@@ -7,7 +7,7 @@ import rospy
 import rosnode
 
 my_env = os.environ.copy()
-my_env["ROS_MASTER_URI"] = "http://192.168.200.101:11311" 
+my_env["ROS_MASTER_URI"] = "http://192.168.200.103:11311" 
 my_env["ROS_IP"] = "192.168.200.100"
 
 # path to directory of python file
