@@ -102,7 +102,7 @@ def topicListener():
     rospy.Subscriber("vehicle/brake_report", dbw_mkz_msgs.BrakeReport, callback = rosmag_redis_json, callback_args =  "_vehicle_brake_report")
     rospy.Subscriber("odom_datum", NavSatFix, callback = rosmag_redis_json, callback_args =  "_odom_datum")
 
-'''
+    '''
     rospy.Subscriber("vehicle/p1hc_enable_flag", Bool, callback = rosmag_redis_json, callback_args =  "_vehicle_p1hc_enable_flag")
     rospy.Subscriber("drive_mode", String, callback = rosmag_redis_json, callback_args =  "_drive_mode")
     rospy.Subscriber("p1hc_fail_occurred", Empty, callback = rosmag_redis_json, callback_args =  "_p1hc_fail_occurred")
@@ -193,7 +193,7 @@ def topicListener():
     rospy.Subscriber("vehicle/wheel_position_report", dbw_mkz_msgs.WheelPositionReport, callback = rosmag_redis_json, callback_args =  "_vehicle_wheel_position_report")
     rospy.Subscriber("vehicle/wheel_speed_report", dbw_mkz_msgs.WheelSpeedReport, callback = rosmag_redis_json, callback_args =  "_vehicle_wheel_speed_report")
 
-'''
+    '''
     rospy.spin()
 
 
