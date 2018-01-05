@@ -76,6 +76,7 @@ def rosmag_redis_json(data,topic):
     json_str = json_str[:1]+append_fields+json_str[1:]
 
     json_str = '{"' + topic + '" : ' + json_str + ' }'
+    json_str = json_str.replace('NaN', '"NaN"')
 
     # print(json_str)
   
@@ -83,7 +84,7 @@ def rosmag_redis_json(data,topic):
 
     if topic.strip() == "_vehicle_brake_report":
         # var to check if the car is in autonomy mode
-        autonomy_status =  '{"_autonomy_state" : {"timestamp" : "%s", "status" : %s} }' % (str(int(data.header.stamp.to_time()*1000)), data.enabled)
+        autonomy_status =  '{"_autonomy_state" : {"timestamp" : "%s", "status" : "%s"} }' % (str(int(data.header.stamp.to_time()*1000)), data.enabled)
         # print(autonomy_status)
         con.publish("_autonomy_state", autonomy_status)
 

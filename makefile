@@ -8,7 +8,7 @@ pull:
 
 push: 
 		git add . .gitignore
-		git commit -m "Updated to include selected topics from list"
+		git commit -m "Updated NaN to 'NaN' and updated the autonomy_status status value to include quotes"
 		git push origin master	
 
 git: clean push
