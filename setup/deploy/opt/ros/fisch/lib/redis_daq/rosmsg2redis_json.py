@@ -103,9 +103,9 @@ def topicListener():
     rospy.Subscriber("vehicle/brake_report", dbw_mkz_msgs.BrakeReport, callback = rosmag_redis_json, callback_args =  "_vehicle_brake_report")
     rospy.Subscriber("odom_datum", NavSatFix, callback = rosmag_redis_json, callback_args =  "_odom_datum")
 
-    rospy.Subscriber("p1hc_fail_occurred", Empty, callback = rosmag_redis_json, callback_args =  "_p1hc_fail_occurred")
-    rospy.Subscriber("etrans/intersections", etrans_msgs.etrans_intersection, callback = rosmag_redis_json, callback_args =  "_etrans_intersections")
-    rospy.Subscriber("etrans/vehicles", etrans_msgs.etrans_vehicle, callback = rosmag_redis_json, callback_args =  "_etrans_vehicles")
+    # rospy.Subscriber("p1hc_fail_occurred", Empty, callback = rosmag_redis_json, callback_args =  "_p1hc_fail_occurred")
+    # rospy.Subscriber("etrans/intersections", etrans_msgs.etrans_intersection, callback = rosmag_redis_json, callback_args =  "_etrans_intersections")
+    # rospy.Subscriber("etrans/vehicles", etrans_msgs.etrans_vehicle, callback = rosmag_redis_json, callback_args =  "_etrans_vehicles")
 
 
     '''
