@@ -84,7 +84,7 @@ def rosmag_redis_json(data,topic):
 
     if topic.strip() == "_vehicle_brake_report":
         # var to check if the car is in autonomy mode
-        autonomy_status =  '{"_autonomy_state" : {"timestamp" : "%s", "status" : "%s"} }' % (str(int(data.header.stamp.to_time()*1000)), data.enabled)
+        autonomy_status =  '{"_autonomy_state" : {"timestamp" : "%s", "status" : "%s"} }' % (str(int(data.header.stamp.to_time()*1000)), data.enabled.lower())
         # print(autonomy_status)
         con.publish("_autonomy_state", autonomy_status)
 
@@ -103,10 +103,15 @@ def topicListener():
     rospy.Subscriber("vehicle/brake_report", dbw_mkz_msgs.BrakeReport, callback = rosmag_redis_json, callback_args =  "_vehicle_brake_report")
     rospy.Subscriber("odom_datum", NavSatFix, callback = rosmag_redis_json, callback_args =  "_odom_datum")
 
+    rospy.Subscriber("p1hc_fail_occurred", Empty, callback = rosmag_redis_json, callback_args =  "_p1hc_fail_occurred")
+    rospy.Subscriber("etrans/intersections", etrans_msgs.etrans_intersection, callback = rosmag_redis_json, callback_args =  "_etrans_intersections")
+    rospy.Subscriber("etrans/vehicles", etrans_msgs.etrans_vehicle, callback = rosmag_redis_json, callback_args =  "_etrans_vehicles")
+
+
     '''
     rospy.Subscriber("vehicle/p1hc_enable_flag", Bool, callback = rosmag_redis_json, callback_args =  "_vehicle_p1hc_enable_flag")
     rospy.Subscriber("drive_mode", String, callback = rosmag_redis_json, callback_args =  "_drive_mode")
-    rospy.Subscriber("p1hc_fail_occurred", Empty, callback = rosmag_redis_json, callback_args =  "_p1hc_fail_occurred")
+    
     rospy.Subscriber("p1hc_dataspeed_offline", Bool, callback = rosmag_redis_json, callback_args =  "_p1hc_dataspeed_offline")
     rospy.Subscriber("can_bus_dbw/can_rx", Frame, callback = rosmag_redis_json, callback_args =  "_can_bus_dbw_can_rx")
     rospy.Subscriber("can_bus_dbw/can_tx", Frame, callback = rosmag_redis_json, callback_args =  "_can_bus_dbw_can_tx")
@@ -114,8 +119,6 @@ def topicListener():
     rospy.Subscriber("clicked_point", PointStamped, callback = rosmag_redis_json, callback_args =  "_clicked_point")
     rospy.Subscriber("cmd_vel", Float32, callback = rosmag_redis_json, callback_args =  "_cmd_vel")
     rospy.Subscriber("ekf_odom", Odometry, callback = rosmag_redis_json, callback_args =  "_ekf_odom")
-    rospy.Subscriber("etrans/intersections", etrans_msgs.etrans_intersection, callback = rosmag_redis_json, callback_args =  "_etrans_intersections")
-    rospy.Subscriber("etrans/vehicles", etrans_msgs.etrans_vehicle, callback = rosmag_redis_json, callback_args =  "_etrans_vehicles")
     rospy.Subscriber("global_path", Path, callback = rosmag_redis_json, callback_args =  "_global_path")
     rospy.Subscriber("gps_odom", Odometry, callback = rosmag_redis_json, callback_args =  "_gps_odom")
     rospy.Subscriber("hmi_request", anm_msgs.HMIReport, callback = rosmag_redis_json, callback_args =  "_hmi_request")

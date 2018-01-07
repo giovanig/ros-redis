@@ -44,9 +44,6 @@
 (intern "*ST_REVERSE_PARK*" (find-package "ANM_MSGS::SYSTEMSTATE"))
 (shadow '*ST_REVERSE_PARK* (find-package "ANM_MSGS::SYSTEMSTATE"))
 (defconstant anm_msgs::SystemState::*ST_REVERSE_PARK* 9)
-(intern "*ST_PARALLEL_PARK*" (find-package "ANM_MSGS::SYSTEMSTATE"))
-(shadow '*ST_PARALLEL_PARK* (find-package "ANM_MSGS::SYSTEMSTATE"))
-(defconstant anm_msgs::SystemState::*ST_PARALLEL_PARK* 10)
 (defclass anm_msgs::SystemState
   :super ros::object
   :slots (_header _state _envchks _syschks _navptschks ))
@@ -132,7 +129,7 @@
    self)
   )
 
-(setf (get anm_msgs::SystemState :md5sum-) "a4646c116eebeef26367900c1fdba673")
+(setf (get anm_msgs::SystemState :md5sum-) "ab7a717a3afecf397cade346b52416bb")
 (setf (get anm_msgs::SystemState :datatype-) "anm_msgs/SystemState")
 (setf (get anm_msgs::SystemState :definition-)
       "# This message contains the current state of the autonomous system
@@ -150,7 +147,6 @@ uint8 ST_FINDPARKING = 6 # in auto mode - system is finding parking
 uint8 ST_PLATOONING  = 7 # in auto mode - system is platooning
 uint8 ST_EPULLOVER  = 8  # in auto mode - system is emergency pullover
 uint8 ST_REVERSE_PARK = 9  # in auto mode - system is reverse parking
-uint8 ST_PARALLEL_PARK = 10  # in auto mode - system is parallel parking
 
 # Message definition
 Header header
@@ -182,6 +178,6 @@ string frame_id
 
 
 
-(provide :anm_msgs/SystemState "a4646c116eebeef26367900c1fdba673")
+(provide :anm_msgs/SystemState "ab7a717a3afecf397cade346b52416bb")
 
 

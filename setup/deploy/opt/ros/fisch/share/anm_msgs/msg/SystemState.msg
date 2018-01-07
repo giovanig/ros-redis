@@ -13,7 +13,6 @@ uint8 ST_FINDPARKING = 6 # in auto mode - system is finding parking
 uint8 ST_PLATOONING  = 7 # in auto mode - system is platooning
 uint8 ST_EPULLOVER  = 8  # in auto mode - system is emergency pullover
 uint8 ST_REVERSE_PARK = 9  # in auto mode - system is reverse parking
-uint8 ST_PARALLEL_PARK = 10  # in auto mode - system is parallel parking
 
 # Message definition
 Header header
